@@ -1,66 +1,34 @@
-
 package model.bo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-public class ReceitaMedicamento {
+@Entity(name = "receita_medicamento")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ReceitaMedicamento implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private String prescricao;
+    @Column
     private String status;
+    @ManyToOne
+    @JoinColumn(name = "receita_id")
     private Receita receita;
+    @ManyToOne
+    @JoinColumn(name = "medicamento_id")
     private Medicamento medicamento;
-    
-    
-    public ReceitaMedicamento(){
-        
-    }
-
-    public ReceitaMedicamento(Integer id, String prescricao, String status, Receita receita, Medicamento medicamento) {
-        this.id = id;
-        this.prescricao = prescricao;
-        this.status = status;
-        this.receita =  receita;
-        this.medicamento = medicamento;
-        
-    }
-
-    public Receita getReceita() {
-        return receita;
-    }
-
-    public void setReceita(Receita receita) {
-        this.receita = receita;
-    }
-
-    public Medicamento getMedicamento() {
-        return medicamento;
-    }
-
-    public void setMedicamento(Medicamento medicamento) {
-        this.medicamento = medicamento;
-    }
-    
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getPrescricao() {
-        return prescricao;
-    }
-
-    public void setPrescricao(String prescricao) {
-        this.prescricao = prescricao;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }   
 }

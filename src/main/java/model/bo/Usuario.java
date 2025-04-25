@@ -1,42 +1,25 @@
 package model.bo;
 
-public class Usuario {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 
-    private Integer id;
+@Entity(name = "usuario")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class Usuario extends Pessoa implements Serializable {
+    
+    @Column
     private String login;
+    @Column
     private String senha;
-
-    public Usuario() {
-    }
-
-    public Usuario(Integer id, String login, String senha) {
-        this.id = id;
-        this.login = login;
-        this.senha = senha;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
+    @Column
+    private String status;
 }

@@ -1,57 +1,33 @@
 package model.bo;
 
-public class Leito {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-	private Integer id;
-	private String descricao;
-	private String status;
-	private Integer quarto_id;
-        
-	public Leito(Integer id, String descricao, String status, Integer quarto_id) {
-		this.id = id;
-		this.descricao = descricao;
-		this.status = status;
-                this.quarto_id = quarto_id;
-	}
-	
-	public Leito() {
-		super();
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-         public Integer getQuarto_id() {
-            return quarto_id;
-        }
-
-        public void setQuarto_id(Integer quarto_id) {
-            this.quarto_id = quarto_id;
-        }
-
-        @Override
-        public String toString() {
-            return "Leito{" + "id=" + id + ", descricao=" + descricao + ", status=" + status + '}';
-        }
+@Entity(name = "leito")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Leito implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
+    private String numero;
+    @Column
+    private String descricao;
+    @Column
+    private String status;
+    
+    @Column
+    private Integer quartoId;
 }

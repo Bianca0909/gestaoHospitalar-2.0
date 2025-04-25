@@ -1,33 +1,26 @@
 package model.bo;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-public class ClasseDadosGravacao {
+@Entity(name = "classe_dados_gravacao")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ClasseDadosGravacao implements Serializable {
     
-   private static ClasseDadosGravacao uniqueinstance;
-   public static ArrayList<Medicamento> listaMedicamento = new ArrayList<>();
-   public static ArrayList<Laboratorio> listaLaboratorio = new ArrayList<>();
-   public static ArrayList<Acompanhante> listaAcompanhante = new ArrayList<>();
-   public static ArrayList<Ala> listaAla = new ArrayList<>();
-   public static ArrayList<Leito> listaLeito = new ArrayList<>();
-   public static ArrayList<Quarto> listaQuarto = new ArrayList<>();
-   public static ArrayList<Paciente> listaPaciente = new ArrayList<>();
-   public static ArrayList<Enfermeiro> listaEnfermeiro = new ArrayList<>();
-   public static ArrayList<Usuario> listaUsuario = new ArrayList<>();
-   public static ArrayList<Fornecedor> listaFornecedor = new ArrayList<>();
-   public static ArrayList<Medico> listaMedico = new ArrayList<>();
-   public static ArrayList<Farmaceutico> listaFarmaceutico = new ArrayList<>();
-   
-    private ClasseDadosGravacao() {
-    }
-
-    public static synchronized ClasseDadosGravacao getInstance() {
-
-        if (uniqueinstance == null) {
-            uniqueinstance = new ClasseDadosGravacao();
-        }
-
-        return uniqueinstance;
-    }
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
+    private String nomeTabela;
+    @Column
+    private String status;
 }

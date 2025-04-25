@@ -1,65 +1,31 @@
 package model.bo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-public class Jornada {
+@Entity(name = "jornada")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Jornada implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private LocalDate dataInicial;
+    @Column
     private LocalDate dataFinal;
+    @Column
     private Integer cargaHoraria;
+    @Column
     private Integer profissionalId;
-
-    public Jornada(Integer id, LocalDate dataInicial, LocalDate dataFinal, Integer cargaHoraria, Integer profissionalId) {
-        this.id = id;
-        this.dataInicial = dataInicial;
-        this.dataFinal = dataFinal;
-        this.cargaHoraria = cargaHoraria;
-        this.profissionalId = profissionalId;
-    }
-
-    public Jornada() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public LocalDate getDataInicial() {
-        return dataInicial;
-    }
-
-    public void setDataInicial(LocalDate dataInicial) {
-        this.dataInicial = dataInicial;
-    }
-
-    public LocalDate getDataFinal() {
-        return dataFinal;
-    }
-
-    public void setDataFinal(LocalDate dataFinal) {
-        this.dataFinal = dataFinal;
-    }
-
-    public Integer getCargaHoraria() {
-        return cargaHoraria;
-    }
-
-    public void setCargaHoraria(Integer cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
-
-    public Integer getProfissionalId() {
-        return profissionalId;
-    }
-
-    public void setProfissionalId(Integer profissionalId) {
-        this.profissionalId = profissionalId;
-    }
-
-    
 }

@@ -1,66 +1,31 @@
 package model.bo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-public class Lote {
+@Entity(name = "lote")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Lote implements Serializable {
 
-	private Integer id;
-	private String descricao;
-	private LocalDate dataFabricacao;
-	private LocalDate dataValidade;
-	private String status;
-	
-	
-	public Lote() {
-		super();
-	}
-
-	public Lote(Integer id, String descricao, LocalDate dataFabricacao, LocalDate dataValidade, String status) {
-		super();
-		this.id = id;
-		this.descricao = descricao;
-		this.dataFabricacao = dataFabricacao;
-		this.dataValidade = dataValidade;
-		this.status = status;
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public LocalDate getDataFabricacao() {
-		return dataFabricacao;
-	}
-
-	public void setDataFabricacao(LocalDate dataFabricacao) {
-		this.dataFabricacao = dataFabricacao;
-	}
-
-	public LocalDate getDataValidade() {
-		return dataValidade;
-	}
-
-	public void setDataValidade(LocalDate dataValidade) {
-		this.dataValidade = dataValidade;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
+    private String descricao;
+    @Column
+    private LocalDate dataFabricacao;
+    @Column
+    private LocalDate dataValidade;
+    @Column
+    private String status;
 }

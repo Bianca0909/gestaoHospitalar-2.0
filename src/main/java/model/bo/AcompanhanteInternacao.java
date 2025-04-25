@@ -1,57 +1,36 @@
 package model.bo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class AcompanhanteInternacao {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 
-	private Integer id;
-	private LocalDateTime dataEntrada;
-	private LocalDateTime dataSaida;
-	private String observacao;
-	private String status;
-	
-	public AcompanhanteInternacao(Integer id, LocalDateTime dataEntrada, LocalDateTime dataSaida, String observacao,
-			String status) {
-		super();
-		this.id = id;
-		this.dataEntrada = dataEntrada;
-		this.dataSaida = dataSaida;
-		this.observacao = observacao;
-		this.status = status;
-	}
-	
-	public AcompanhanteInternacao() {
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public LocalDateTime getDataEntrada() {
-		return dataEntrada;
-	}
-	public void setDataEntrada(LocalDateTime dataEntrada) {
-		this.dataEntrada = dataEntrada;
-	}
-	public LocalDateTime getDataSaida() {
-		return dataSaida;
-	}
-	public void setDataSaida(LocalDateTime dataSaida) {
-		this.dataSaida = dataSaida;
-	}
-	public String getObservacao() {
-		return observacao;
-	}
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+@Entity
+@Table(name = "acompanhante_internacao")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AcompanhanteInternacao implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
+    private LocalDateTime dataEntrada;
+    @Column
+    private LocalDateTime dataSaida;
+    @Column
+    private String observacao;
+    @Column
+    private String status;
+
 }

@@ -1,60 +1,28 @@
-
 package model.bo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-public class Laboratorio {
+@Entity(name = "laboratorio")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Laboratorio implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private String nomeFantasia;
+    @Column
     private String contato;
+    @Column
     private String status;
-    
-    public Laboratorio(){
-        
-    }
-
-    public Laboratorio(Integer id, String nomeFantasia, String contato, String status) {
-        this.id = id;
-        this.nomeFantasia = nomeFantasia;
-        this.contato = contato;
-        this.status = status;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNomeFantasia() {
-        return nomeFantasia;
-    }
-
-    public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
-    }
-
-    public String getContato() {
-        return contato;
-    }
-
-    public void setContato(String contato) {
-        this.contato = contato;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Laboratorio{" + "id=" + id + ", nomeFantasia=" + nomeFantasia + ", contato=" + contato + ", status=" + status + "}\n";
-    }
-     
-    
 }

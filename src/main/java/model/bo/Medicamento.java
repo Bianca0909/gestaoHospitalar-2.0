@@ -1,82 +1,34 @@
-
 package model.bo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-public class Medicamento {
+@Entity(name = "medicamento")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Medicamento implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private String descricaoMedicamento;
+    @Column
     private String principioAtivo;
+    @Column
     private float qtdMinima;
+    @Column
     private String status;
+    @Column
     private String codigoBarras;
+    @Column
     private Integer laboratorio_id;
-            
-    public Medicamento(){
-        
-    }
-
-    public Medicamento(Integer id, String descricaoMedicamento, String principioAtivo, float qtdMinima, String status, Laboratorio laboratorio, String codigoBarras) {
-        this.id = id;
-        this.descricaoMedicamento = descricaoMedicamento;
-        this.principioAtivo = principioAtivo;
-        this.qtdMinima = qtdMinima;
-        this.status = status;
-        this.codigoBarras = codigoBarras;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDescricaoMedicamento() {
-        return descricaoMedicamento;
-    }
-
-    public void setDescricaoMedicamento(String descricaoMedicamento) {
-        this.descricaoMedicamento = descricaoMedicamento;
-    }
-
-    public String getPrincipioAtivo() {
-        return principioAtivo;
-    }
-
-    public void setPrincipioAtivo(String principioAtivo) {
-        this.principioAtivo = principioAtivo;
-    }
-
-    public float getQtdMinima() {
-        return qtdMinima;
-    }
-
-    public void setQtdMinima(float qtdMinima) {
-        this.qtdMinima = qtdMinima;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getCodigoBarras() {
-        return codigoBarras;
-    }
-
-    public void setCodigoBarras(String codigoBarras) {
-        this.codigoBarras = codigoBarras;
-    }
-
-    public Integer getLaboratorio_id() {
-        return laboratorio_id;
-    }
-
-    public void setLaboratorio_id(Integer laboratorio_id) {
-        this.laboratorio_id = laboratorio_id;
-    }
 }

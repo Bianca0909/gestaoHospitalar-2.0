@@ -1,0 +1,427 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
+package view;
+
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+/**
+ *
+ * @author Bianca
+ */
+public class TelaCadastroJornadaTrabalho extends javax.swing.JDialog {
+
+    /**
+     * Creates new form TelaCadastroJornada
+     */
+    public TelaCadastroJornadaTrabalho(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+    }
+
+    public JButton getjButtonBuscar() {
+        return jButtonBuscar;
+    }
+
+    public void setjButtonBuscar(JButton jButtonBuscar) {
+        this.jButtonBuscar = jButtonBuscar;
+    }
+
+    public JButton getjButtonCancelar() {
+        return jButtonCancelar;
+    }
+
+    public void setjButtonCancelar(JButton jButtonCancelar) {
+        this.jButtonCancelar = jButtonCancelar;
+    }
+
+    public JButton getjButtonGravar() {
+        return jButtonGravar;
+    }
+
+    public void setjButtonGravar(JButton jButtonGravar) {
+        this.jButtonGravar = jButtonGravar;
+    }
+
+    public JButton getjButtonNovo() {
+        return jButtonNovo;
+    }
+
+    public void setjButtonNovo(JButton jButtonNovo) {
+        this.jButtonNovo = jButtonNovo;
+    }
+
+    public JButton getjButtonSair() {
+        return jButtonSair;
+    }
+
+    public void setjButtonSair(JButton jButtonSair) {
+        this.jButtonSair = jButtonSair;
+    }
+
+    public JPanel getjPanelBotoes() {
+        return jPanelBotoes;
+    }
+
+    public void setjPanelBotoes(JPanel jPanelBotoes) {
+        this.jPanelBotoes = jPanelBotoes;
+    }
+
+    
+    public JFormattedTextField getjFormattedTextField1() {
+        return dataInicialField;
+    }
+
+    public void setjFormattedTextField1(JFormattedTextField jFormattedTextField1) {
+        this.dataInicialField = jFormattedTextField1;
+    }
+
+    public JFormattedTextField getjFormattedTextField2() {
+        return dataFinalField;
+    }
+
+    public void setjFormattedTextField2(JFormattedTextField jFormattedTextField2) {
+        this.dataFinalField = jFormattedTextField2;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    public void setjLabel2(JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    public JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    public void setjLabel3(JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    public JLabel getjLabelTitulo() {
+        return jLabelTitulo;
+    }
+
+    public void setjLabelTitulo(JLabel jLabelTitulo) {
+        this.jLabelTitulo = jLabelTitulo;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanelDados;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanelDados = jPanel1;
+    }
+
+    public JPanel getjPaneltitulo() {
+        return jPaneltitulo;
+    }
+
+    public void setjPaneltitulo(JPanel jPaneltitulo) {
+        this.jPaneltitulo = jPaneltitulo;
+    }
+
+    public JTextField getjTextField1() {
+        return idField;
+    }
+
+    public void setjTextField1(JTextField jTextField1) {
+        this.idField = jTextField1;
+    }
+
+    public JTextField getjTextField2() {
+        return cargaHorariaField;
+    }
+
+    public void setjTextField2(JTextField jTextField2) {
+        this.cargaHorariaField = jTextField2;
+    }
+
+    public JPanel getjPanelDados() {
+        return jPanelDados;
+    }
+
+    public void setjPanelDados(JPanel jPanelDados) {
+        this.jPanelDados = jPanelDados;
+    }
+
+    public JTextField getIdField() {
+        return idField;
+    }
+
+    public void setIdField(JTextField idField) {
+        this.idField = idField;
+    }
+
+    public JTextField getCargaHorariaField() {
+        return cargaHorariaField;
+    }
+
+    public void setCargaHorariaField(JTextField cargaHorariaField) {
+        this.cargaHorariaField = cargaHorariaField;
+    }
+
+    public JFormattedTextField getDataFinalField() {
+        return dataFinalField;
+    }
+
+    public void setDataFinalField(JFormattedTextField dataFinalField) {
+        this.dataFinalField = dataFinalField;
+    }
+
+    public JFormattedTextField getDataInicialField() {
+        return dataInicialField;
+    }
+
+    public void setDataInicialField(JFormattedTextField dataInicialField) {
+        this.dataInicialField = dataInicialField;
+    }
+
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanelDados = new javax.swing.JPanel();
+        jPaneltitulo = new javax.swing.JPanel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        idField = new javax.swing.JTextField();
+        dataInicialField = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
+        dataFinalField = new javax.swing.JFormattedTextField();
+        jLabel4 = new javax.swing.JLabel();
+        cargaHorariaField = new javax.swing.JTextField();
+        jPanelBotoes = new javax.swing.JPanel();
+        jButtonNovo = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
+        jButtonGravar = new javax.swing.JButton();
+        jButtonBuscar = new javax.swing.JButton();
+        jButtonSair = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanelDados.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanelDados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPaneltitulo.setBackground(new java.awt.Color(51, 153, 255));
+        jPaneltitulo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitulo.setText("Jornada de trabalho");
+        jLabelTitulo.setToolTipText("");
+
+        javax.swing.GroupLayout jPaneltituloLayout = new javax.swing.GroupLayout(jPaneltitulo);
+        jPaneltitulo.setLayout(jPaneltituloLayout);
+        jPaneltituloLayout.setHorizontalGroup(
+            jPaneltituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+        );
+        jPaneltituloLayout.setVerticalGroup(
+            jPaneltituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+        );
+
+        jPanelDados.add(jPaneltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, -1));
+
+        jLabel1.setText("Data inicial");
+        jPanelDados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        jLabel2.setText("Id");
+        jPanelDados.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        idField.setEditable(false);
+        jPanelDados.add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 30, 30));
+        jPanelDados.add(dataInicialField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 60, 30));
+
+        jLabel3.setText("Data final");
+        jPanelDados.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
+        jPanelDados.add(dataFinalField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 60, 30));
+
+        jLabel4.setText("Carga horária");
+        jPanelDados.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
+        jPanelDados.add(cargaHorariaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 60, 30));
+
+        jPanelBotoes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jButtonNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Create.png"))); // NOI18N
+        jButtonNovo.setText("Novo");
+        jButtonNovo.setActionCommand("1");
+        jButtonNovo.setMinimumSize(new java.awt.Dimension(67, 25));
+        jButtonNovo.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoActionPerformed(evt);
+            }
+        });
+        jPanelBotoes.add(jButtonNovo);
+
+        jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cancel.png"))); // NOI18N
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setActionCommand("0");
+        jButtonCancelar.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
+        jPanelBotoes.add(jButtonCancelar);
+
+        jButtonGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Download.png"))); // NOI18N
+        jButtonGravar.setText("Gravar");
+        jButtonGravar.setActionCommand("0");
+        jButtonGravar.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGravarActionPerformed(evt);
+            }
+        });
+        jPanelBotoes.add(jButtonGravar);
+
+        jButtonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Find.png"))); // NOI18N
+        jButtonBuscar.setText("Buscar");
+        jButtonBuscar.setActionCommand("1");
+        jButtonBuscar.setPreferredSize(new java.awt.Dimension(100, 30));
+        jPanelBotoes.add(jButtonBuscar);
+
+        jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Exit.png"))); // NOI18N
+        jButtonSair.setText("Sair");
+        jButtonSair.setActionCommand("1");
+        jButtonSair.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairActionPerformed(evt);
+            }
+        });
+        jPanelBotoes.add(jButtonSair);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanelDados, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelDados, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
+        //        Utilities.ativaDesativa(true, jPainelBotoes);
+    }//GEN-LAST:event_jButtonNovoActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        //        Utilities.ativaDesativa(false, jPainelBotoes);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
+        //        Utilities.ativaDesativa(false, jPainelBotoes);
+    }//GEN-LAST:event_jButtonGravarActionPerformed
+
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+        //        dispose();
+    }//GEN-LAST:event_jButtonSairActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TelaCadastroJornadaTrabalho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaCadastroJornadaTrabalho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaCadastroJornadaTrabalho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaCadastroJornadaTrabalho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                TelaCadastroJornadaTrabalho dialog = new TelaCadastroJornadaTrabalho(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cargaHorariaField;
+    private javax.swing.JFormattedTextField dataFinalField;
+    private javax.swing.JFormattedTextField dataInicialField;
+    private javax.swing.JTextField idField;
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonGravar;
+    private javax.swing.JButton jButtonNovo;
+    private javax.swing.JButton jButtonSair;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPanel jPanelBotoes;
+    private javax.swing.JPanel jPanelDados;
+    private javax.swing.JPanel jPaneltitulo;
+    // End of variables declaration//GEN-END:variables
+}

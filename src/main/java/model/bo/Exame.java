@@ -1,45 +1,29 @@
 package model.bo;
 
-public class Exame {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-	private Integer id;
-	private String tituloExame;
-	private String tipoExame;
-	private String status;
-	
-	public Exame() {
-	}
-	
-	public Exame(Integer id, String tituloExame, String tipoExame, String status) {
-		super();
-		this.id = id;
-		this.tituloExame = tituloExame;
-		this.tipoExame = tipoExame;
-		this.status = status;
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getTituloExame() {
-		return tituloExame;
-	}
-	public void setTituloExame(String tituloExame) {
-		this.tituloExame = tituloExame;
-	}
-	public String getTipoExame() {
-		return tipoExame;
-	}
-	public void setTipoExame(String tipoExame) {
-		this.tipoExame = tipoExame;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+@Entity(name = "exame")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Exame implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
+    private String tituloExame;
+    @Column
+    private String tipoExame;
+    @Column
+    private String status;
+    
 }

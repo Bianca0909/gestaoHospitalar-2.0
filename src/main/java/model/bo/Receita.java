@@ -1,56 +1,29 @@
-
 package model.bo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-
-public class Receita {
-    private Integer id;
-    private LocalDateTime dataHoraReceita;
-    private String observacao;
-    private String status;
+@Entity(name = "receita")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Receita implements Serializable {
     
-    public Receita(){
-        
-    }
-
-    public Receita(Integer id, LocalDateTime dataHoraReceita, String observacao, String status) {
-        this.id = id;
-        this.dataHoraReceita = dataHoraReceita;
-        this.observacao = observacao;
-        this.status = status;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getDataHoraReceita() {
-        return dataHoraReceita;
-    }
-
-    public void setDataHoraReceita(LocalDateTime dataHoraReceita) {
-        this.dataHoraReceita = dataHoraReceita;
-    }
-
-    public String getObservacao() {
-        return observacao;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-       
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
+    private LocalDateTime dataHoraReceita;
+    @Column
+    private String observacao;
+    @Column
+    private String status;
 }

@@ -1,76 +1,38 @@
 package model.bo;
 
 import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+@Entity(name = "prontuario")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Prontuario {
 
-	private Integer id;
-	private LocalDateTime dataHoraVisita;
-	private String descricaoVista;
-	private String observacao;
-	private String status;
-	private InternacaoLeito internacaoLeito;
-	private Enfermeiro enfermeiro;
-	
-	public Prontuario(Integer id, LocalDateTime dataHoraVisita, String descricaoVista, String observacao,
-			String status, InternacaoLeito internacaoLeito, Enfermeiro enfermeiro) {
-		super();
-		this.id = id;
-		this.dataHoraVisita = dataHoraVisita;
-		this.descricaoVista = descricaoVista;
-		this.observacao = observacao;
-		this.status = status;
-		this.internacaoLeito = internacaoLeito;
-		this.enfermeiro = enfermeiro;
-	}
-	
-	public Prontuario() {
-		super();
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public LocalDateTime getDataHoraVisita() {
-		return dataHoraVisita;
-	}
-	public void setDataHoraVisita(LocalDateTime dataHoraVisita) {
-		this.dataHoraVisita = dataHoraVisita;
-	}
-	public String getDescricaoVista() {
-		return descricaoVista;
-	}
-	public void setDescricaoVista(String descricaoVista) {
-		this.descricaoVista = descricaoVista;
-	}
-	public String getObservacao() {
-		return observacao;
-	}
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public InternacaoLeito getInternacaoLeito() {
-		return internacaoLeito;
-	}
-	public void setInternacaoLeito(InternacaoLeito internacaoLeito) {
-		this.internacaoLeito = internacaoLeito;
-	}
-
-	public Enfermeiro getEnfermeiro() {
-		return enfermeiro;
-	}
-
-	public void setEnfermeiro(Enfermeiro enfermeiro) {
-		this.enfermeiro = enfermeiro;
-	}
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
+    private LocalDateTime dataHoraVisita;
+    @Column
+    private String descricaoVista;
+    @Column
+    private String observacao;
+    @Column
+    private String status;
+    @ManyToOne
+    @JoinColumn(name = "internacao_leito_id")
+    private InternacaoLeito internacaoLeito;
+    @ManyToOne
+    @JoinColumn(name = "enfermeiro_id")
+    private Enfermeiro enfermeiro;
 }

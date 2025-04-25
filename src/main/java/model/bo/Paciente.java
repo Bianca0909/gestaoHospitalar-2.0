@@ -1,52 +1,31 @@
 package model.bo;
 
+import javax.persistence.Entity;
+import javax.persistence.Column;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+
+@Entity(name = "paciente")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Paciente extends Pessoa {
-
-    private String tipoSanguineo;
-    private String sexo;
-    private String nomeSocial;
-
-    public Paciente(Integer id, String nome, String fone1, String fone2, String email, String cpfCnpj,
-            String rgInscricaoEstadual, String dataCadastro, String cep, String cidade, String bairro,
-            String logradouro, String complemento, String tipoSanguineo, String sexo, String nomeSocial) {
-        super(id, nome, fone1, fone2, email, cpfCnpj, rgInscricaoEstadual, dataCadastro, cep, cidade, bairro,
-                logradouro, complemento);
-        this.tipoSanguineo = tipoSanguineo;
-        this.sexo = sexo;
-        this.nomeSocial = nomeSocial;
-    }
-
-    public Paciente() {
-    }
-
-    public String getTipoSanguineo() {
-        return tipoSanguineo;
-    }
-
-    public void setTipoSanguineo(String tipoSanguineo) {
-        this.tipoSanguineo = tipoSanguineo;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public String getNomeSocial() {
-        return nomeSocial;
-    }
-
-    public void setNomeSocial(String nomeSocial) {
-        this.nomeSocial = nomeSocial;
-    }
-
-    @Override
-    public String toString() {
-        return "Paciente{" + "tipoSanguineo=" + tipoSanguineo + ", sexo=" + sexo + ", nomeSocial=" + nomeSocial + '}';
-    }
-
     
+    @Column
+    private String cartaoSus;
+    @Column
+    private String tipoSanguineo;
+    @Column
+    private String sexo;
+    @Column
+    private String nomeSocial;
+    @Column
+    private String convenio;
+    @Column
+    private String carteirinhaConvenio;
+    @Column
+    private String status;
 }

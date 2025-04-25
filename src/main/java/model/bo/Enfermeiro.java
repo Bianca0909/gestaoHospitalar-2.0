@@ -1,61 +1,25 @@
 package model.bo;
 
+import javax.persistence.Entity;
+import javax.persistence.Column;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+
+@Entity(name = "enfermeiro")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Enfermeiro extends Pessoa {
-
+    
+    @Column
     private String cre;
+    @Column
     private String senha;
+    @Column
     private String login;
+    @Column
     private String nomeSocial;
-
-    public Enfermeiro(Integer id, String nome, String fone1, String fone2, String email, String cpfCnpj,
-            String rgInscricaoEstadual, String dataCadastro, String cep, String cidade, String bairro,
-            String logradouro, String complemento, String cre, String senha, String login, String nomeSocial) {
-        super(id, nome, fone1, fone2, email, cpfCnpj, rgInscricaoEstadual, dataCadastro, cep, cidade, bairro,
-                logradouro, complemento);
-        this.cre = cre;
-        this.senha = senha;
-        this.login = login;
-        this.nomeSocial = nomeSocial;
-    }
-
-    public Enfermeiro() {
-    }
-
-    public String getCre() {
-        return cre;
-    }
-
-    public void setCre(String cre) {
-        this.cre = cre;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getNomeSocial() {
-        return nomeSocial;
-    }
-
-    public void setNomeSocial(String nomeSocial) {
-        this.nomeSocial = nomeSocial;
-    }
-
-    @Override
-    public String toString() {
-        return "Enfermeiro{" + "cre=" + cre + ", senha=" + senha + ", login=" + login + ", nomeSocial=" + nomeSocial + '}';
-    }
-
 }

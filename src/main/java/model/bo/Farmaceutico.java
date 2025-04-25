@@ -1,61 +1,25 @@
 package model.bo;
 
+import javax.persistence.Entity;
+import javax.persistence.Column;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+
+@Entity(name = "farmaceutico")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class Farmaceutico extends Pessoa {
-
+    
+    @Column
     private String crf;
+    @Column
     private String senha;
+    @Column
     private String login;
+    @Column
     private String nomeSocial;
-
-    public Farmaceutico() {
-    }
-
-    public Farmaceutico(Integer id, String nome, String fone1, String fone2, String email, String cpfCnpj,
-            String rgInscricaoEstadual, String dataCadastro, String cep, String cidade, String bairro,
-            String logradouro, String complemento, String crf, String senha, String login, String nomeSocial) {
-        super(id, nome, fone1, fone2, email, cpfCnpj, rgInscricaoEstadual, dataCadastro, cep, cidade, bairro,
-                logradouro, complemento);
-        this.crf = crf;
-        this.senha = senha;
-        this.login = login;
-        this.nomeSocial = nomeSocial;
-    }
-
-    public String getCrf() {
-        return crf;
-    }
-
-    public void setCrf(String crf) {
-        this.crf = crf;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getNomeSocial() {
-        return nomeSocial;
-    }
-
-    public void setNomeSocial(String nomeSocial) {
-        this.nomeSocial = nomeSocial;
-    }
-
-    @Override
-    public String toString() {
-        return "Farmaceutico{" + "crf=" + crf + ", senha=" + senha + ", login=" + login + ", nomeSocial=" + nomeSocial + '}';
-    }
-
 }

@@ -1,116 +1,46 @@
 package model.bo;
 
 import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+@Entity(name = "movimento_medicamento")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class MovimentoMedicamento {
 
-	private Integer id;
-	private LocalDateTime dataHoraMovimento;
-	private String tipoMovimento;
-	private float qtdMedicamento;
-	private String observacao;
-	private String status;
-	private Lote lote;
-	private Laboratorio laboratorio;
-	private ReceitaMedicamento receitaMedicamento;
-	private Prontuario prontuario;
-	
-	public MovimentoMedicamento() {
-	}
-
-	public MovimentoMedicamento(Integer id, LocalDateTime dataHoraMovimento, String tipoMovimento, float qtdMedicamento,
-			String observacao, String status, Lote lote, Laboratorio laboratorio,
-			ReceitaMedicamento receitaMedicamento, Prontuario prontuario) {
-		super();
-		this.id = id;
-		this.dataHoraMovimento = dataHoraMovimento;
-		this.tipoMovimento = tipoMovimento;
-		this.qtdMedicamento = qtdMedicamento;
-		this.observacao = observacao;
-		this.status = status;
-		this.lote = lote;
-		this.laboratorio = laboratorio;
-		this.receitaMedicamento = receitaMedicamento;
-		this.prontuario = prontuario;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public LocalDateTime getDataHoraMovimento() {
-		return dataHoraMovimento;
-	}
-
-	public void setDataHoraMovimento(LocalDateTime dataHoraMovimento) {
-		this.dataHoraMovimento = dataHoraMovimento;
-	}
-
-	public String getTipoMovimento() {
-		return tipoMovimento;
-	}
-
-	public void setTipoMovimento(String tipoMovimento) {
-		this.tipoMovimento = tipoMovimento;
-	}
-
-	public float getQtdMedicamento() {
-		return qtdMedicamento;
-	}
-
-	public void setQtdMedicamento(float qtdMedicamento) {
-		this.qtdMedicamento = qtdMedicamento;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public Lote getLote() {
-		return lote;
-	}
-
-	public void setLote(Lote lote) {
-		this.lote = lote;
-	}
-
-	public Laboratorio getLaboratorio() {
-		return laboratorio;
-	}
-
-	public void setLaboratorio(Laboratorio laboratorio) {
-		this.laboratorio = laboratorio;
-	}
-
-	public ReceitaMedicamento getReceitaMedicamento() {
-		return receitaMedicamento;
-	}
-
-	public void setReceitaMedicamento(ReceitaMedicamento receitaMedicamento) {
-		this.receitaMedicamento = receitaMedicamento;
-	}
-
-	public Prontuario getProntuario() {
-		return prontuario;
-	}
-
-	public void setProntuario(Prontuario prontuario) {
-		this.prontuario = prontuario;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column
+    private LocalDateTime dataHoraMovimento;
+    @Column
+    private String tipoMovimento;
+    @Column
+    private float qtdMedicamento;
+    @Column
+    private String observacao;
+    @Column
+    private String status;
+    @ManyToOne
+    @JoinColumn(name = "lote_id")
+    private Lote lote;
+    @ManyToOne
+    @JoinColumn(name = "laboratorio_id")
+    private Laboratorio laboratorio;
+    @ManyToOne
+    @JoinColumn(name = "receita_medicamento_id")
+    private ReceitaMedicamento receitaMedicamento;
+    @ManyToOne
+    @JoinColumn(name = "prontuario_id")
+    private Prontuario prontuario;
 }
