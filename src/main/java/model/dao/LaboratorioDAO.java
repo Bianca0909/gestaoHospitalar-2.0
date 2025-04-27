@@ -2,14 +2,12 @@ package model.dao;
 
 import java.util.List;
 import model.bo.Laboratorio;
-import java.util.ArrayList;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 public class LaboratorioDAO implements InterfaceDAO<Laboratorio> {
 
-     private static LaboratorioDAO instance;
+    private static LaboratorioDAO instance;
     protected EntityManager entityManager;
 
     private LaboratorioDAO() {
@@ -24,10 +22,8 @@ public class LaboratorioDAO implements InterfaceDAO<Laboratorio> {
     }
 
     private EntityManager getEntityManager() {
-
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
+        if (entityManager == null || !entityManager.isOpen()) {
+            entityManager = ConnectionFactory.getEntityManager();
         }
         return entityManager;
     }
@@ -46,23 +42,20 @@ public class LaboratorioDAO implements InterfaceDAO<Laboratorio> {
 
     @Override
     public List<Laboratorio> retrieve() {
-        List<Laboratorio> laboratorios = new ArrayList<>();
-        laboratorios = entityManager.createQuery("Select lab From laboratorio lab", Laboratorio.class).getResultList();
-        return laboratorios;
+        TypedQuery<Laboratorio> query = entityManager.createQuery("SELECT l FROM laboratorio l", Laboratorio.class);
+        return query.getResultList();
     }
 
     @Override
     public Laboratorio retrieve(int pk) {
-        Laboratorio laboratorio = entityManager.find(Laboratorio.class, pk);
-        return laboratorio;
+        return entityManager.find(Laboratorio.class, pk);
     }
 
     @Override
     public List<Laboratorio> retrieve(String parametro, String atributo) {
-        List<Laboratorio> laboratorios = new ArrayList<>();
-        laboratorios = entityManager.createQuery("Select lab From laboratorio lab "
-                + " Where " + atributo + " like ( % " + parametro + " %  )", Laboratorio.class).getResultList();
-        return laboratorios;
+        TypedQuery<Laboratorio> query = entityManager.createQuery("SELECT l FROM laboratorio l WHERE " + atributo + " LIKE :parametro", Laboratorio.class)
+                .setParameter("parametro", "%" + parametro + "%");
+        return query.getResultList();
     }
 
     @Override
@@ -79,17 +72,14 @@ public class LaboratorioDAO implements InterfaceDAO<Laboratorio> {
 
     @Override
     public void delete(Laboratorio objeto) {
-
         try {
-            Laboratorio laboratorio = entityManager.find(Laboratorio.class, objeto.getId());
             entityManager.getTransaction().begin();
-            entityManager.remove(laboratorio);
+            objeto = entityManager.find(Laboratorio.class, objeto.getId());
+            entityManager.remove(objeto);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();
             entityManager.getTransaction().rollback();
         }
-
     }
-
 }

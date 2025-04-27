@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-  <persistence-unit name="com.mycompany_ProjetoHospitalMaven_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>model.bo.Acompanhante</class>
     <class>model.bo.AcompanhanteInternacao</class>
     <class>model.bo.Ala</class>
     <class>model.bo.Atendimento</class>
-    <class>model.bo.ClasseDadosGravacao</class>
     <class>model.bo.Consulta</class>
     <class>model.bo.ConsultaExame</class>
     <class>model.bo.Enfermeiro</class>
@@ -24,17 +23,23 @@
     <class>model.bo.Medico</class>
     <class>model.bo.MovimentoMedicamento</class>
     <class>model.bo.Paciente</class>
+    <class>model.bo.Pessoa</class>
     <class>model.bo.Prontuario</class>
     <class>model.bo.Quarto</class>
     <class>model.bo.Receita</class>
     <class>model.bo.ReceitaMedicamento</class>
     <class>model.bo.Usuario</class>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <validation-mode>NONE</validation-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hospital?verifyServerCertificate=false&amp;useSSL=false&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="root"/>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="eclipselink.target-database" value="MySQL"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+      <property name="eclipselink.logging.level.sql" value="FINE"/>
+      <property name="eclipselink.logging.parameters" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>

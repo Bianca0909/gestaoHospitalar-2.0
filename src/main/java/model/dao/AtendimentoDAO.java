@@ -3,8 +3,6 @@ package model.dao;
 import java.util.List;
 import model.bo.Atendimento;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 public class AtendimentoDAO implements InterfaceDAO<Atendimento> {
@@ -24,9 +22,8 @@ public class AtendimentoDAO implements InterfaceDAO<Atendimento> {
     }
 
     private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
+        if (entityManager == null || !entityManager.isOpen()) {
+            entityManager = ConnectionFactory.getEntityManager();
         }
         return entityManager;
     }
@@ -45,7 +42,7 @@ public class AtendimentoDAO implements InterfaceDAO<Atendimento> {
 
     @Override
     public List<Atendimento> retrieve() {
-        TypedQuery<Atendimento> query = entityManager.createQuery("Select a From atendimento a", Atendimento.class);
+        TypedQuery<Atendimento> query = entityManager.createQuery("SELECT a FROM atendimento a", Atendimento.class);
         return query.getResultList();
     }
 
@@ -56,8 +53,8 @@ public class AtendimentoDAO implements InterfaceDAO<Atendimento> {
 
     @Override
     public List<Atendimento> retrieve(String parametro, String atributo) {
-        TypedQuery<Atendimento> query = entityManager.createQuery("Select a From atendimento a "
-                + " Where " + atributo + " like ( % " + parametro + " % )", Atendimento.class);
+        TypedQuery<Atendimento> query = entityManager.createQuery("SELECT a FROM atendimento a WHERE " + atributo + " LIKE :parametro", Atendimento.class)
+                .setParameter("parametro", "%" + parametro + "%");
         return query.getResultList();
     }
 
@@ -76,9 +73,9 @@ public class AtendimentoDAO implements InterfaceDAO<Atendimento> {
     @Override
     public void delete(Atendimento objeto) {
         try {
-            Atendimento atendimento = entityManager.find(Atendimento.class, objeto.getId());
             entityManager.getTransaction().begin();
-            entityManager.remove(atendimento);
+            objeto = entityManager.find(Atendimento.class, objeto.getId());
+            entityManager.remove(objeto);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();

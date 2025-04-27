@@ -8,11 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-@Entity(name = "quarto")
+@Entity
+@Table(name = "QUARTO")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,14 +22,19 @@ public class Quarto implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Integer id;
-    @Column
+    
+    @Column(name = "NUMERO")
     private String numero;
-    @Column
+    
+    @Column(name = "DESCRICAO")
     private String descricao;
-    @Column
+    
+    @Column(name = "STATUS")
     private String status;
   
-    @Column
-    private Integer alaId;
+    @ManyToOne
+    @JoinColumn(name = "ala_id")
+    private Ala ala;
 }

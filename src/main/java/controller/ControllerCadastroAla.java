@@ -40,7 +40,7 @@ public class ControllerCadastroAla implements ActionListener {
         } else if (evento.getSource() == this.telaCadastroAla.getjButtonGravar()) {
             Ala ala = new Ala();
             
-            ala.setNome(this.telaCadastroAla.getNomeField().getText());
+            ala.setDescricao(this.telaCadastroAla.getDescricaoField().getText());
             
             if (this.telaCadastroAla.getIdField().getText().equals("")) {
                 service.ServiceAla.adicionar(ala);
@@ -65,7 +65,7 @@ public class ControllerCadastroAla implements ActionListener {
                 Utilities.limpaComponentes(true, this.telaCadastroAla.getjPanelDados());
                 
                 this.telaCadastroAla.getIdField().setText(ala.getId() + "");
-                this.telaCadastroAla.getNomeField().setText(ala.getNome());
+                this.telaCadastroAla.getDescricaoField().setText(ala.getDescricao());
                 
                 this.telaCadastroAla.getIdField().setEnabled(false);
                 this.telaCadastroAla.getNomeField().requestFocus();

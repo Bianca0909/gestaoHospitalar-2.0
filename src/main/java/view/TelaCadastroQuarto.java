@@ -170,6 +170,22 @@ public class TelaCadastroQuarto extends javax.swing.JDialog {
         this.alaComboBox = alaComboBox;
     }
 
+    public JTextField getNumeroField() {
+        return numeroField;
+    }
+
+    public void setNumeroField(JTextField numeroField) {
+        this.numeroField = numeroField;
+    }
+
+    public JLabel getNumeroLabel() {
+        return numeroLabel;
+    }
+
+    public void setNumeroLabel(JLabel numeroLabel) {
+        this.numeroLabel = numeroLabel;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -192,6 +208,8 @@ public class TelaCadastroQuarto extends javax.swing.JDialog {
         statusComboBox = new javax.swing.JComboBox<>();
         alaComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        numeroLabel = new javax.swing.JLabel();
+        numeroField = new javax.swing.JTextField();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonNovo = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
@@ -260,6 +278,8 @@ public class TelaCadastroQuarto extends javax.swing.JDialog {
 
         jLabel1.setText("Ala");
 
+        numeroLabel.setText("Número");
+
         javax.swing.GroupLayout jPanelDadosLayout = new javax.swing.GroupLayout(jPanelDados);
         jPanelDados.setLayout(jPanelDadosLayout);
         jPanelDadosLayout.setHorizontalGroup(
@@ -278,7 +298,10 @@ public class TelaCadastroQuarto extends javax.swing.JDialog {
                         .addComponent(descricaoField, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(alaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(alaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numeroField, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numeroLabel))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanelDadosLayout.setVerticalGroup(
             jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,10 +322,14 @@ public class TelaCadastroQuarto extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(alaComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(numeroLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(numeroField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanelDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 762, 180));
+        getContentPane().add(jPanelDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 762, 240));
 
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -359,7 +386,7 @@ public class TelaCadastroQuarto extends javax.swing.JDialog {
         });
         jPanelBotoes.add(jButtonSair);
 
-        getContentPane().add(jPanelBotoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 762, -1));
+        getContentPane().add(jPanelBotoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 762, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -431,7 +458,7 @@ public class TelaCadastroQuarto extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaCadastroFarmaceutico dialog = new TelaCadastroFarmaceutico(new javax.swing.JFrame(), true);
+                TelaCadastroQuarto dialog = new TelaCadastroQuarto(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -463,5 +490,7 @@ public class TelaCadastroQuarto extends javax.swing.JDialog {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JComboBox<StatusCadastroEnum> statusComboBox;
     private javax.swing.JLabel statusLabel;
+    private javax.swing.JTextField numeroField;
+    private javax.swing.JLabel numeroLabel;
     // End of variables declaration//GEN-END:variables
 }

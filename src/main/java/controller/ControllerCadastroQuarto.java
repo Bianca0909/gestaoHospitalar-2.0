@@ -8,10 +8,13 @@ import utilities.Utilities;
 import view.TelaBuscaQuarto;
 import view.TelaCadastroQuarto;
 import enums.StatusCadastroEnum;
+import service.ServiceQuarto;
+import javax.persistence.PersistenceException;
+import javax.swing.JOptionPane;
 
 public class ControllerCadastroQuarto implements ActionListener {
 
-    TelaCadastroQuarto telaCadastroQuarto;
+    private TelaCadastroQuarto telaCadastroQuarto;
     public static int codigo;
     
     public ControllerCadastroQuarto(TelaCadastroQuarto telaCadastroQuarto) {
@@ -39,24 +42,32 @@ public class ControllerCadastroQuarto implements ActionListener {
             Utilities.limpaComponentes(false, this.telaCadastroQuarto.getjPanelDados());
 
         } else if (evento.getSource() == this.telaCadastroQuarto.getjButtonGravar()) {
+            try {
+                Quarto quarto = new Quarto();
 
-            Quarto quarto = new Quarto();
+                quarto.setNumero(this.telaCadastroQuarto.getNumeroField().getText());
+                quarto.setDescricao(this.telaCadastroQuarto.getDescricaoField().getText());
+                quarto.setStatus(this.telaCadastroQuarto.getStatusComboBox().getSelectedItem().toString());
+                
+                Ala alaSelecionada = (Ala) this.telaCadastroQuarto.getAlaComboBox().getSelectedItem();
+                quarto.setAla(alaSelecionada);
+                
+                if (this.telaCadastroQuarto.getIdField().getText().equals("")) {
+                    ServiceQuarto.adicionar(quarto);
+                    JOptionPane.showMessageDialog(null, "Quarto adicionado com sucesso!");
+                } else {
+                    quarto.setId(Integer.parseInt(this.telaCadastroQuarto.getIdField().getText()));
+                    ServiceQuarto.atualizar(quarto);
+                    JOptionPane.showMessageDialog(null, "Quarto atualizado com sucesso!");
+                }
 
-            quarto.setDescricao(this.telaCadastroQuarto.getDescricaoField().getText());
-            quarto.setStatus(this.telaCadastroQuarto.getStatusComboBox().getSelectedItem().toString());
-            
-            Ala alaSelecionada = (Ala) this.telaCadastroQuarto.getAlaComboBox().getSelectedItem();
-            quarto.setAlaId(alaSelecionada.getId());
-            
-            if (this.telaCadastroQuarto.getIdField().getText().equals("")) {
-                service.ServiceQuarto.adicionar(quarto);
-            } else {
-                quarto.setId(Integer.parseInt(this.telaCadastroQuarto.getIdField().getText()));
-                service.ServiceQuarto.atualizar(quarto);
+                Utilities.ativaDesativa(false, this.telaCadastroQuarto.getjPanelBotoes());
+                Utilities.limpaComponentes(false, this.telaCadastroQuarto.getjPanelDados());
+            } catch (PersistenceException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao salvar o quarto: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             }
-
-            Utilities.ativaDesativa(false, this.telaCadastroQuarto.getjPanelBotoes());
-            Utilities.limpaComponentes(false, this.telaCadastroQuarto.getjPanelDados());
 
         } else if (evento.getSource() == this.telaCadastroQuarto.getjButtonBuscar()) {
             codigo = 0;
@@ -65,17 +76,25 @@ public class ControllerCadastroQuarto implements ActionListener {
             telaBuscaQuarto.setVisible(true);
 
             if (codigo != 0) {
-                Quarto quarto = service.ServiceQuarto.ler(codigo);
+                try {
+                    Quarto quarto = ServiceQuarto.ler(codigo);
 
-                Utilities.ativaDesativa(true, this.telaCadastroQuarto.getjPanelBotoes());
-                Utilities.limpaComponentes(true, this.telaCadastroQuarto.getjPanelDados());
+                    Utilities.ativaDesativa(true, this.telaCadastroQuarto.getjPanelBotoes());
+                    Utilities.limpaComponentes(true, this.telaCadastroQuarto.getjPanelDados());
 
-                this.telaCadastroQuarto.getIdField().setText(quarto.getId() + "");
-                this.telaCadastroQuarto.getDescricaoField().setText(quarto.getDescricao());
-                this.telaCadastroQuarto.getStatusComboBox().setSelectedItem(StatusCadastroEnum.valueOf(quarto.getStatus()));
-                
-                this.telaCadastroQuarto.getIdField().setEnabled(false);
-                this.telaCadastroQuarto.getDescricaoField().requestFocus();
+                    this.telaCadastroQuarto.getIdField().setText(quarto.getId() + "");
+                    this.telaCadastroQuarto.getNumeroField().setText(quarto.getNumero());
+                    this.telaCadastroQuarto.getDescricaoField().setText(quarto.getDescricao());
+                    this.telaCadastroQuarto.getStatusComboBox().setSelectedItem(StatusCadastroEnum.valueOf(quarto.getStatus()));
+                    this.telaCadastroQuarto.getAlaComboBox().setSelectedItem(quarto.getAla());
+                    
+                    this.telaCadastroQuarto.getIdField().setEnabled(false);
+                    this.telaCadastroQuarto.getDescricaoField().requestFocus();
+                } catch (PersistenceException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro ao carregar o quarto: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Erro inesperado: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                }
             }
 
         } else if (evento.getSource() == this.telaCadastroQuarto.getjButtonSair()) {

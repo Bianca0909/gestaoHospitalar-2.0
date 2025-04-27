@@ -2,10 +2,7 @@ package model.dao;
 
 import java.util.List;
 import model.bo.Ala;
-import java.util.ArrayList;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class AlaDAO implements InterfaceDAO<Ala> {
 
@@ -24,9 +21,8 @@ public class AlaDAO implements InterfaceDAO<Ala> {
     }
 
     private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
+        if (entityManager == null || !entityManager.isOpen()) {
+            entityManager = ConnectionFactory.getEntityManager();
         }
         return entityManager;
     }
@@ -45,22 +41,22 @@ public class AlaDAO implements InterfaceDAO<Ala> {
 
     @Override
     public List<Ala> retrieve() {
-        List<Ala> alas = new ArrayList<>();
-        alas = entityManager.createQuery("Select a From ala a", Ala.class).getResultList();
+        List<Ala> alas;
+        alas = entityManager.createQuery("SELECT a FROM ala a", Ala.class).getResultList();
         return alas;
     }
 
     @Override
     public Ala retrieve(int pk) {
-        Ala ala = entityManager.find(Ala.class, pk);
-        return ala;
+        return entityManager.find(Ala.class, pk);
     }
 
     @Override
     public List<Ala> retrieve(String parametro, String atributo) {
-        List<Ala> alas = new ArrayList<>();
-        alas = entityManager.createQuery("Select a From ala a "
-                + " Where " + atributo + " like ( % " + parametro + " % )", Ala.class).getResultList();
+        List<Ala> alas;
+        alas = entityManager.createQuery("SELECT a FROM ala a WHERE " + atributo + " LIKE :parametro", Ala.class)
+                .setParameter("parametro", "%" + parametro + "%")
+                .getResultList();
         return alas;
     }
 
@@ -79,9 +75,9 @@ public class AlaDAO implements InterfaceDAO<Ala> {
     @Override
     public void delete(Ala objeto) {
         try {
-            Ala ala = entityManager.find(Ala.class, objeto.getId());
             entityManager.getTransaction().begin();
-            entityManager.remove(ala);
+            objeto = entityManager.find(Ala.class, objeto.getId());
+            entityManager.remove(objeto);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();

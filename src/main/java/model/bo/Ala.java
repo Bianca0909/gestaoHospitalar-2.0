@@ -20,8 +20,6 @@ public class Ala implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
-    private String nome;
-    @Column
     private String descricao;
     @Column
     private String status;

@@ -2,10 +2,9 @@ package model.dao;
 
 import java.util.List;
 import model.bo.Quarto;
-import java.util.ArrayList;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import model.dao.ConnectionFactory;
 
 public class QuartoDAO implements InterfaceDAO<Quarto> {
 
@@ -24,9 +23,8 @@ public class QuartoDAO implements InterfaceDAO<Quarto> {
     }
 
     private EntityManager getEntityManager() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
-        if (entityManager == null) {
-            entityManager = factory.createEntityManager();
+        if (entityManager == null || !entityManager.isOpen()) {
+            entityManager = ConnectionFactory.getEntityManager();
         }
         return entityManager;
     }
@@ -45,23 +43,20 @@ public class QuartoDAO implements InterfaceDAO<Quarto> {
 
     @Override
     public List<Quarto> retrieve() {
-        List<Quarto> quartos = new ArrayList<>();
-        quartos = entityManager.createQuery("Select q From quarto q", Quarto.class).getResultList();
-        return quartos;
+        TypedQuery<Quarto> query = entityManager.createQuery("SELECT q FROM quarto q", Quarto.class);
+        return query.getResultList();
     }
 
     @Override
     public Quarto retrieve(int pk) {
-        Quarto quarto = entityManager.find(Quarto.class, pk);
-        return quarto;
+        return entityManager.find(Quarto.class, pk);
     }
 
     @Override
     public List<Quarto> retrieve(String parametro, String atributo) {
-        List<Quarto> quartos = new ArrayList<>();
-        quartos = entityManager.createQuery("Select q From quarto q "
-                + " Where " + atributo + " like ( % " + parametro + " % )", Quarto.class).getResultList();
-        return quartos;
+        TypedQuery<Quarto> query = entityManager.createQuery("SELECT q FROM quarto q WHERE " + atributo + " LIKE :parametro", Quarto.class)
+                .setParameter("parametro", "%" + parametro + "%");
+        return query.getResultList();
     }
 
     @Override
@@ -79,9 +74,9 @@ public class QuartoDAO implements InterfaceDAO<Quarto> {
     @Override
     public void delete(Quarto objeto) {
         try {
-            Quarto quarto = entityManager.find(Quarto.class, objeto.getId());
             entityManager.getTransaction().begin();
-            entityManager.remove(quarto);
+            objeto = entityManager.find(Quarto.class, objeto.getId());
+            entityManager.remove(objeto);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();
