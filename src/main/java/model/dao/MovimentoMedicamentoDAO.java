@@ -45,23 +45,23 @@ public class MovimentoMedicamentoDAO implements InterfaceDAO<MovimentoMedicament
 
     @Override
     public List<MovimentoMedicamento> retrieve() {
-        List<MovimentoMedicamento> movimentoMedicamentos = new ArrayList<>();
-        movimentoMedicamentos = entityManager.createQuery("Select mm From movimentomedicamento mm", MovimentoMedicamento.class).getResultList();
-        return movimentoMedicamentos;
+        List<MovimentoMedicamento> movimentos = new ArrayList<>();
+        movimentos = entityManager.createQuery("Select m From movimento_medicamento m", MovimentoMedicamento.class).getResultList();
+        return movimentos;
     }
 
     @Override
     public MovimentoMedicamento retrieve(int pk) {
-        MovimentoMedicamento movimentoMedicamento = entityManager.find(MovimentoMedicamento.class, pk);
-        return movimentoMedicamento;
+        MovimentoMedicamento movimento = entityManager.find(MovimentoMedicamento.class, pk);
+        return movimento;
     }
 
     @Override
     public List<MovimentoMedicamento> retrieve(String parametro, String atributo) {
-        List<MovimentoMedicamento> movimentoMedicamentos = new ArrayList<>();
-        movimentoMedicamentos = entityManager.createQuery("Select mm From movimentomedicamento mm "
-                + " Where " + atributo + " like ( % " + parametro + " %  )", MovimentoMedicamento.class).getResultList();
-        return movimentoMedicamentos;
+        List<MovimentoMedicamento> movimentos = new ArrayList<>();
+        movimentos = entityManager.createQuery("Select m From movimento_medicamento m "
+                + " Where " + atributo + " like ( % " + parametro + " % )", MovimentoMedicamento.class).getResultList();
+        return movimentos;
     }
 
     @Override
@@ -79,9 +79,9 @@ public class MovimentoMedicamentoDAO implements InterfaceDAO<MovimentoMedicament
     @Override
     public void delete(MovimentoMedicamento objeto) {
         try {
-            MovimentoMedicamento movimentoMedicamento = entityManager.find(MovimentoMedicamento.class, objeto.getId());
+            MovimentoMedicamento movimento = entityManager.find(MovimentoMedicamento.class, objeto.getId());
             entityManager.getTransaction().begin();
-            entityManager.remove(movimentoMedicamento);
+            entityManager.remove(movimento);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();

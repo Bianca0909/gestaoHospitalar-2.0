@@ -42,13 +42,12 @@ public class ControllerTelaCadastroLeito implements ActionListener {
         } else if (evento.getSource() == this.telaCadastroLeito.getjButtonGravar()) {
 
             Leito leito = new Leito();
-            leito.setId(model.bo.ClasseDadosGravacao.listaLeito.size() + 1);
             
             leito.setDescricao(this.telaCadastroLeito.getDescricaoField().getText());
             leito.setStatus(this.telaCadastroLeito.getStatusComboBox().getSelectedItem() + "");
             
             Quarto quartoSelecionado = (Quarto) this.telaCadastroLeito.getQuartoComboBox().getSelectedItem();
-            leito.setQuarto_id(quartoSelecionado.getId());
+            leito.setQuartoId(quartoSelecionado.getId());
             
             if (this.telaCadastroLeito.getIdField().getText().equals("")){
                 service.ServiceLeito.adicionar(leito);

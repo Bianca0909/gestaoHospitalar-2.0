@@ -45,23 +45,23 @@ public class ReceitaMedicamentoDAO implements InterfaceDAO<ReceitaMedicamento> {
 
     @Override
     public List<ReceitaMedicamento> retrieve() {
-        List<ReceitaMedicamento> receitaMedicamentos = new ArrayList<>();
-        receitaMedicamentos = entityManager.createQuery("Select rm From receitamedicamento rm", ReceitaMedicamento.class).getResultList();
-        return receitaMedicamentos;
+        List<ReceitaMedicamento> receitas = new ArrayList<>();
+        receitas = entityManager.createQuery("Select r From receita_medicamento r", ReceitaMedicamento.class).getResultList();
+        return receitas;
     }
 
     @Override
     public ReceitaMedicamento retrieve(int pk) {
-        ReceitaMedicamento receitaMedicamento = entityManager.find(ReceitaMedicamento.class, pk);
-        return receitaMedicamento;
+        ReceitaMedicamento receita = entityManager.find(ReceitaMedicamento.class, pk);
+        return receita;
     }
 
     @Override
     public List<ReceitaMedicamento> retrieve(String parametro, String atributo) {
-        List<ReceitaMedicamento> receitaMedicamentos = new ArrayList<>();
-        receitaMedicamentos = entityManager.createQuery("Select rm From receitamedicamento rm "
-                + " Where " + atributo + " like ( % " + parametro + " %  )", ReceitaMedicamento.class).getResultList();
-        return receitaMedicamentos;
+        List<ReceitaMedicamento> receitas = new ArrayList<>();
+        receitas = entityManager.createQuery("Select r From receita_medicamento r "
+                + " Where " + atributo + " like ( % " + parametro + " % )", ReceitaMedicamento.class).getResultList();
+        return receitas;
     }
 
     @Override
@@ -79,9 +79,9 @@ public class ReceitaMedicamentoDAO implements InterfaceDAO<ReceitaMedicamento> {
     @Override
     public void delete(ReceitaMedicamento objeto) {
         try {
-            ReceitaMedicamento receitaMedicamento = entityManager.find(ReceitaMedicamento.class, objeto.getId());
+            ReceitaMedicamento receita = entityManager.find(ReceitaMedicamento.class, objeto.getId());
             entityManager.getTransaction().begin();
-            entityManager.remove(receitaMedicamento);
+            entityManager.remove(receita);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();

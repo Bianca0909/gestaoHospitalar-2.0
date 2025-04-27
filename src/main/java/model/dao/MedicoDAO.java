@@ -2,6 +2,7 @@ package model.dao;
 
 import java.util.List;
 import model.bo.Medico;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -44,19 +45,23 @@ public class MedicoDAO implements InterfaceDAO<Medico> {
 
     @Override
     public List<Medico> retrieve() {
-        return entityManager.createQuery("FROM " + Medico.class.getName(), Medico.class).getResultList();
+        List<Medico> medicos = new ArrayList<>();
+        medicos = entityManager.createQuery("Select m From medico m", Medico.class).getResultList();
+        return medicos;
     }
 
     @Override
     public Medico retrieve(int pk) {
-        return entityManager.find(Medico.class, pk);
+        Medico medico = entityManager.find(Medico.class, pk);
+        return medico;
     }
 
     @Override
     public List<Medico> retrieve(String parametro, String atributo) {
-        return entityManager.createQuery("FROM " + Medico.class.getName() + " WHERE " + atributo + " LIKE :parametro", Medico.class)
-                .setParameter("parametro", "%" + parametro + "%")
-                .getResultList();
+        List<Medico> medicos = new ArrayList<>();
+        medicos = entityManager.createQuery("Select m From medico m "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Medico.class).getResultList();
+        return medicos;
     }
 
     @Override
@@ -73,6 +78,14 @@ public class MedicoDAO implements InterfaceDAO<Medico> {
 
     @Override
     public void delete(Medico objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Medico medico = entityManager.find(Medico.class, objeto.getId());
+            entityManager.getTransaction().begin();
+            entityManager.remove(medico);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
     }
 }

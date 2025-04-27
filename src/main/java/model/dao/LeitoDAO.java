@@ -2,170 +2,87 @@ package model.dao;
 
 import java.util.List;
 import model.bo.Leito;
-import java.sql.PreparedStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
-public class LeitoDAO implements InterfaceDAO<Leito>{
+public class LeitoDAO implements InterfaceDAO<Leito> {
+
+    private static LeitoDAO instance;
+    protected EntityManager entityManager;
+
+    private LeitoDAO() {
+        entityManager = getEntityManager();
+    }
+
+    public static LeitoDAO getInstance() {
+        if (instance == null) {
+            instance = new LeitoDAO();
+        }
+        return instance;
+    }
+
+    private EntityManager getEntityManager() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
+        if (entityManager == null) {
+            entityManager = factory.createEntityManager();
+        }
+        return entityManager;
+    }
 
     @Override
     public void create(Leito objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        String sqlInstrucao = "INSERT INTO leito(descricao, status, quarto_id) VALUES(?, ?, ?)";
-        
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, objeto.getDescricao());
-            pstm.setString(2, objeto.getStatus());
-            pstm.setInt(3, objeto.getQuartoId());
-            pstm.execute();
-            
-            
-        } catch (SQLException ex) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
-        
     }
 
     @Override
     public List<Leito> retrieve() {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        String sqlInstrucao = "SELECT id, descricao, status FROM leito";
-        List<Leito> leitos = new ArrayList<>();
-        
-        try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            resultado = pstm.executeQuery();
-            
-            while (resultado.next()) {
-                Leito leito = new Leito();
-                leito.setId(resultado.getInt("id"));
-                leito.setDescricao(resultado.getString("descricao"));
-                leito.setStatus(resultado.getString("status"));
-                
-                leitos.add(leito);
-            }
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            
-        }finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-        }
-        return leitos;        
+        TypedQuery<Leito> query = entityManager.createQuery("Select l From leito l", Leito.class);
+        return query.getResultList();
     }
 
     @Override
     public Leito retrieve(int pk) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        String sqlInstrucao = "SELECT id, descricao, status FROM leito WHERE id = ?";
-        Leito leito = new Leito();
-        
-        try { 
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setInt(1, pk);
-            resultado = pstm.executeQuery();
-            
-            while (resultado.next()) {
-                leito.setId(resultado.getInt("id"));
-                leito.setDescricao(resultado.getString("descricao"));
-                leito.setStatus(resultado.getString("status"));
-            }
-            
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            
-        }finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-            return leito;
-        }
-        
-        
+        return entityManager.find(Leito.class, pk);
     }
 
     @Override
     public List<Leito> retrieve(String parametro, String atributo) {
-        
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        String sqlInstrucao = "SELECT id, descricao, status FROM leito "
-                            + "WHERE " + atributo + " LIKE ?";
-        
-        List<Leito> leitos = new ArrayList<>();
-        
-        try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, "%" + parametro + "%");
-            resultado = pstm.executeQuery();
-            
-            while (resultado.next()) {
-                Leito leito = new Leito();
-                leito.setId(resultado.getInt("id"));
-                leito.setDescricao(resultado.getString("descricao"));
-                leito.setStatus(resultado.getString("status"));
-                
-                leitos.add(leito);
-                
-            }
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-            return leitos;
-        }
+        TypedQuery<Leito> query = entityManager.createQuery("Select l From leito l "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Leito.class);
+        return query.getResultList();
     }
 
     @Override
     public void update(Leito objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        String sqlInstrucao = "UPDATE leito SET "
-                + "descricao = ?, "
-                + "status = ?, "
-                + "WHERE id = ?";
-        
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, objeto.getDescricao());
-            pstm.setString(2, objeto.getStatus());
-            pstm.setInt(3, objeto.getId());
-            pstm.execute();
-            
-            
-        } catch (SQLException ex) {
+            entityManager.getTransaction().begin();
+            entityManager.merge(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
-        
     }
 
     @Override
     public void delete(Leito objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        String sqlInstrucao = "DELETE FROM leito WHERE id = ?";
-        
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setInt(1, objeto.getId());
-            pstm.execute();
-        } catch (SQLException ex) {
+            Leito leito = entityManager.find(Leito.class, objeto.getId());
+            entityManager.getTransaction().begin();
+            entityManager.remove(leito);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
     }
 }

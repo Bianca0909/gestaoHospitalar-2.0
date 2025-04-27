@@ -2,22 +2,20 @@ package model.dao;
 
 import java.util.List;
 import model.bo.Quarto;
-import java.sql.PreparedStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
-/**
- *
- * @author marcos
- */
-public class QuartoDAO implements InterfaceDAO<Quarto>{
+public class QuartoDAO implements InterfaceDAO<Quarto> {
 
     private static QuartoDAO instance;
-    
-    private QuartoDAO() {}
-    
+    protected EntityManager entityManager;
+
+    private QuartoDAO() {
+        entityManager = getEntityManager();
+    }
+
     public static QuartoDAO getInstance() {
         if (instance == null) {
             instance = new QuartoDAO();
@@ -25,139 +23,69 @@ public class QuartoDAO implements InterfaceDAO<Quarto>{
         return instance;
     }
 
+    private EntityManager getEntityManager() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
+        if (entityManager == null) {
+            entityManager = factory.createEntityManager();
+        }
+        return entityManager;
+    }
+
     @Override
     public void create(Quarto objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        String sqlInstrucao = "INSERT INTO quarto(descricao, status, ala_id) VALUES(?, ?, ?)";
-
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, objeto.getDescricao());
-            pstm.setString(2, objeto.getStatus());
-            pstm.setInt(3, objeto.getAlaId());
-            pstm.execute();
-
-        } catch (SQLException ex) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
     }
 
     @Override
     public List<Quarto> retrieve() {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        String sqlInstrucao = "SELECT id, descricao, status FROM quarto";
         List<Quarto> quartos = new ArrayList<>();
-
-        try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            resultado = pstm.executeQuery();
-
-            while (resultado.next()) {
-                Quarto quarto = new Quarto();
-                quarto.setId(resultado.getInt("id"));
-                quarto.setDescricao(resultado.getString("descricao"));
-                quarto.setStatus(resultado.getString("status"));
-
-                quartos.add(quarto);
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-            return quartos;
-        }
+        quartos = entityManager.createQuery("Select q From quarto q", Quarto.class).getResultList();
+        return quartos;
     }
 
     @Override
     public Quarto retrieve(int pk) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        String sqlInstrucao = "SELECT id, descricao, status FROM quarto WHERE id = ?";
-        Quarto quarto = new Quarto();
-
-        try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setInt(1, pk);
-            resultado = pstm.executeQuery();
-
-            while (resultado.next()) {
-                quarto.setId(resultado.getInt("id"));
-                quarto.setDescricao(resultado.getString("descricao"));
-                quarto.setStatus(resultado.getString("status"));
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-            return quarto;
-        }
+        Quarto quarto = entityManager.find(Quarto.class, pk);
+        return quarto;
     }
 
     @Override
     public List<Quarto> retrieve(String parametro, String atributo) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        String sqlInstrucao = "SELECT id, descricao, status FROM quarto  "
-                            + " WHERE " + atributo + " LIKE ?";
-
         List<Quarto> quartos = new ArrayList<>();
-
-        try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, "%" + parametro + "%");
-            resultado = pstm.executeQuery();
-
-            while (resultado.next()) {
-                Quarto quarto = new Quarto();
-                quarto.setId(resultado.getInt("id"));
-                quarto.setDescricao(resultado.getString("descricao"));
-                quarto.setStatus(resultado.getString("status"));
-
-                quartos.add(quarto);
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-            return quartos;
-        }
+        quartos = entityManager.createQuery("Select q From quarto q "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Quarto.class).getResultList();
+        return quartos;
     }
 
     @Override
     public void update(Quarto objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        String sqlInstrucao = "UPDATE quarto SET "
-                            + "descricao = ?, "
-                            + "status = ? "
-                            + "WHERE id = ?";
-
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, objeto.getDescricao());
-            pstm.setString(2, objeto.getStatus());
-            pstm.setInt(3, objeto.getId());
-            pstm.execute();
-
-        } catch (SQLException ex) {
+            entityManager.getTransaction().begin();
+            entityManager.merge(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
     }
 
     @Override
     public void delete(Quarto objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Quarto quarto = entityManager.find(Quarto.class, objeto.getId());
+            entityManager.getTransaction().begin();
+            entityManager.remove(quarto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
     }
 }

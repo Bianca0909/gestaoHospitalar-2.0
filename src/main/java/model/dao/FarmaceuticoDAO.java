@@ -2,6 +2,7 @@ package model.dao;
 
 import java.util.List;
 import model.bo.Farmaceutico;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -44,19 +45,23 @@ public class FarmaceuticoDAO implements InterfaceDAO<Farmaceutico> {
 
     @Override
     public List<Farmaceutico> retrieve() {
-        return entityManager.createQuery("FROM " + Farmaceutico.class.getName(), Farmaceutico.class).getResultList();
+        List<Farmaceutico> farmaceuticos = new ArrayList<>();
+        farmaceuticos = entityManager.createQuery("Select f From farmaceutico f", Farmaceutico.class).getResultList();
+        return farmaceuticos;
     }
 
     @Override
     public Farmaceutico retrieve(int pk) {
-        return entityManager.find(Farmaceutico.class, pk);
+        Farmaceutico farmaceutico = entityManager.find(Farmaceutico.class, pk);
+        return farmaceutico;
     }
 
     @Override
     public List<Farmaceutico> retrieve(String parametro, String atributo) {
-        return entityManager.createQuery("FROM " + Farmaceutico.class.getName() + " WHERE " + atributo + " LIKE :parametro", Farmaceutico.class)
-                .setParameter("parametro", "%" + parametro + "%")
-                .getResultList();
+        List<Farmaceutico> farmaceuticos = new ArrayList<>();
+        farmaceuticos = entityManager.createQuery("Select f From farmaceutico f "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Farmaceutico.class).getResultList();
+        return farmaceuticos;
     }
 
     @Override
@@ -74,9 +79,9 @@ public class FarmaceuticoDAO implements InterfaceDAO<Farmaceutico> {
     @Override
     public void delete(Farmaceutico objeto) {
         try {
+            Farmaceutico farmaceutico = entityManager.find(Farmaceutico.class, objeto.getId());
             entityManager.getTransaction().begin();
-            objeto = entityManager.find(Farmaceutico.class, objeto.getId());
-            entityManager.remove(objeto);
+            entityManager.remove(farmaceutico);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();

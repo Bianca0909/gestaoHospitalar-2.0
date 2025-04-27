@@ -7,22 +7,27 @@ import model.dao.EnfermeiroDAO;
 public class ServiceEnfermeiro {
 
     public static void adicionar(Enfermeiro objeto) {
-        EnfermeiroDAO.getInstance().create(objeto);
+        EnfermeiroDAO enfermeiroDAO = EnfermeiroDAO.getInstance();
+        enfermeiroDAO.create(objeto);
     }
 
     public static List<Enfermeiro> ler() {
-        return EnfermeiroDAO.getInstance().retrieve();
+        EnfermeiroDAO enfermeiroDAO = EnfermeiroDAO.getInstance();
+        return enfermeiroDAO.retrieve();
     }
 
-    public static Enfermeiro ler(int PK) {
-        return EnfermeiroDAO.getInstance().retrieve(PK);
+    public static Enfermeiro ler(int pk) {
+        EnfermeiroDAO enfermeiroDAO = EnfermeiroDAO.getInstance();
+        return enfermeiroDAO.retrieve(pk);
     }
 
     public static List<Enfermeiro> ler(String parametro, String atributo) {
-        return EnfermeiroDAO.getInstance().retrieve(parametro, atributo);
+        EnfermeiroDAO enfermeiroDAO = EnfermeiroDAO.getInstance();
+        return enfermeiroDAO.retrieve(parametro, atributo);
     }
-    
+
     public static void atualizar(Enfermeiro objeto) {
-        EnfermeiroDAO.getInstance().update(objeto);
+        EnfermeiroDAO enfermeiroDAO = EnfermeiroDAO.getInstance();
+        enfermeiroDAO.update(objeto);
     }
 }

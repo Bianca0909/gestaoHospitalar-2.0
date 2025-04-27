@@ -45,23 +45,23 @@ public class LaboratorioMedicamentoDAO implements InterfaceDAO<LaboratorioMedica
 
     @Override
     public List<LaboratorioMedicamento> retrieve() {
-        List<LaboratorioMedicamento> laboratorioMedicamentos = new ArrayList<>();
-        laboratorioMedicamentos = entityManager.createQuery("Select lm From laboratoriomedicamento lm", LaboratorioMedicamento.class).getResultList();
-        return laboratorioMedicamentos;
+        List<LaboratorioMedicamento> laboratorios = new ArrayList<>();
+        laboratorios = entityManager.createQuery("Select l From laboratorio_medicamento l", LaboratorioMedicamento.class).getResultList();
+        return laboratorios;
     }
 
     @Override
     public LaboratorioMedicamento retrieve(int pk) {
-        LaboratorioMedicamento laboratorioMedicamento = entityManager.find(LaboratorioMedicamento.class, pk);
-        return laboratorioMedicamento;
+        LaboratorioMedicamento laboratorio = entityManager.find(LaboratorioMedicamento.class, pk);
+        return laboratorio;
     }
 
     @Override
     public List<LaboratorioMedicamento> retrieve(String parametro, String atributo) {
-        List<LaboratorioMedicamento> laboratorioMedicamentos = new ArrayList<>();
-        laboratorioMedicamentos = entityManager.createQuery("Select lm From laboratoriomedicamento lm "
-                + " Where " + atributo + " like ( % " + parametro + " %  )", LaboratorioMedicamento.class).getResultList();
-        return laboratorioMedicamentos;
+        List<LaboratorioMedicamento> laboratorios = new ArrayList<>();
+        laboratorios = entityManager.createQuery("Select l From laboratorio_medicamento l "
+                + " Where " + atributo + " like ( % " + parametro + " % )", LaboratorioMedicamento.class).getResultList();
+        return laboratorios;
     }
 
     @Override
@@ -79,9 +79,9 @@ public class LaboratorioMedicamentoDAO implements InterfaceDAO<LaboratorioMedica
     @Override
     public void delete(LaboratorioMedicamento objeto) {
         try {
-            LaboratorioMedicamento laboratorioMedicamento = entityManager.find(LaboratorioMedicamento.class, objeto.getId());
+            LaboratorioMedicamento laboratorio = entityManager.find(LaboratorioMedicamento.class, objeto.getId());
             entityManager.getTransaction().begin();
-            entityManager.remove(laboratorioMedicamento);
+            entityManager.remove(laboratorio);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -1,40 +1,76 @@
 package model.dao;
 
 import java.util.List;
-import javax.persistence.EntityManager;
 import model.bo.Atendimento;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
-public class AtendimentoDAO implements InterfaceDAO<Atendimento>{
+public class AtendimentoDAO implements InterfaceDAO<Atendimento> {
 
-    private EntityManager entityManager;
+    private static AtendimentoDAO instance;
+    protected EntityManager entityManager;
 
-    public AtendimentoDAO(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    private AtendimentoDAO() {
+        entityManager = getEntityManager();
+    }
+
+    public static AtendimentoDAO getInstance() {
+        if (instance == null) {
+            instance = new AtendimentoDAO();
+        }
+        return instance;
+    }
+
+    private EntityManager getEntityManager() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
+        if (entityManager == null) {
+            entityManager = factory.createEntityManager();
+        }
+        return entityManager;
     }
 
     @Override
     public void create(Atendimento objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
     }
 
     @Override
     public List<Atendimento> retrieve() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TypedQuery<Atendimento> query = entityManager.createQuery("Select a From atendimento a", Atendimento.class);
+        return query.getResultList();
     }
 
     @Override
     public Atendimento retrieve(int pk) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return entityManager.find(Atendimento.class, pk);
     }
 
     @Override
     public List<Atendimento> retrieve(String parametro, String atributo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TypedQuery<Atendimento> query = entityManager.createQuery("Select a From atendimento a "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Atendimento.class);
+        return query.getResultList();
     }
 
     @Override
     public void update(Atendimento objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
     }
 
     @Override

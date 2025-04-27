@@ -1,150 +1,91 @@
-
 package model.dao;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
 import model.bo.Usuario;
+import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
+public class UsuarioDAO implements InterfaceDAO<Usuario> {
 
-public class UsuarioDAO  implements InterfaceDAO<Usuario>{
-    
+    private static UsuarioDAO instance;
+    protected EntityManager entityManager;
+
+    private UsuarioDAO() {
+        entityManager = getEntityManager();
+    }
+
+    public static UsuarioDAO getInstance() {
+        if (instance == null) {
+            instance = new UsuarioDAO();
+        }
+        return instance;
+    }
+
+    private EntityManager getEntityManager() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
+        if (entityManager == null) {
+            entityManager = factory.createEntityManager();
+        }
+        return entityManager;
+    }
 
     @Override
     public void create(Usuario objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        String sqlInstrucao = "INSERT INTO usuario(login, senha) VALUES(?, ?)";
-
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, objeto.getLogin());
-            pstm.setString(2, objeto.getSenha());
-            pstm.execute();
-            
-        } catch (SQLException ex) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
     }
 
     @Override
     public List<Usuario> retrieve() {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        String sqlInstrucao = "SELECT id, login, senha FROM hospital.usuario";
         List<Usuario> usuarios = new ArrayList<>();
-        
-        try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            resultado = pstm.executeQuery();
-            
-            while (resultado.next()){
-                                Usuario usuario = new Usuario();
-                usuario.setId(resultado.getInt("id"));
-                usuario.setLogin(resultado.getString("login"));
-                usuario.setSenha(resultado.getString("senha"));
-
-                usuarios.add(usuario);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-            return usuarios;
-        }
-        
+        usuarios = entityManager.createQuery("Select u From usuario u", Usuario.class).getResultList();
+        return usuarios;
     }
 
     @Override
     public Usuario retrieve(int pk) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        String sqlInstrucao = "SELECT id, login, senha FROM hospital.usuario WHERE id = ?";
-        Usuario usuario = new Usuario();
-        
-        try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setInt(1, pk);
-            resultado = pstm.executeQuery();
-            
-            while (resultado.next()){
-                usuario.setId(resultado.getInt("id"));
-                usuario.setLogin(resultado.getString("login"));
-                usuario.setSenha(resultado.getString("senha"));             
-            }
-
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-            return usuario;
-        }
-                
+        Usuario usuario = entityManager.find(Usuario.class, pk);
+        return usuario;
     }
 
     @Override
     public List<Usuario> retrieve(String parametro, String atributo) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        String sqlInstrucao = "SELECT id, login, senha FROM usuario WHERE " + atributo + " LIKE ?";
         List<Usuario> usuarios = new ArrayList<>();
-        
-        try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, "%" + parametro + "%");
-            resultado = pstm.executeQuery();
-            
-            while (resultado.next()) {
-                Usuario usuario = new Usuario();
-                usuario.setId(resultado.getInt("id"));
-                usuario.setLogin(resultado.getString("login"));
-                usuario.setSenha(resultado.getString("senha"));
-                usuarios.add(usuario);
-                
-            }
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-            return usuarios;
-        }
-        
+        usuarios = entityManager.createQuery("Select u From usuario u "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Usuario.class).getResultList();
+        return usuarios;
     }
 
     @Override
     public void update(Usuario objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        String sqlInstrucao = "UPDATE usuario SET login = ?, senha = ? "
-                + "WHERE id = ?";
-        
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, objeto.getLogin());
-            pstm.setString(2, objeto.getSenha());
-            pstm.setInt(3, objeto.getId());
-            pstm.execute();
-            
-        } catch (SQLException ex) {
+            entityManager.getTransaction().begin();
+            entityManager.merge(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
-        
     }
 
     @Override
     public void delete(Usuario objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Usuario usuario = entityManager.find(Usuario.class, objeto.getId());
+            entityManager.getTransaction().begin();
+            entityManager.remove(usuario);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
     }
-    
 }

@@ -2,6 +2,7 @@ package model.dao;
 
 import java.util.List;
 import model.bo.Enfermeiro;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -44,19 +45,23 @@ public class EnfermeiroDAO implements InterfaceDAO<Enfermeiro> {
 
     @Override
     public List<Enfermeiro> retrieve() {
-        return entityManager.createQuery("FROM " + Enfermeiro.class.getName(), Enfermeiro.class).getResultList();
+        List<Enfermeiro> enfermeiros = new ArrayList<>();
+        enfermeiros = entityManager.createQuery("Select e From enfermeiro e", Enfermeiro.class).getResultList();
+        return enfermeiros;
     }
 
     @Override
     public Enfermeiro retrieve(int pk) {
-        return entityManager.find(Enfermeiro.class, pk);
+        Enfermeiro enfermeiro = entityManager.find(Enfermeiro.class, pk);
+        return enfermeiro;
     }
 
     @Override
     public List<Enfermeiro> retrieve(String parametro, String atributo) {
-        return entityManager.createQuery("FROM " + Enfermeiro.class.getName() + " WHERE " + atributo + " LIKE :parametro", Enfermeiro.class)
-                .setParameter("parametro", "%" + parametro + "%")
-                .getResultList();
+        List<Enfermeiro> enfermeiros = new ArrayList<>();
+        enfermeiros = entityManager.createQuery("Select e From enfermeiro e "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Enfermeiro.class).getResultList();
+        return enfermeiros;
     }
 
     @Override
@@ -74,9 +79,9 @@ public class EnfermeiroDAO implements InterfaceDAO<Enfermeiro> {
     @Override
     public void delete(Enfermeiro objeto) {
         try {
+            Enfermeiro enfermeiro = entityManager.find(Enfermeiro.class, objeto.getId());
             entityManager.getTransaction().begin();
-            objeto = entityManager.find(Enfermeiro.class, objeto.getId());
-            entityManager.remove(objeto);
+            entityManager.remove(enfermeiro);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();

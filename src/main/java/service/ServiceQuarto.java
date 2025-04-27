@@ -10,22 +10,27 @@ import model.dao.QuartoDAO;
 public class ServiceQuarto {
     
     public static void adicionar(Quarto objeto) {
-        QuartoDAO.getInstance().create(objeto);
+        QuartoDAO quartoDAO = QuartoDAO.getInstance();
+        quartoDAO.create(objeto);
     }
 
     public static List<Quarto> ler() {
-        return QuartoDAO.getInstance().retrieve();
+        QuartoDAO quartoDAO = QuartoDAO.getInstance();
+        return quartoDAO.retrieve();
     }
 
-    public static Quarto ler(int PK) {
-        return QuartoDAO.getInstance().retrieve(PK);
+    public static Quarto ler(int pk) {
+        QuartoDAO quartoDAO = QuartoDAO.getInstance();
+        return quartoDAO.retrieve(pk);
     }
 
     public static List<Quarto> ler(String parametro, String atributo) {
-        return QuartoDAO.getInstance().retrieve(parametro, atributo);
+        QuartoDAO quartoDAO = QuartoDAO.getInstance();
+        return quartoDAO.retrieve(parametro, atributo);
     }
     
     public static void atualizar(Quarto objeto){
-        QuartoDAO.getInstance().update(objeto);
+        QuartoDAO quartoDAO = QuartoDAO.getInstance();
+        quartoDAO.update(objeto);
     }
 }

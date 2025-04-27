@@ -2,6 +2,7 @@ package model.dao;
 
 import java.util.List;
 import model.bo.Paciente;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -44,19 +45,23 @@ public class PacienteDAO implements InterfaceDAO<Paciente> {
 
     @Override
     public List<Paciente> retrieve() {
-        return entityManager.createQuery("FROM " + Paciente.class.getName(), Paciente.class).getResultList();
+        List<Paciente> pacientes = new ArrayList<>();
+        pacientes = entityManager.createQuery("Select p From paciente p", Paciente.class).getResultList();
+        return pacientes;
     }
 
     @Override
     public Paciente retrieve(int pk) {
-        return entityManager.find(Paciente.class, pk);
+        Paciente paciente = entityManager.find(Paciente.class, pk);
+        return paciente;
     }
 
     @Override
     public List<Paciente> retrieve(String parametro, String atributo) {
-        return entityManager.createQuery("FROM " + Paciente.class.getName() + " WHERE " + atributo + " LIKE :parametro", Paciente.class)
-                .setParameter("parametro", "%" + parametro + "%")
-                .getResultList();
+        List<Paciente> pacientes = new ArrayList<>();
+        pacientes = entityManager.createQuery("Select p From paciente p "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Paciente.class).getResultList();
+        return pacientes;
     }
 
     @Override
@@ -74,9 +79,9 @@ public class PacienteDAO implements InterfaceDAO<Paciente> {
     @Override
     public void delete(Paciente objeto) {
         try {
+            Paciente paciente = entityManager.find(Paciente.class, objeto.getId());
             entityManager.getTransaction().begin();
-            objeto = entityManager.find(Paciente.class, objeto.getId());
-            entityManager.remove(objeto);
+            entityManager.remove(paciente);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();

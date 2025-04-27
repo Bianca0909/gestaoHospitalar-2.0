@@ -2,10 +2,10 @@ package model.dao;
 
 import java.util.List;
 import model.bo.Exame;
-import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 public class ExameDAO implements InterfaceDAO<Exame> {
 
@@ -45,23 +45,20 @@ public class ExameDAO implements InterfaceDAO<Exame> {
 
     @Override
     public List<Exame> retrieve() {
-        List<Exame> exames = new ArrayList<>();
-        exames = entityManager.createQuery("Select e From exame e", Exame.class).getResultList();
-        return exames;
+        TypedQuery<Exame> query = entityManager.createQuery("Select e From exame e", Exame.class);
+        return query.getResultList();
     }
 
     @Override
     public Exame retrieve(int pk) {
-        Exame exame = entityManager.find(Exame.class, pk);
-        return exame;
+        return entityManager.find(Exame.class, pk);
     }
 
     @Override
     public List<Exame> retrieve(String parametro, String atributo) {
-        List<Exame> exames = new ArrayList<>();
-        exames = entityManager.createQuery("Select e From exame e "
-                + " Where " + atributo + " like ( % " + parametro + " %  )", Exame.class).getResultList();
-        return exames;
+        TypedQuery<Exame> query = entityManager.createQuery("Select e From exame e "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Exame.class);
+        return query.getResultList();
     }
 
     @Override

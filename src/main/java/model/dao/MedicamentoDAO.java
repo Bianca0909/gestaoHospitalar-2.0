@@ -1,153 +1,91 @@
 package model.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import model.bo.Medicamento;
+import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class MedicamentoDAO implements InterfaceDAO<Medicamento> {
 
+    private static MedicamentoDAO instance;
+    protected EntityManager entityManager;
+
+    private MedicamentoDAO() {
+        entityManager = getEntityManager();
+    }
+
+    public static MedicamentoDAO getInstance() {
+        if (instance == null) {
+            instance = new MedicamentoDAO();
+        }
+        return instance;
+    }
+
+    private EntityManager getEntityManager() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
+        if (entityManager == null) {
+            entityManager = factory.createEntityManager();
+        }
+        return entityManager;
+    }
+
     @Override
     public void create(Medicamento objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        String sqlInstrucao = "INSERT INTO medicamento (descricao_medicamento, principio_ativo, qtd_minima, status, codigo_barras) "
-                + "VALUES (?, ?, ?, ?, ?)";
-
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, objeto.getDescricaoMedicamento());
-            pstm.setString(2, objeto.getPrincipioAtivo());
-            pstm.setFloat(3, objeto.getQtdMinima());
-            pstm.setString(4, objeto.getStatus());
-            pstm.setString(5, objeto.getCodigoBarras());
-            pstm.execute();
-        } catch (SQLException ex) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
     }
 
     @Override
     public List<Medicamento> retrieve() {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        List<Medicamento> listaMedicamentos = new ArrayList<>();
-
-        String sqlInstrucao = "SELECT id, descricao_medicamento, principio_ativo, qtd_minima, status, codigo_barras FROM medicamento";
-
-        try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            resultado = pstm.executeQuery();
-            while (resultado.next()) {
-                Medicamento medicamento = new Medicamento();
-                medicamento.setId(resultado.getInt("id"));
-                medicamento.setDescricaoMedicamento(resultado.getString("descricao_medicamento"));
-                medicamento.setPrincipioAtivo(resultado.getString("principio_ativo"));
-                medicamento.setQtdMinima(resultado.getFloat("qtd_minima"));
-                medicamento.setStatus(resultado.getString("status"));
-                medicamento.setCodigoBarras(resultado.getString("codigo_barras"));
-                listaMedicamentos.add(medicamento);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-        }
-        return listaMedicamentos;
+        List<Medicamento> medicamentos = new ArrayList<>();
+        medicamentos = entityManager.createQuery("Select m From medicamento m", Medicamento.class).getResultList();
+        return medicamentos;
     }
 
     @Override
     public Medicamento retrieve(int pk) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        Medicamento medicamento = new Medicamento();
-
-        String sqlInstrucao = "SELECT id, descricao_medicamento, principio_ativo, qtd_minima, status, codigo_barras FROM medicamento WHERE id = ?";
-
-        try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setInt(1, pk);
-            resultado = pstm.executeQuery();
-            if (resultado.next()) {
-                medicamento.setId(resultado.getInt("id"));
-                medicamento.setDescricaoMedicamento(resultado.getString("descricao_medicamento"));
-                medicamento.setPrincipioAtivo(resultado.getString("principio_ativo"));
-                medicamento.setQtdMinima(resultado.getFloat("qtd_minima"));
-                medicamento.setStatus(resultado.getString("status"));
-                medicamento.setCodigoBarras(resultado.getString("codigo_barras"));
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-        }
+        Medicamento medicamento = entityManager.find(Medicamento.class, pk);
         return medicamento;
     }
 
     @Override
     public List<Medicamento> retrieve(String parametro, String atributo) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        ResultSet resultado = null;
-        List<Medicamento> listaMedicamentos = new ArrayList<>();
-
-        String sqlInstrucao = "SELECT id, descricao_medicamento, principio_ativo, qtd_minima, status, codigo_barras FROM medicamento "
-                + "WHERE " + atributo + " LIKE ?";
-
-        try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, "%" + parametro + "%");
-            resultado = pstm.executeQuery();
-            while (resultado.next()) {
-                Medicamento medicamento = new Medicamento();
-                medicamento.setId(resultado.getInt("id"));
-                medicamento.setDescricaoMedicamento(resultado.getString("descricao_medicamento"));
-                medicamento.setPrincipioAtivo(resultado.getString("principio_ativo"));
-                medicamento.setQtdMinima(resultado.getFloat("qtd_minima"));
-                medicamento.setStatus(resultado.getString("status"));
-                medicamento.setCodigoBarras(resultado.getString("codigo_barras"));
-                listaMedicamentos.add(medicamento);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, resultado);
-        }
-        return listaMedicamentos;
+        List<Medicamento> medicamentos = new ArrayList<>();
+        medicamentos = entityManager.createQuery("Select m From medicamento m "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Medicamento.class).getResultList();
+        return medicamentos;
     }
 
     @Override
     public void update(Medicamento objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        String sqlInstrucao = "UPDATE medicamento SET descricao_medicamento = ?, principio_ativo = ?, qtd_minima = ?, "
-                + "status = ?, codigo_barras = ? WHERE id = ?";
-
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setString(1, objeto.getDescricaoMedicamento());
-            pstm.setString(2, objeto.getPrincipioAtivo());
-            pstm.setFloat(3, objeto.getQtdMinima());
-            pstm.setString(4, objeto.getStatus());
-            pstm.setString(5, objeto.getCodigoBarras());
-            pstm.setInt(6, objeto.getId());
-            pstm.execute();
-        } catch (SQLException ex) {
+            entityManager.getTransaction().begin();
+            entityManager.merge(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
     }
 
     @Override
     public void delete(Medicamento objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Medicamento medicamento = entityManager.find(Medicamento.class, objeto.getId());
+            entityManager.getTransaction().begin();
+            entityManager.remove(medicamento);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
     }
 }

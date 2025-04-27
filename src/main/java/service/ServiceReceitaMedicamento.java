@@ -7,22 +7,27 @@ import model.dao.ReceitaMedicamentoDAO;
 public class ServiceReceitaMedicamento {
 
     public static void adicionar(ReceitaMedicamento objeto) {
-        ReceitaMedicamentoDAO.getInstance().create(objeto);
+        ReceitaMedicamentoDAO receitaDAO = ReceitaMedicamentoDAO.getInstance();
+        receitaDAO.create(objeto);
     }
 
     public static List<ReceitaMedicamento> ler() {
-        return ReceitaMedicamentoDAO.getInstance().retrieve();
+        ReceitaMedicamentoDAO receitaDAO = ReceitaMedicamentoDAO.getInstance();
+        return receitaDAO.retrieve();
     }
 
-    public static ReceitaMedicamento ler(int PK) {
-        return ReceitaMedicamentoDAO.getInstance().retrieve(PK);
+    public static ReceitaMedicamento ler(int pk) {
+        ReceitaMedicamentoDAO receitaDAO = ReceitaMedicamentoDAO.getInstance();
+        return receitaDAO.retrieve(pk);
     }
 
     public static List<ReceitaMedicamento> ler(String parametro, String atributo) {
-        return ReceitaMedicamentoDAO.getInstance().retrieve(parametro, atributo);
+        ReceitaMedicamentoDAO receitaDAO = ReceitaMedicamentoDAO.getInstance();
+        return receitaDAO.retrieve(parametro, atributo);
     }
 
     public static void atualizar(ReceitaMedicamento objeto) {
-        ReceitaMedicamentoDAO.getInstance().update(objeto);
+        ReceitaMedicamentoDAO receitaDAO = ReceitaMedicamentoDAO.getInstance();
+        receitaDAO.update(objeto);
     }
 }

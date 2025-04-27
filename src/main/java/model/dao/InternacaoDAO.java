@@ -1,52 +1,91 @@
 package model.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 import model.bo.Internacao;
+import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
-public class InternacaoDAO implements InterfaceDAO<Internacao>{
+public class InternacaoDAO implements InterfaceDAO<Internacao> {
+
+    private static InternacaoDAO instance;
+    protected EntityManager entityManager;
+
+    private InternacaoDAO() {
+        entityManager = getEntityManager();
+    }
+
+    public static InternacaoDAO getInstance() {
+        if (instance == null) {
+            instance = new InternacaoDAO();
+        }
+        return instance;
+    }
+
+    private EntityManager getEntityManager() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
+        if (entityManager == null) {
+            entityManager = factory.createEntityManager();
+        }
+        return entityManager;
+    }
 
     @Override
     public void create(Internacao objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
     }
 
     @Override
     public List<Internacao> retrieve() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Internacao> internacoes = new ArrayList<>();
+        internacoes = entityManager.createQuery("Select i From internacao i", Internacao.class).getResultList();
+        return internacoes;
     }
 
     @Override
     public Internacao retrieve(int pk) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Internacao internacao = entityManager.find(Internacao.class, pk);
+        return internacao;
     }
 
     @Override
     public List<Internacao> retrieve(String parametro, String atributo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Internacao> internacoes = new ArrayList<>();
+        internacoes = entityManager.createQuery("Select i From internacao i "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Internacao.class).getResultList();
+        return internacoes;
     }
 
     @Override
     public void update(Internacao objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
     }
 
     @Override
     public void delete(Internacao objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        String sqlInstrucao = "DELETE FROM internacao WHERE id = ?";
-        
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setInt(1, objeto.getId());
-            pstm.execute();
-        } catch (SQLException ex) {
+            Internacao internacao = entityManager.find(Internacao.class, objeto.getId());
+            entityManager.getTransaction().begin();
+            entityManager.remove(internacao);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
     }
 }

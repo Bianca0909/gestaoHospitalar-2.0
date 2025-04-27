@@ -7,22 +7,27 @@ import model.dao.FarmaceuticoDAO;
 public class ServiceFarmaceutico {
 
     public static void adicionar(Farmaceutico objeto) {
-        FarmaceuticoDAO.getInstance().create(objeto);
+        FarmaceuticoDAO farmaceuticoDAO = FarmaceuticoDAO.getInstance();
+        farmaceuticoDAO.create(objeto);
     }
 
     public static List<Farmaceutico> ler() {
-        return FarmaceuticoDAO.getInstance().retrieve();
+        FarmaceuticoDAO farmaceuticoDAO = FarmaceuticoDAO.getInstance();
+        return farmaceuticoDAO.retrieve();
     }
 
-    public static Farmaceutico ler(int PK) {
-        return FarmaceuticoDAO.getInstance().retrieve(PK);
+    public static Farmaceutico ler(int pk) {
+        FarmaceuticoDAO farmaceuticoDAO = FarmaceuticoDAO.getInstance();
+        return farmaceuticoDAO.retrieve(pk);
     }
 
     public static List<Farmaceutico> ler(String parametro, String atributo) {
-        return FarmaceuticoDAO.getInstance().retrieve(parametro, atributo);
+        FarmaceuticoDAO farmaceuticoDAO = FarmaceuticoDAO.getInstance();
+        return farmaceuticoDAO.retrieve(parametro, atributo);
     }
-    
-    public static void atualizar(Farmaceutico objeto){
-        FarmaceuticoDAO.getInstance().update(objeto);
-    } 
+
+    public static void atualizar(Farmaceutico objeto) {
+        FarmaceuticoDAO farmaceuticoDAO = FarmaceuticoDAO.getInstance();
+        farmaceuticoDAO.update(objeto);
+    }
 }

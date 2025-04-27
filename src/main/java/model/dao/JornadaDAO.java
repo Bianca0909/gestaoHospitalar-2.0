@@ -1,74 +1,88 @@
 package model.dao;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.List;
 import model.bo.Jornada;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
-public class JornadaDAO {
+public class JornadaDAO implements InterfaceDAO<Jornada> {
 
+    private static JornadaDAO instance;
+    protected EntityManager entityManager;
+
+    private JornadaDAO() {
+        entityManager = getEntityManager();
+    }
+
+    public static JornadaDAO getInstance() {
+        if (instance == null) {
+            instance = new JornadaDAO();
+        }
+        return instance;
+    }
+
+    private EntityManager getEntityManager() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
+        if (entityManager == null) {
+            entityManager = factory.createEntityManager();
+        }
+        return entityManager;
+    }
+
+    @Override
     public void create(Jornada objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        
-        String sqlInstrucao = "INSERT INTO jornada(dataInicial, dataFinal, cargaHoraria, profissionalId) VALUES(?, ?, ?, ?)";
-        
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setDate(1, Date.valueOf(objeto.getDataInicial()));
-            pstm.setDate(2, Date.valueOf(objeto.getDataFinal()));
-            pstm.setInt(3, objeto.getCargaHoraria());
-            pstm.setInt(4, objeto.getProfissionalId());
-            pstm.execute();
-            
-        } catch (SQLException ex) {
+            entityManager.getTransaction().begin();
+            entityManager.persist(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
     }
-    
+
+    @Override
+    public List<Jornada> retrieve() {
+        TypedQuery<Jornada> query = entityManager.createQuery("Select j From Jornada j", Jornada.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public Jornada retrieve(int pk) {
+        return entityManager.find(Jornada.class, pk);
+    }
+
+    @Override
+    public List<Jornada> retrieve(String parametro, String atributo) {
+        TypedQuery<Jornada> query = entityManager.createQuery("Select j From Jornada j "
+                + " Where " + atributo + " like ( % " + parametro + " % )", Jornada.class);
+        return query.getResultList();
+    }
+
+    @Override
     public void update(Jornada objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        
-        String sqlInstrucao = "UPDATE jornada SET"
-                + "dataInicial = ?, "
-                + "dataFinal = ?, "
-                + "cargaHoraria = ?, "
-                + "profissionalId = ?"
-                + "WHERE jornada.id = ?";
-        
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setDate(1, Date.valueOf(objeto.getDataInicial()));
-            pstm.setDate(2, Date.valueOf(objeto.getDataFinal()));
-            pstm.setInt(3, objeto.getCargaHoraria());
-            pstm.setInt(4, objeto.getProfissionalId());
-            pstm.setInt(5, objeto.getId());
-            pstm.execute();
-            
-        } catch (SQLException ex) {
-           ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().begin();
+            entityManager.merge(objeto);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
         }
     }
-    
+
+    @Override
     public void delete(Jornada objeto) {
-        Connection conexao = ConnectionFactory.getConnection();
-        PreparedStatement pstm = null;
-        String sqlInstrucao = "DELETE FROM jornada WHERE id = ?";
-        
         try {
-            pstm = conexao.prepareStatement(sqlInstrucao);
-            pstm.setInt(1, objeto.getId());
-            pstm.execute();
-        } catch (SQLException ex) {
+            Jornada jornada = entityManager.find(Jornada.class, objeto.getId());
+            entityManager.getTransaction().begin();
+            entityManager.remove(jornada);
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            ConnectionFactory.closeConnection(conexao, pstm, null);
+            entityManager.getTransaction().rollback();
         }
     }
 }
