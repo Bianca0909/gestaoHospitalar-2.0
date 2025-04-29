@@ -21,14 +21,15 @@ public class AcompanhanteInternacao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "data_entrada")
     private LocalDateTime dataEntrada;
-    @Column
+    @Column(name = "data_saida")
     private LocalDateTime dataSaida;
-    @Column
+    @Column(name = "observacao")
     private String observacao;
-    @Column
+    @Column(name = "status")
     private String status;
 
 }

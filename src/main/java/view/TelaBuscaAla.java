@@ -25,6 +25,7 @@ public class TelaBuscaAla extends javax.swing.JDialog {
         initComponents();
     }
 
+    
     public JButton getjButtonCarregar() {
         return jButtonCarregar;
     }

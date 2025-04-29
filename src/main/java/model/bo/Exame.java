@@ -18,12 +18,13 @@ public class Exame implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "titulo_exame")
     private String tituloExame;
-    @Column
+    @Column(name = "tipo_exame")
     private String tipoExame;
-    @Column
+    @Column(name = "status")
     private String status;
     
 }

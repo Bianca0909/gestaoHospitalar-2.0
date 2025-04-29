@@ -20,16 +20,17 @@ public class MovimentoMedicamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "data_hora_movimento")
     private LocalDateTime dataHoraMovimento;
-    @Column
+    @Column(name = "tipo_movimento")
     private String tipoMovimento;
-    @Column
+    @Column(name = "qtd_medicamento")
     private float qtdMedicamento;
-    @Column
+    @Column(name = "observacao")
     private String observacao;
-    @Column
+    @Column(name = "status")
     private String status;
     @ManyToOne
     @JoinColumn(name = "lote_id")

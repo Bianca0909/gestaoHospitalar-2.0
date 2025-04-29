@@ -14,18 +14,18 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Paciente extends Pessoa {
     
-    @Column
+    @Column(name = "cartao_sus")
     private String cartaoSus;
-    @Column
+    @Column(name = "tipo_sanguineo")
     private String tipoSanguineo;
-    @Column
+    @Column(name = "sexo")
     private String sexo;
-    @Column
+    @Column(name = "nome_social")
     private String nomeSocial;
-    @Column
+    @Column(name = "convenio")
     private String convenio;
-    @Column
+    @Column(name = "carteirinha_convenio")
     private String carteirinhaConvenio;
-    @Column
+    @Column(name = "status")
     private String status;
 }

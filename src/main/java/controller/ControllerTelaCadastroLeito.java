@@ -47,7 +47,7 @@ public class ControllerTelaCadastroLeito implements ActionListener {
             leito.setStatus(this.telaCadastroLeito.getStatusComboBox().getSelectedItem() + "");
             
             Quarto quartoSelecionado = (Quarto) this.telaCadastroLeito.getQuartoComboBox().getSelectedItem();
-            leito.setQuartoId(quartoSelecionado.getId());
+            leito.setQuarto(quartoSelecionado);
             
             if (this.telaCadastroLeito.getIdField().getText().equals("")){
                 service.ServiceLeito.adicionar(leito);

@@ -47,7 +47,7 @@ public class ControllerCadastroMedicamento implements ActionListener {
             medicamento.setStatus(this.telaCadastroMedicamento.getStatusComboBox().getSelectedItem().toString());
             
             Medicamento medicamentoSelecionado = (Medicamento) this.telaCadastroMedicamento.getLaboratorioComboBox().getSelectedItem();
-            medicamento.setLaboratorio_id(medicamentoSelecionado.getId());
+            medicamento.setLaboratorio(medicamentoSelecionado.getLaboratorio());
             
             if (this.telaCadastroMedicamento.getIdField().getText().equals("")) {
                 service.ServiceMedicamento.adicionar(medicamento);

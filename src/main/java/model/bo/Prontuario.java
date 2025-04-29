@@ -20,14 +20,15 @@ public class Prontuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "data_hora_visita")
     private LocalDateTime dataHoraVisita;
-    @Column
+    @Column(name = "descricao_vista")
     private String descricaoVista;
-    @Column
+    @Column(name = "observacao")
     private String observacao;
-    @Column
+    @Column(name = "status")
     private String status;
     @ManyToOne
     @JoinColumn(name = "internacao_leito_id")

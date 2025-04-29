@@ -20,14 +20,15 @@ public class Leito implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "numero")
     private String numero;
-    @Column
+    @Column(name = "descricao")
     private String descricao;
-    @Column
+    @Column(name = "status")
     private String status;
-    
-    @Column
-    private Integer quartoId;
+    @ManyToOne
+    @JoinColumn(name = "quarto_id")
+    private Quarto quarto;
 }

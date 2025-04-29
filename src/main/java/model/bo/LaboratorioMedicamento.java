@@ -20,12 +20,13 @@ public class LaboratorioMedicamento implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "codigo_barras")
     private String codigoBarras;
-    @Column
+    @Column(name = "observacao")
     private String observacao;
-    @Column
+    @Column(name = "status")
     private String status;
     @ManyToOne
     @JoinColumn(name = "medicamento_id")

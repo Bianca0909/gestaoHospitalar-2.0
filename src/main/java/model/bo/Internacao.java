@@ -23,14 +23,15 @@ public class Internacao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "data_hora_internacao")
     private LocalDateTime dataHoraInternacao;
-    @Column
+    @Column(name = "data_hora_alta")
     private LocalDateTime dataHoraAlta;
-    @Column
+    @Column(name = "observacao")
     private String observacao;
-    @Column
+    @Column(name = "status")
     private String status;
     @ManyToOne
     @JoinColumn(name = "consulta_id")

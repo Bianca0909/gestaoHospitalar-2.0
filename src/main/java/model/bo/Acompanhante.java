@@ -14,9 +14,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Acompanhante extends Pessoa {
     
-    @Column
+    @Column(name = "grau_parentesco")
     private String grauParentesco;
-    @Column
+    @Column(name = "status")
     private String status;
     
     public String getCpf() {

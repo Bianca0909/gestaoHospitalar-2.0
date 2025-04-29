@@ -22,45 +22,46 @@ public class Atendimento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
     
-    @Column
+    @Column(name = "data_hora_atendimento")
     private LocalDateTime dataHoraAtendimento;
     
-    @Column
+    @Column(name = "pressao")
     private String pressao;
     
-    @Column
+    @Column(name = "temperatura")
     private String temperatura;
     
-    @Column
+    @Column(name = "bpm")
     private String bpm;
     
-    @Column
+    @Column(name = "oximetria")
     private String oximetria;
     
-    @Column
+    @Column(name = "historico_doencas")
     private String historicoDeDoencas;
     
-    @Column
+    @Column(name = "alergias")
     private String alergias;
     
-    @Column
+    @Column(name = "medicacoes_em_uso")
     private String medicacoesEmUso;
     
-    @Column
+    @Column(name = "anamnese")
     private String anamnese;
     
-    @Column
+    @Column(name = "tipo_atendimento")
     private String tipoAtendimento;
     
-    @Column
+    @Column(name = "classificacao")
     private String classificacao;
     
-    @Column
+    @Column(name = "observacoes")
     private String observacoes;
     
-    @Column
+    @Column(name = "status")
     private String status;
     
     @ManyToOne

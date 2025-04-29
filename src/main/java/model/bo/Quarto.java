@@ -13,8 +13,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-@Entity
-@Table(name = "QUARTO")
+@Entity(name = "quarto")
+@Table(name = "quarto")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,16 +22,16 @@ public class Quarto implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Integer id;
     
-    @Column(name = "NUMERO")
+    @Column(name = "numero")
     private String numero;
     
-    @Column(name = "DESCRICAO")
+    @Column(name = "descricao")
     private String descricao;
     
-    @Column(name = "STATUS")
+    @Column(name = "status")
     private String status;
   
     @ManyToOne

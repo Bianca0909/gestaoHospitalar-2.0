@@ -1,5 +1,6 @@
 package controller;
 
+import enums.StatusCadastroEnum;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.bo.Ala;
@@ -41,11 +42,13 @@ public class ControllerCadastroAla implements ActionListener {
             Ala ala = new Ala();
             
             ala.setDescricao(this.telaCadastroAla.getDescricaoField().getText());
-            
+            ala.setStatus(this.telaCadastroAla.getStatusComboBox().getSelectedItem().toString());
             if (this.telaCadastroAla.getIdField().getText().equals("")) {
                 service.ServiceAla.adicionar(ala);
             } else {
                 ala.setId(Integer.parseInt(this.telaCadastroAla.getIdField().getText()));
+                ala.setDescricao(this.telaCadastroAla.getDescricaoField().getText());
+               
                 service.ServiceAla.atualizar(ala);
             }
             
@@ -66,9 +69,10 @@ public class ControllerCadastroAla implements ActionListener {
                 
                 this.telaCadastroAla.getIdField().setText(ala.getId() + "");
                 this.telaCadastroAla.getDescricaoField().setText(ala.getDescricao());
-                
+                this.telaCadastroAla.getStatusComboBox().setSelectedItem(ala.getStatus());
                 this.telaCadastroAla.getIdField().setEnabled(false);
-                this.telaCadastroAla.getNomeField().requestFocus();
+                this.telaCadastroAla.getDescricaoField().requestFocus();
+                 
             }
             
         } else if (evento.getSource() == this.telaCadastroAla.getjButtonSair()) {

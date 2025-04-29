@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
-@Entity
+@Entity(name = "fornecedor")
 @Table(name = "fornecedor")
 @Data
 @NoArgsConstructor
@@ -16,8 +16,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Fornecedor extends Pessoa {
     
-    @Column
+    @Column(name = "nome_fantasia")
     private String nomeFantasia;
-    @Column
+    @Column(name = "contato")
     private String contato;
 }

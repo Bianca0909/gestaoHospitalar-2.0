@@ -18,9 +18,10 @@ public class ClasseDadosGravacao implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "nome_tabela")
     private String nomeTabela;
-    @Column
+    @Column(name = "status")
     private String status;
 }

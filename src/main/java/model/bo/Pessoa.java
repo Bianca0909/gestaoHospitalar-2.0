@@ -17,35 +17,31 @@ public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "nome")
     private String nome;
-    @Column
+    @Column(name = "fone1")
     private String fone1;
-    @Column
+    @Column(name = "fone2")
     private String fone2;
-    @Column
+    @Column(name = "email")
     private String email;
-    @Column
+    @Column(name = "cpf_cnpj")
     private String cpfCnpj;
-    @Column
+    @Column(name = "rg_inscricao_estadual")
     private String rgInscricaoEstadual;
-    @Column
+    @Column(name = "data_cadastro")
     private String dataCadastro;
-    @Column
+    @Column(name = "cep")
     private String cep;
-    @Column
+    @Column(name = "cidade")
     private String cidade;
-    @Column
+    @Column(name = "bairro")
     private String bairro;
-    @Column
+    @Column(name = "logradouro")
     private String logradouro;
-    @Column
+    @Column(name = "complemento")
     private String complemento;
-
-    @Override
-    public String toString() {
-        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", fone1=" + fone1 + ", fone2=" + fone2 + ", email=" + email + ", cpfCnpj=" + cpfCnpj + ", rgInscricaoEstadual=" + rgInscricaoEstadual + ", dataCadastro=" + dataCadastro + ", cep=" + cep + ", cidade=" + cidade + ", bairro=" + bairro + ", logradouro=" + logradouro + ", complemento=" + complemento + '}';
-    }
 
 }

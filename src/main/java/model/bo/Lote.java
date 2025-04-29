@@ -19,13 +19,14 @@ public class Lote implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "descricao")
     private String descricao;
-    @Column
+    @Column(name = "data_fabricacao")
     private LocalDate dataFabricacao;
-    @Column
+    @Column(name = "data_validade")
     private LocalDate dataValidade;
-    @Column
+    @Column(name = "status")
     private String status;
 }

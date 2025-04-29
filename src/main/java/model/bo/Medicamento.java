@@ -3,6 +3,8 @@ package model.bo;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
@@ -18,17 +20,19 @@ public class Medicamento implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "descricao_medicamento")
     private String descricaoMedicamento;
-    @Column
+    @Column(name = "principio_ativo")
     private String principioAtivo;
-    @Column
+    @Column(name = "qtd_minima")
     private float qtdMinima;
-    @Column
+    @Column(name = "status")
     private String status;
-    @Column
+    @Column(name = "codigo_barras")
     private String codigoBarras;
-    @Column
-    private Integer laboratorio_id;
+    @ManyToOne
+    @JoinColumn(name = "laboratorio_id")
+    private Laboratorio laboratorio;
 }

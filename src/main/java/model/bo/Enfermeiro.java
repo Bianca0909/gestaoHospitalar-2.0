@@ -14,12 +14,12 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Enfermeiro extends Pessoa {
     
-    @Column
+    @Column(name = "cre")
     private String cre;
-    @Column
+    @Column(name = "senha")
     private String senha;
-    @Column
+    @Column(name = "login")
     private String login;
-    @Column
+    @Column(name = "nome_social")
     private String nomeSocial;
 }

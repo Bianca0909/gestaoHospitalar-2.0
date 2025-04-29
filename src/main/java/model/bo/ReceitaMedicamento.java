@@ -20,10 +20,11 @@ public class ReceitaMedicamento implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "prescricao")
     private String prescricao;
-    @Column
+    @Column(name = "status")
     private String status;
     @ManyToOne
     @JoinColumn(name = "receita_id")

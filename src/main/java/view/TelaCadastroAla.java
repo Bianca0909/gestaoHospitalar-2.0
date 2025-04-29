@@ -151,11 +151,11 @@ public class TelaCadastroAla extends javax.swing.JDialog {
         this.labelDescricao = labelDescricao;
     }
 
-    public JComboBox<StatusCadastroEnum> getStatusComboBox() {
+    public JComboBox<String> getStatusComboBox() {
         return statusComboBox;
     }
 
-    public void setStatusComboBox(JComboBox<StatusCadastroEnum> statusComboBox) {
+    public void setStatusComboBox(JComboBox<String> statusComboBox) {
         this.statusComboBox = statusComboBox;
     }
 
@@ -176,7 +176,7 @@ public class TelaCadastroAla extends javax.swing.JDialog {
     }
 
    private void loadComboBox() {
-        statusComboBox.setModel(new DefaultComboBoxModel<>(StatusCadastroEnum.values()));
+        statusComboBox.setModel(new DefaultComboBoxModel<>(new String[]{"A", "I"}));
     }
 
     
@@ -435,7 +435,7 @@ public class TelaCadastroAla extends javax.swing.JDialog {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelDescricao;
     private javax.swing.JTextField nomeField;
-    private javax.swing.JComboBox<StatusCadastroEnum> statusComboBox;
+    private javax.swing.JComboBox<String> statusComboBox;
     private javax.swing.JLabel statusLabel;
     // End of variables declaration//GEN-END:variables
 }

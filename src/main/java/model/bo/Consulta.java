@@ -24,20 +24,21 @@ public class Consulta implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "responsavel")
     private String responsavel;
-    @Column
+    @Column(name = "data_hora_consulta")
     private LocalDateTime dataHoraConsulta;
-    @Column
+    @Column(name = "anamnese")
     private String anamnese;
-    @Column
+    @Column(name = "diagnostico")
     private String diagnostico;
-    @Column
+    @Column(name = "prescricao")
     private String prescricao;
-    @Column
+    @Column(name = "observacao")
     private String observacao;
-    @Column
+    @Column(name = "status")
     private String status;
     @ManyToOne
     @JoinColumn(name = "medico_id")

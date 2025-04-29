@@ -2,6 +2,7 @@ package model.bo;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "ala")
+@Table(name = "ala")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -18,9 +20,10 @@ public class Ala implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "descricao")
     private String descricao;
-    @Column
+    @Column(name = "status")
     private String status;
 }

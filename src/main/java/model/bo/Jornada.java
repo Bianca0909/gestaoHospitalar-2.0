@@ -14,18 +14,19 @@ import lombok.AllArgsConstructor;
 @Entity(name = "jornada")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@AllArgsConstructor 
 public class Jornada implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "data_inicial")
     private LocalDate dataInicial;
-    @Column
+    @Column(name = "data_final")
     private LocalDate dataFinal;
-    @Column
+    @Column(name = "carga_horaria")
     private Integer cargaHoraria;
-    @Column
+    @Column(name = "profissional_id")
     private Integer profissionalId;
 }

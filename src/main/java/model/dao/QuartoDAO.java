@@ -4,7 +4,6 @@ import java.util.List;
 import model.bo.Quarto;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import model.dao.ConnectionFactory;
 
 public class QuartoDAO implements InterfaceDAO<Quarto> {
 

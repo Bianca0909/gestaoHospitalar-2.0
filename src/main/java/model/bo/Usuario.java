@@ -2,7 +2,6 @@ package model.bo;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.Column;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,10 +15,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Usuario extends Pessoa implements Serializable {
     
-    @Column
+    @Column(name = "login")
     private String login;
-    @Column
+    @Column(name = "senha")
     private String senha;
-    @Column
+    @Column(name = "status")
     private String status;
 }

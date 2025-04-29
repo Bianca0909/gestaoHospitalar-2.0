@@ -21,14 +21,15 @@ public class ConsultaExame implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
-    @Column
+    @Column(name = "data_hora_exame")
     private LocalDateTime dataHoraExame;
-    @Column
+    @Column(name = "analise_exame")
     private String analiseExame;
-    @Column
+    @Column(name = "imagem_exame")
     private String imagemExame;
-    @Column
+    @Column(name = "status")
     private String status;
     @ManyToOne
     @JoinColumn(name = "consulta_id")
