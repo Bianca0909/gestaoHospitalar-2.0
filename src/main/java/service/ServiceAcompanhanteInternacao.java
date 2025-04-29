@@ -25,4 +25,8 @@ public class ServiceAcompanhanteInternacao {
     public static void atualizar(AcompanhanteInternacao objeto) {
         AcompanhanteInternacaoDAO.getInstance().update(objeto);
     }
+    
+    public static void excluir(AcompanhanteInternacao objeto) {
+        AcompanhanteInternacaoDAO.getInstance().delete(objeto);
+    }
 }

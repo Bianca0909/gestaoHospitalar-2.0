@@ -45,23 +45,20 @@ public class AcompanhanteInternacaoDAO implements InterfaceDAO<AcompanhanteInter
 
     @Override
     public List<AcompanhanteInternacao> retrieve() {
-        List<AcompanhanteInternacao> acompanhantesInternacao = new ArrayList<>();
-        acompanhantesInternacao = entityManager.createQuery("Select ai From acompanhanteinternacao ai", AcompanhanteInternacao.class).getResultList();
-        return acompanhantesInternacao;
+        return entityManager.createQuery("FROM " + AcompanhanteInternacao.class.getName(), AcompanhanteInternacao.class)
+                .getResultList();
     }
 
     @Override
     public AcompanhanteInternacao retrieve(int pk) {
-        AcompanhanteInternacao acompanhanteInternacao = entityManager.find(AcompanhanteInternacao.class, pk);
-        return acompanhanteInternacao;
+        return entityManager.find(AcompanhanteInternacao.class, pk);
     }
 
     @Override
     public List<AcompanhanteInternacao> retrieve(String parametro, String atributo) {
-        List<AcompanhanteInternacao> acompanhantesInternacao = new ArrayList<>();
-        acompanhantesInternacao = entityManager.createQuery("Select ai From acompanhanteinternacao ai "
-                + " Where " + atributo + " like ( % " + parametro + " %  )", AcompanhanteInternacao.class).getResultList();
-        return acompanhantesInternacao;
+        return entityManager.createQuery("FROM " + AcompanhanteInternacao.class.getName() + " WHERE " + atributo + " LIKE :parametro", AcompanhanteInternacao.class)
+                .setParameter("parametro", "%" + parametro + "%")
+                .getResultList();
     }
 
     @Override

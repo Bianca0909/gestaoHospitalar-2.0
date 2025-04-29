@@ -42,10 +42,10 @@ public class ControllerCadastroAcompanhante implements ActionListener {
             
             acompanhante.setNome(this.telaCadastroAcompanhante.getNomeField().getText());
             acompanhante.setEmail(this.telaCadastroAcompanhante.getEmailField().getText());
-            acompanhante.setCpfCnpj(this.telaCadastroAcompanhante.getCpfCnpjField().getText());
-            acompanhante.setFone1(this.telaCadastroAcompanhante.getFone1Field().getText());
+            acompanhante.setCpf(this.telaCadastroAcompanhante.getCpfCnpjField().getText());
+            acompanhante.setFone(this.telaCadastroAcompanhante.getFone1Field().getText());
             acompanhante.setGrauParentesco(this.telaCadastroAcompanhante.getGrauParentescoField().getText());
-            acompanhante.setStatus(this.telaCadastroAcompanhante.getStatusComboBox().getSelectedItem() + "");
+            acompanhante.setStatus(this.telaCadastroAcompanhante.getStatusComboBox().getSelectedItem().toString());
             
             if (this.telaCadastroAcompanhante.getIdField().getText().equals("")) {
                 service.ServiceAcompanhante.adicionar(acompanhante);
@@ -72,8 +72,8 @@ public class ControllerCadastroAcompanhante implements ActionListener {
                 this.telaCadastroAcompanhante.getIdField().setText(acompanhante.getId() + "");
                 this.telaCadastroAcompanhante.getNomeField().setText(acompanhante.getNome());
                 this.telaCadastroAcompanhante.getEmailField().setText(acompanhante.getEmail());
-                this.telaCadastroAcompanhante.getCpfCnpjField().setText(acompanhante.getCpfCnpj());
-                this.telaCadastroAcompanhante.getFone1Field().setText(acompanhante.getFone1());
+                this.telaCadastroAcompanhante.getCpfCnpjField().setText(acompanhante.getCpf());
+                this.telaCadastroAcompanhante.getFone1Field().setText(acompanhante.getFone());
                 this.telaCadastroAcompanhante.getGrauParentescoField().setText(acompanhante.getGrauParentesco());
                 this.telaCadastroAcompanhante.getStatusComboBox().setSelectedItem(acompanhante.getStatus());
                 
