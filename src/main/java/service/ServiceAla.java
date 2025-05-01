@@ -6,28 +6,38 @@ import model.dao.AlaDAO;
 
 public class ServiceAla {
 
-    public static void adicionar(Ala objeto) {
-        AlaDAO alaDAO = AlaDAO.getInstance();
-        alaDAO.create(objeto);
+    public static Ala inserir(Ala objeto) {
+        AlaDAO.getInstance().create(objeto);
+        return objeto;
     }
 
     public static List<Ala> ler() {
-        AlaDAO alaDAO = AlaDAO.getInstance();
-        return alaDAO.retrieve();
+        return AlaDAO.getInstance().retrieve();
     }
 
     public static Ala ler(int PK) {
-        AlaDAO alaDAO = AlaDAO.getInstance();
-        return alaDAO.retrieve(PK);
+        return AlaDAO.getInstance().retrieve(PK);
     }
 
     public static List<Ala> ler(String parametro, String atributo) {
-        AlaDAO alaDAO = AlaDAO.getInstance();
-        return alaDAO.retrieve(parametro, atributo);
+        return AlaDAO.getInstance().retrieve(parametro, atributo);
     }
 
-    public static void atualizar(Ala objeto) {
-        AlaDAO alaDAO = AlaDAO.getInstance();
-        alaDAO.update(objeto);
+    public static Ala atualizar(Ala objeto) {
+        AlaDAO.getInstance().update(objeto);
+        return objeto;
+    }
+
+    public static boolean excluir(int id) {
+        try {
+            Ala ala = AlaDAO.getInstance().retrieve(id);
+            if (ala != null) {
+                AlaDAO.getInstance().delete(ala);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

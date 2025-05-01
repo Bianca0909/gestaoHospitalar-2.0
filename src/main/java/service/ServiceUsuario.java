@@ -6,28 +6,38 @@ import model.dao.UsuarioDAO;
 
 public class ServiceUsuario {
 
-    public static void adicionar(Usuario objeto) {
-        UsuarioDAO usuarioDAO = UsuarioDAO.getInstance();
-        usuarioDAO.create(objeto);
+    public static Usuario inserir(Usuario objeto) {
+        UsuarioDAO.getInstance().create(objeto);
+        return objeto;
     }
 
     public static List<Usuario> ler() {
-        UsuarioDAO usuarioDAO = UsuarioDAO.getInstance();
-        return usuarioDAO.retrieve();
+        return UsuarioDAO.getInstance().retrieve();
     }
 
     public static Usuario ler(int pk) {
-        UsuarioDAO usuarioDAO = UsuarioDAO.getInstance();
-        return usuarioDAO.retrieve(pk);
+        return UsuarioDAO.getInstance().retrieve(pk);
     }
 
     public static List<Usuario> ler(String parametro, String atributo) {
-        UsuarioDAO usuarioDAO = UsuarioDAO.getInstance();
-        return usuarioDAO.retrieve(parametro, atributo);
+        return UsuarioDAO.getInstance().retrieve(parametro, atributo);
     }
 
-    public static void atualizar(Usuario objeto) {
-        UsuarioDAO usuarioDAO = UsuarioDAO.getInstance();
-        usuarioDAO.update(objeto);
+    public static Usuario atualizar(Usuario objeto) {
+        UsuarioDAO.getInstance().update(objeto);
+        return objeto;
+    }
+
+    public static boolean excluir(int id) {
+        try {
+            Usuario usuario = UsuarioDAO.getInstance().retrieve(id);
+            if (usuario != null) {
+                UsuarioDAO.getInstance().delete(usuario);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

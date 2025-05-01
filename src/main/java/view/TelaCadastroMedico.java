@@ -5,6 +5,8 @@
  */
 package view;
 
+import enums.StatusCadastroEnum;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 import utilities.Utilities;
 
 /**
@@ -24,6 +27,16 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
     public TelaCadastroMedico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        loadComboBox();
+        statusComboBox.addActionListener(evt -> statusComboBoxActionPerformed(evt));
+    }
+
+    private void loadComboBox() {
+        statusComboBox.setModel(new DefaultComboBoxModel<>(StatusCadastroEnum.values()));
+    }
+
+    public JComboBox<StatusCadastroEnum> getStatusComboBox() {
+        return statusComboBox;
     }
 
     public JLabel getBairroLabel() {
@@ -402,7 +415,6 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
         this.senhaLabel = senhaLabel;
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -454,6 +466,8 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
         senhaLabel = new javax.swing.JLabel();
         senhaField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        statusComboBox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonNovo = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
@@ -535,7 +549,7 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
 
         cpfCnpjField.setText("   .   .   -");
         jPanelDados.add(cpfCnpjField, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 143, 139, 35));
-        jPanelDados.add(rgField, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 212, 161, 34));
+        jPanelDados.add(rgField, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 212, 161, 30));
 
         rgInscricaoEstadualLabel.setText("RG");
         jPanelDados.add(rgInscricaoEstadualLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 190, -1, -1));
@@ -543,19 +557,19 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
         nomeSocialLabel.setText("Nome social");
         jPanelDados.add(nomeSocialLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 121, 75, -1));
         jPanelDados.add(nomeSocialField, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 143, 594, 35));
-        jPanelDados.add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 274, 286, 30));
+        jPanelDados.add(emailField, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 260, 30));
 
         emailLabel.setText("E-mail");
-        jPanelDados.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 252, 37, -1));
+        jPanelDados.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 40, -1));
 
         fone1Label.setText("Fone 1");
-        jPanelDados.add(fone1Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 43, -1));
+        jPanelDados.add(fone1Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 43, -1));
 
         fone1Field.setText("(  )     -     ");
-        jPanelDados.add(fone1Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 148, 30));
+        jPanelDados.add(fone1Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 148, 30));
 
         fone2Label.setText("Fone 2");
-        jPanelDados.add(fone2Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 43, -1));
+        jPanelDados.add(fone2Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 43, -1));
 
         fone2Field.setText("(  )     -     ");
         fone2Field.addActionListener(new java.awt.event.ActionListener() {
@@ -563,33 +577,33 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
                 fone2FieldActionPerformed(evt);
             }
         });
-        jPanelDados.add(fone2Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 210, 140, 30));
-        jPanelDados.add(cepField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 274, 121, 30));
+        jPanelDados.add(fone2Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 140, 30));
+        jPanelDados.add(cepField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 121, 30));
 
         cepLabel.setText("CEP");
-        jPanelDados.add(cepLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 43, -1));
+        jPanelDados.add(cepLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 43, -1));
 
         CidadeLabel.setText("Cidade");
-        jPanelDados.add(CidadeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 252, 43, -1));
+        jPanelDados.add(CidadeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 43, -1));
 
         cidadeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cidadeFieldActionPerformed(evt);
             }
         });
-        jPanelDados.add(cidadeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 274, 320, 30));
+        jPanelDados.add(cidadeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 320, 30));
 
         BairroLabel.setText("Bairro");
-        jPanelDados.add(BairroLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 308, 43, -1));
-        jPanelDados.add(bairroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 330, 166, 30));
+        jPanelDados.add(BairroLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 43, -1));
+        jPanelDados.add(bairroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 166, 30));
 
         logradouroLabel.setText("Logradouro");
-        jPanelDados.add(logradouroLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 308, 72, -1));
-        jPanelDados.add(logradouroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 258, 30));
+        jPanelDados.add(logradouroLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 72, -1));
+        jPanelDados.add(logradouroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 258, 30));
 
         complementoLabel.setText("Complemento");
-        jPanelDados.add(complementoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 88, -1));
-        jPanelDados.add(complementoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 330, 310, 30));
+        jPanelDados.add(complementoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 88, -1));
+        jPanelDados.add(complementoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 310, 30));
 
         crmLabel.setText("CRM");
         jPanelDados.add(crmLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 37, -1));
@@ -616,9 +630,14 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanelDados.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 390, 160, 30));
+        jPanelDados.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 160, 30));
 
-        getContentPane().add(jPanelDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 762, 430));
+        jPanelDados.add(statusComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 150, 30));
+
+        jLabel1.setText("Status");
+        jPanelDados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, -1, -1));
+
+        getContentPane().add(jPanelDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 762, 470));
 
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -675,7 +694,7 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
         });
         jPanelBotoes.add(jButtonSair);
 
-        getContentPane().add(jPanelBotoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 762, -1));
+        getContentPane().add(jPanelBotoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 520, 762, 50));
 
         pack();
         setLocationRelativeTo(null);
@@ -722,6 +741,16 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
     private void senhaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_senhaFieldActionPerformed
+
+    private void statusComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusComboBoxActionPerformed
+        String status = statusComboBox.getSelectedItem().toString();
+        // Adicionar lógica para lidar com a mudança de status
+        if (status.equals("Ativo")) {
+            // Lógica para médico ativo
+        } else if (status.equals("Inativo")) {
+            // Lógica para médico inativo
+        }
+    }//GEN-LAST:event_statusComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -794,6 +823,7 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanelBotoes;
@@ -814,5 +844,6 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
     private javax.swing.JLabel rgInscricaoEstadualLabel;
     private javax.swing.JTextField senhaField;
     private javax.swing.JLabel senhaLabel;
+    private javax.swing.JComboBox<StatusCadastroEnum> statusComboBox;
     // End of variables declaration//GEN-END:variables
 }

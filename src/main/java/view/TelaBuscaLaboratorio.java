@@ -137,7 +137,14 @@ public class TelaBuscaLaboratorio extends javax.swing.JDialog {
         this.valorField = valorField;
     }
 
-    
+    public JButton getEditarButton() {
+        return jButtonEditar2;
+    }
+
+    public JButton getExcluirButton() {
+        return jButtonExcluir;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -161,6 +168,8 @@ public class TelaBuscaLaboratorio extends javax.swing.JDialog {
         buttonFechar = new javax.swing.JToggleButton();
         carregarButton = new javax.swing.JToggleButton();
         buttonFiltrar = new javax.swing.JButton();
+        jButtonEditar2 = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -270,6 +279,22 @@ public class TelaBuscaLaboratorio extends javax.swing.JDialog {
         buttonFiltrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Find.png"))); // NOI18N
         buttonFiltrar.setText("Filtrar");
 
+        jButtonEditar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Modify.png"))); // NOI18N
+        jButtonEditar2.setText("Editar");
+        jButtonEditar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditar2ActionPerformed(evt);
+            }
+        });
+
+        jButtonExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Delete.png"))); // NOI18N
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -279,6 +304,10 @@ public class TelaBuscaLaboratorio extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(carregarButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonEditar2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonFechar)
                         .addContainerGap())
@@ -293,7 +322,7 @@ public class TelaBuscaLaboratorio extends javax.swing.JDialog {
                                 .addComponent(valorField, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonFiltrar)))
-                        .addGap(0, 8, Short.MAX_VALUE))))
+                        .addGap(0, 11, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +339,10 @@ public class TelaBuscaLaboratorio extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carregarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(carregarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonEditar2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -330,6 +362,14 @@ public class TelaBuscaLaboratorio extends javax.swing.JDialog {
     private void filtroComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_filtroComboBoxActionPerformed
+
+    private void jButtonEditar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditar2ActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,6 +420,9 @@ public class TelaBuscaLaboratorio extends javax.swing.JDialog {
     private javax.swing.JButton buttonFiltrar;
     private javax.swing.JToggleButton carregarButton;
     private javax.swing.JComboBox<String> filtroComboBox;
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonEditar2;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -88,4 +88,18 @@ public class MedicoDAO implements InterfaceDAO<Medico> {
             entityManager.getTransaction().rollback();
         }
     }
+
+    public void delete(int id) {
+        try {
+            entityManager.getTransaction().begin();
+            Medico medico = retrieve(id);
+            if (medico != null) {
+                entityManager.remove(medico);
+            }
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
 }

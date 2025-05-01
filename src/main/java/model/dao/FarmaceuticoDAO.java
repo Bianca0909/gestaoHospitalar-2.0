@@ -88,4 +88,18 @@ public class FarmaceuticoDAO implements InterfaceDAO<Farmaceutico> {
             entityManager.getTransaction().rollback();
         }
     }
+
+    public void delete(int id) {
+        try {
+            entityManager.getTransaction().begin();
+            Farmaceutico farmaceutico = retrieve(id);
+            if (farmaceutico != null) {
+                entityManager.remove(farmaceutico);
+            }
+            entityManager.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            entityManager.getTransaction().rollback();
+        }
+    }
 }

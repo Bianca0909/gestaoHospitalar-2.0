@@ -2,15 +2,16 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import model.bo.Fornecedor;
+import service.ServiceFornecedor;
 import utilities.Utilities;
-import view.TelaCadastroFornecedor;
 import view.TelaBuscaFornecedor;
+import view.TelaCadastroFornecedor;
 
 public class ControllerCadastroFornecedor implements ActionListener {
 
     TelaCadastroFornecedor telaCadastroFornecedor;
-    public static int codigo;
 
     public ControllerCadastroFornecedor(TelaCadastroFornecedor telaCadastroFornecedor) {
         this.telaCadastroFornecedor = telaCadastroFornecedor;
@@ -27,7 +28,6 @@ public class ControllerCadastroFornecedor implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-
         if (evento.getSource() == this.telaCadastroFornecedor.getjButtonNovo()) {
             Utilities.ativaDesativa(true, this.telaCadastroFornecedor.getjPanelBotoes());
             Utilities.limpaComponentes(true, this.telaCadastroFornecedor.getjPanelDados());
@@ -38,7 +38,6 @@ public class ControllerCadastroFornecedor implements ActionListener {
             Utilities.limpaComponentes(false, this.telaCadastroFornecedor.getjPanelDados());
 
         } else if (evento.getSource() == this.telaCadastroFornecedor.getjButtonGravar()) {
-
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.setNome(this.telaCadastroFornecedor.getNomeField().getText());
             fornecedor.setFone1(this.telaCadastroFornecedor.getFone1Field().getText());
@@ -54,27 +53,34 @@ public class ControllerCadastroFornecedor implements ActionListener {
             fornecedor.setComplemento(this.telaCadastroFornecedor.getComplementoField().getText());
             fornecedor.setNomeFantasia(this.telaCadastroFornecedor.getNomeFantasiaField().getText());
             fornecedor.setContato(this.telaCadastroFornecedor.getContatoField().getText());
+            fornecedor.setStatus(this.telaCadastroFornecedor.getStatusComboBox().getSelectedItem().toString().equals("ATIVO") ? "A" : "I");
 
-            if (this.telaCadastroFornecedor.getIdField().getText().equals("")) {
-                service.ServiceFornecedor.adicionar(fornecedor);
+            if (this.telaCadastroFornecedor.getIdField().getText().trim().equalsIgnoreCase("")) {
+                ServiceFornecedor.adicionar(fornecedor);
             } else {
                 fornecedor.setId(Integer.parseInt(this.telaCadastroFornecedor.getIdField().getText()));
-                service.ServiceFornecedor.atualizar(fornecedor);
+                ServiceFornecedor.atualizar(fornecedor);
             }
 
             Utilities.ativaDesativa(false, this.telaCadastroFornecedor.getjPanelBotoes());
             Utilities.limpaComponentes(false, this.telaCadastroFornecedor.getjPanelDados());
 
         } else if (evento.getSource() == this.telaCadastroFornecedor.getjButtonBuscar()) {
-            codigo = 0;
+            abrirBusca();
+        } else if (evento.getSource() == this.telaCadastroFornecedor.getjButtonSair()) {
+            this.telaCadastroFornecedor.dispose();
+        }
+    }
 
-            TelaBuscaFornecedor telaBuscaFornecedor = new TelaBuscaFornecedor(null, true);
-            ControllerBuscaFornecedor controllerBuscaFornecedor = new ControllerBuscaFornecedor(telaBuscaFornecedor);
-            telaBuscaFornecedor.setVisible(true);
+    private void abrirBusca() {
+        TelaBuscaFornecedor telaBuscaFornecedor = new TelaBuscaFornecedor(new JFrame(), true);
+        ControllerBuscaFornecedor controllerBuscaFornecedor = new ControllerBuscaFornecedor(telaBuscaFornecedor);
+        telaBuscaFornecedor.setVisible(true);
 
-            if (codigo != 0) {
-                Fornecedor fornecedor = service.ServiceFornecedor.ler(codigo);
-
+        int codigoRetorno = controllerBuscaFornecedor.getCodigoRetorno();
+        if (codigoRetorno != 0) {
+            Fornecedor fornecedor = ServiceFornecedor.ler(codigoRetorno);
+            if (fornecedor != null) {
                 Utilities.ativaDesativa(true, this.telaCadastroFornecedor.getjPanelBotoes());
                 Utilities.limpaComponentes(true, this.telaCadastroFornecedor.getjPanelDados());
 
@@ -95,11 +101,13 @@ public class ControllerCadastroFornecedor implements ActionListener {
                 this.telaCadastroFornecedor.getContatoField().setText(fornecedor.getContato());
 
                 this.telaCadastroFornecedor.getIdField().setEnabled(false);
+                this.telaCadastroFornecedor.getjButtonNovo().setEnabled(false);
+                this.telaCadastroFornecedor.getjButtonCancelar().setEnabled(true);
+                this.telaCadastroFornecedor.getjButtonGravar().setEnabled(true);
+                this.telaCadastroFornecedor.getjButtonBuscar().setEnabled(false);
+                this.telaCadastroFornecedor.getjButtonSair().setEnabled(false);
                 this.telaCadastroFornecedor.getNomeField().requestFocus();
             }
-
-        } else if (evento.getSource() == this.telaCadastroFornecedor.getjButtonSair()) {
-            this.telaCadastroFornecedor.dispose();
         }
     }
 }

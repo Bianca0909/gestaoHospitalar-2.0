@@ -26,4 +26,18 @@ public class ServiceLaboratorio {
         LaboratorioDAO.getInstance().update(objeto);
 
     }
+
+    public static boolean excluir(int id) {
+        try {
+            LaboratorioDAO laboratorioDAO = LaboratorioDAO.getInstance();
+            Laboratorio laboratorio = laboratorioDAO.retrieve(id);
+            if (laboratorio != null) {
+                laboratorioDAO.delete(laboratorio);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

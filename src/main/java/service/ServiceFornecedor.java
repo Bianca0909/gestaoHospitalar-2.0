@@ -30,4 +30,18 @@ public class ServiceFornecedor {
         FornecedorDAO fornecedorDAO = FornecedorDAO.getInstance();
         fornecedorDAO.update(objeto);
     }
+
+    public static boolean excluir(int id) {
+        try {
+            FornecedorDAO fornecedorDAO = FornecedorDAO.getInstance();
+            Fornecedor fornecedor = fornecedorDAO.retrieve(id);
+            if (fornecedor != null) {
+                fornecedorDAO.delete(fornecedor);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

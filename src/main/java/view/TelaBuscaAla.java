@@ -25,73 +25,6 @@ public class TelaBuscaAla extends javax.swing.JDialog {
         initComponents();
     }
 
-    
-    public JButton getjButtonCarregar() {
-        return jButtonCarregar;
-    }
-
-    public void setjButtonCarregar(JButton jButtonCarregar) {
-        this.jButtonCarregar = jButtonCarregar;
-    }
-
-    public JButton getjButtonSair() {
-        return jButtonSair;
-    }
-
-    public void setjButtonSair(JButton jButtonSair) {
-        this.jButtonSair = jButtonSair;
-    }
-
-    public JComboBox<String> getjCBFiltro() {
-        return jCBFiltro;
-    }
-
-    public void setjCBFiltro(JComboBox<String> jCBFiltro) {
-        this.jCBFiltro = jCBFiltro;
-    }
-
-    public JPanel getjPanelDados() {
-        return jPanelDados;
-    }
-
-    public void setjPanelDados(JPanel jPanelDados) {
-        this.jPanelDados = jPanelDados;
-    }
-
-    public JPanel getjPanelFiltros() {
-        return jPanelFiltros;
-    }
-
-    public void setjPanelFiltros(JPanel jPanelFiltros) {
-        this.jPanelFiltros = jPanelFiltros;
-    }
-
-    public JTextField getjTFFiltro() {
-        return jTFFiltro;
-    }
-
-    public void setjTFFiltro(JTextField jTFFiltro) {
-        this.jTFFiltro = jTFFiltro;
-    }
-
-    public JTable getjTableDados() {
-        return jTableDados;
-    }
-
-    public void setjTableDados(JTable jTableDados) {
-        this.jTableDados = jTableDados;
-    }
-
-    public JButton getjButtonFiltar() {
-        return jButtonFiltar;
-    }
-
-    public void setjButtonFiltar(JButton jButtonFiltar) {
-        this.jButtonFiltar = jButtonFiltar;
-    }
-    
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,6 +47,8 @@ public class TelaBuscaAla extends javax.swing.JDialog {
         jButtonCarregar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
         jButtonFiltar = new javax.swing.JButton();
+        editarButton = new javax.swing.JButton();
+        excluirButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -190,6 +125,12 @@ public class TelaBuscaAla extends javax.swing.JDialog {
         jButtonFiltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Find.png"))); // NOI18N
         jButtonFiltar.setText("Filtar");
 
+        editarButton.setText("Editar");
+        editarButton.setToolTipText("Clique aqui para editar o registro selecionado");
+
+        excluirButton.setText("Excluir");
+        excluirButton.setToolTipText("Clique aqui para excluir o registro selecionado");
+
         javax.swing.GroupLayout jPanelFiltrosLayout = new javax.swing.GroupLayout(jPanelFiltros);
         jPanelFiltros.setLayout(jPanelFiltrosLayout);
         jPanelFiltrosLayout.setHorizontalGroup(
@@ -211,7 +152,11 @@ public class TelaBuscaAla extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTFFiltro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonFiltar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonFiltar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelFiltrosLayout.createSequentialGroup()
+                        .addComponent(editarButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(excluirButton)))
                 .addContainerGap())
         );
         jPanelFiltrosLayout.setVerticalGroup(
@@ -228,9 +173,13 @@ public class TelaBuscaAla extends javax.swing.JDialog {
                     .addComponent(jButtonFiltar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editarButton)
+                    .addComponent(excluirButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCarregar)
                     .addComponent(jButtonSair))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -300,10 +249,92 @@ public class TelaBuscaAla extends javax.swing.JDialog {
         });
     }
 
+    public JButton getjButtonCarregar() {
+        return jButtonCarregar;
+    }
+
+    public void setjButtonCarregar(JButton jButtonCarregar) {
+        this.jButtonCarregar = jButtonCarregar;
+    }
+
+    public JButton getjButtonSair() {
+        return jButtonSair;
+    }
+
+    public void setjButtonSair(JButton jButtonSair) {
+        this.jButtonSair = jButtonSair;
+    }
+
+    public JButton getEditarButton() {
+        return editarButton;
+    }
+
+    public void setEditarButton(JButton editarButton) {
+        this.editarButton = editarButton;
+    }
+
+    public JButton getExcluirButton() {
+        return excluirButton;
+    }
+
+    public void setExcluirButton(JButton excluirButton) {
+        this.excluirButton = excluirButton;
+    }
+
+    public JComboBox<String> getjCBFiltro() {
+        return jCBFiltro;
+    }
+
+    public void setjCBFiltro(JComboBox<String> jCBFiltro) {
+        this.jCBFiltro = jCBFiltro;
+    }
+
+    public JPanel getjPanelDados() {
+        return jPanelDados;
+    }
+
+    public void setjPanelDados(JPanel jPanelDados) {
+        this.jPanelDados = jPanelDados;
+    }
+
+    public JPanel getjPanelFiltros() {
+        return jPanelFiltros;
+    }
+
+    public void setjPanelFiltros(JPanel jPanelFiltros) {
+        this.jPanelFiltros = jPanelFiltros;
+    }
+
+    public JTextField getjTFFiltro() {
+        return jTFFiltro;
+    }
+
+    public void setjTFFiltro(JTextField jTFFiltro) {
+        this.jTFFiltro = jTFFiltro;
+    }
+
+    public JTable getjTableDados() {
+        return jTableDados;
+    }
+
+    public void setjTableDados(JTable jTableDados) {
+        this.jTableDados = jTableDados;
+    }
+
+    public JButton getjButtonFiltar() {
+        return jButtonFiltar;
+    }
+
+    public void setjButtonFiltar(JButton jButtonFiltar) {
+        this.jButtonFiltar = jButtonFiltar;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCarregar;
     private javax.swing.JButton jButtonFiltar;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JButton editarButton;
+    private javax.swing.JButton excluirButton;
     private javax.swing.JComboBox<String> jCBFiltro;
     private javax.swing.JLabel jLabelFiltrar;
     private javax.swing.JLabel jLabelTitulo;

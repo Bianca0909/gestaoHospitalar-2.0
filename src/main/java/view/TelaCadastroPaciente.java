@@ -6,6 +6,7 @@
 package view;
 
 import enums.SexoEnum;
+import enums.StatusCadastroEnum;
 import enums.TipoSanguineoEnum;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -30,6 +31,14 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         loadComboBox();
+    }
+
+    public JComboBox<StatusCadastroEnum> getStatusComboBox() {
+        return statusComboBox;
+    }
+
+    public void setStatusComboBox(JComboBox<StatusCadastroEnum> statusComboBox) {
+        this.statusComboBox = statusComboBox;
     }
 
     public JLabel getBairroLabel() {
@@ -424,6 +433,8 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         complementoField = new javax.swing.JTextField();
         tipoSanguineoComboBox = new javax.swing.JComboBox<>();
         sexoComboBox = new javax.swing.JComboBox<>();
+        statusComboBox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonNovo = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
@@ -580,7 +591,12 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         });
         jPanelDados.add(sexoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 113, 30));
 
-        getContentPane().add(jPanelDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 760, 370));
+        jPanelDados.add(statusComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 160, 30));
+
+        jLabel1.setText("Status");
+        jPanelDados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        getContentPane().add(jPanelDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 760, 420));
 
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -637,7 +653,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         });
         jPanelBotoes.add(jButtonSair);
 
-        getContentPane().add(jPanelBotoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 760, -1));
+        getContentPane().add(jPanelBotoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 760, 50));
 
         pack();
         setLocationRelativeTo(null);
@@ -690,6 +706,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
       private void loadComboBox() {
         sexoComboBox.setModel(new DefaultComboBoxModel<>(SexoEnum.values()));
         tipoSanguineoComboBox.setModel(new DefaultComboBoxModel<>(TipoSanguineoEnum.values()));
+        statusComboBox.setModel(new DefaultComboBoxModel<>(StatusCadastroEnum.values()));
     }
   
     /**
@@ -760,6 +777,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelDados;
@@ -776,6 +794,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     private javax.swing.JLabel rgInscricaoEstadualLabel;
     private javax.swing.JComboBox<SexoEnum> sexoComboBox;
     private javax.swing.JLabel sexoLabel;
+    private javax.swing.JComboBox<StatusCadastroEnum> statusComboBox;
     private javax.swing.JComboBox<TipoSanguineoEnum> tipoSanguineoComboBox;
     private javax.swing.JLabel tipoSanguineoLabel;
     // End of variables declaration//GEN-END:variables

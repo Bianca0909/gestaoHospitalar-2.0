@@ -58,6 +58,7 @@ public class ControllerCadastroPaciente implements ActionListener {
             paciente.setBairro(this.telaCadastroPaciente.getBairroField().getText());
             paciente.setLogradouro(this.telaCadastroPaciente.getLogradouroField().getText());
             paciente.setComplemento(this.telaCadastroPaciente.getComplementoField().getText());
+            paciente.setStatus(this.telaCadastroPaciente.getStatusComboBox().getSelectedItem().toString());
             
             if (this.telaCadastroPaciente.getIdField().getText().equals("")) {
                 service.ServicePaciente.adicionar(paciente);

@@ -1,11 +1,14 @@
 package view;
 
+import enums.StatusCadastroEnum;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 import utilities.Utilities;
 
 public class TelaCadastroEnfermeiro extends javax.swing.JDialog {
@@ -13,6 +16,15 @@ public class TelaCadastroEnfermeiro extends javax.swing.JDialog {
     public TelaCadastroEnfermeiro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        loadComboBox();
+    }
+
+    private void loadComboBox() {
+        statusComboBox.setModel(new DefaultComboBoxModel<>(StatusCadastroEnum.values()));
+    }
+
+    public JComboBox<StatusCadastroEnum> getStatusComboBox() {
+        return statusComboBox;
     }
 
     public JLabel getBairroLabel() {
@@ -424,6 +436,8 @@ public class TelaCadastroEnfermeiro extends javax.swing.JDialog {
         senhaLabel = new javax.swing.JLabel();
         senhaField = new javax.swing.JTextField();
         dataNascimentoLabel = new javax.swing.JLabel();
+        statusComboBox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonNovo = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
@@ -584,6 +598,16 @@ public class TelaCadastroEnfermeiro extends javax.swing.JDialog {
         dataNascimentoLabel.setText("Data de nascimento");
         jPanelDados.add(dataNascimentoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, -1, -1));
 
+        statusComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusComboBoxActionPerformed(evt);
+            }
+        });
+        jPanelDados.add(statusComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, 120, 30));
+
+        jLabel1.setText("Status");
+        jPanelDados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, -1, -1));
+
         getContentPane().add(jPanelDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 750, 424));
 
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -691,6 +715,10 @@ public class TelaCadastroEnfermeiro extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_loginFieldActionPerformed
 
+    private void statusComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusComboBoxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -761,6 +789,7 @@ public class TelaCadastroEnfermeiro extends javax.swing.JDialog {
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelDados;
@@ -779,5 +808,6 @@ public class TelaCadastroEnfermeiro extends javax.swing.JDialog {
     private javax.swing.JLabel rgInscricaoEstadualLabel;
     private javax.swing.JTextField senhaField;
     private javax.swing.JLabel senhaLabel;
+    private javax.swing.JComboBox<StatusCadastroEnum> statusComboBox;
     // End of variables declaration//GEN-END:variables
 }

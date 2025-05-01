@@ -22,4 +22,6 @@ public class Enfermeiro extends Pessoa {
     private String login;
     @Column(name = "nome_social")
     private String nomeSocial;
+    @Column(name = "status")
+    private String status;
 }

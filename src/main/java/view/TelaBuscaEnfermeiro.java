@@ -88,6 +88,22 @@ public class TelaBuscaEnfermeiro extends javax.swing.JDialog {
     public void setjButtonFiltar(JButton jButtonFiltar) {
         this.jButtonFiltar = jButtonFiltar;
     }
+
+    public JButton getjButtonEditar() {
+        return jButtonEditar;
+    }
+
+    public void setjButtonEditar(JButton jButtonEditar) {
+        this.jButtonEditar = jButtonEditar;
+    }
+
+    public JButton getjButtonExcluir() {
+        return jButtonExcluir;
+    }
+
+    public void setjButtonExcluir(JButton jButtonExcluir) {
+        this.jButtonExcluir = jButtonExcluir;
+    }
     
     
 
@@ -104,7 +120,11 @@ public class TelaBuscaEnfermeiro extends javax.swing.JDialog {
         jLabelTitulo = new javax.swing.JLabel();
         jPanelDados = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableDados = new javax.swing.JTable();
+        jTableDados = new javax.swing.JTable(){
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
         jPanelFiltros = new javax.swing.JPanel();
         jCBFiltro = new javax.swing.JComboBox<>();
         jLabelFiltrar = new javax.swing.JLabel();
@@ -113,6 +133,8 @@ public class TelaBuscaEnfermeiro extends javax.swing.JDialog {
         jButtonCarregar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
         jButtonFiltar = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -143,15 +165,37 @@ public class TelaBuscaEnfermeiro extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "Nome", "RG", "CPF"
+                "ID", "Nome", "CRE", "CPF/CNPJ", "Fone 1", "Fone 2", "Email", "Nome Social", "RG/Insc. Est.", "Data Cad.", "CEP", "Cidade", "Bairro", "Logradouro", "Complemento", "Login", "Senha", "Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableDados);
         if (jTableDados.getColumnModel().getColumnCount() > 0) {
             jTableDados.getColumnModel().getColumn(0).setMaxWidth(75);
             jTableDados.getColumnModel().getColumn(1).setMaxWidth(200);
             jTableDados.getColumnModel().getColumn(2).setMaxWidth(200);
             jTableDados.getColumnModel().getColumn(3).setMaxWidth(75);
+            jTableDados.getColumnModel().getColumn(4).setMaxWidth(75);
+            jTableDados.getColumnModel().getColumn(5).setMaxWidth(75);
+            jTableDados.getColumnModel().getColumn(6).setMaxWidth(200);
+            jTableDados.getColumnModel().getColumn(7).setMaxWidth(200);
+            jTableDados.getColumnModel().getColumn(8).setMaxWidth(200);
+            jTableDados.getColumnModel().getColumn(9).setMaxWidth(200);
+            jTableDados.getColumnModel().getColumn(10).setMaxWidth(75);
+            jTableDados.getColumnModel().getColumn(11).setMaxWidth(200);
+            jTableDados.getColumnModel().getColumn(12).setMaxWidth(200);
+            jTableDados.getColumnModel().getColumn(13).setMaxWidth(200);
+            jTableDados.getColumnModel().getColumn(14).setMaxWidth(200);
+            jTableDados.getColumnModel().getColumn(15).setMaxWidth(200);
+            jTableDados.getColumnModel().getColumn(16).setMaxWidth(200);
+            jTableDados.getColumnModel().getColumn(17).setMaxWidth(200);
         }
 
         javax.swing.GroupLayout jPanelDadosLayout = new javax.swing.GroupLayout(jPanelDados);
@@ -187,7 +231,26 @@ public class TelaBuscaEnfermeiro extends javax.swing.JDialog {
         jButtonSair.setText("Fechar");
 
         jButtonFiltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Find.png"))); // NOI18N
-        jButtonFiltar.setText("Filtar");
+        jButtonFiltar.setText("Filtrar");
+        jButtonFiltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFiltarActionPerformed(evt);
+            }
+        });
+
+        jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelFiltrosLayout = new javax.swing.GroupLayout(jPanelFiltros);
         jPanelFiltros.setLayout(jPanelFiltrosLayout);
@@ -210,7 +273,11 @@ public class TelaBuscaEnfermeiro extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTFFiltro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonFiltar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonFiltar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonExcluir)))
                 .addContainerGap())
         );
         jPanelFiltrosLayout.setVerticalGroup(
@@ -224,7 +291,9 @@ public class TelaBuscaEnfermeiro extends javax.swing.JDialog {
                 .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTFFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonFiltar))
+                    .addComponent(jButtonFiltar)
+                    .addComponent(jButtonEditar)
+                    .addComponent(jButtonExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCarregar)
@@ -256,6 +325,18 @@ public class TelaBuscaEnfermeiro extends javax.swing.JDialog {
     private void jButtonCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCarregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCarregarActionPerformed
+
+    private void jButtonFiltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonFiltarActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,6 +382,8 @@ public class TelaBuscaEnfermeiro extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCarregar;
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonFiltar;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JComboBox<String> jCBFiltro;

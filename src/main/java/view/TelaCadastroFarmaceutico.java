@@ -5,12 +5,15 @@
  */
 package view;
 
+import enums.StatusCadastroEnum;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 import utilities.Utilities;
 
 /**
@@ -25,6 +28,11 @@ public class TelaCadastroFarmaceutico extends javax.swing.JDialog {
     public TelaCadastroFarmaceutico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        loadComboBox();
+    }
+
+    private void loadComboBox() {
+        statusComboBox.setModel(new DefaultComboBoxModel<>(StatusCadastroEnum.values()));
     }
 
     public JLabel getBairroLabel() {
@@ -387,7 +395,10 @@ public class TelaCadastroFarmaceutico extends javax.swing.JDialog {
         this.senhaLabel = senhaLabel;
     }
 
-    
+    public JComboBox<StatusCadastroEnum> getStatusComboBox() {
+        return statusComboBox;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -436,6 +447,8 @@ public class TelaCadastroFarmaceutico extends javax.swing.JDialog {
         loginField = new javax.swing.JTextField();
         senhaLabel = new javax.swing.JLabel();
         senhaField = new javax.swing.JTextField();
+        statusComboBox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         jPanelBotoes = new javax.swing.JPanel();
         jButtonNovo = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
@@ -587,6 +600,11 @@ public class TelaCadastroFarmaceutico extends javax.swing.JDialog {
             }
         });
         jPanelDados.add(senhaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, 172, 30));
+
+        jPanelDados.add(statusComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 140, 30));
+
+        jLabel1.setText("Status");
+        jPanelDados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, -1, -1));
 
         getContentPane().add(jPanelDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 760, 430));
 
@@ -757,6 +775,7 @@ public class TelaCadastroFarmaceutico extends javax.swing.JDialog {
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelBotoes;
     private javax.swing.JPanel jPanelDados;
@@ -775,5 +794,6 @@ public class TelaCadastroFarmaceutico extends javax.swing.JDialog {
     private javax.swing.JLabel rgInscricaoEstadualLabel;
     private javax.swing.JTextField senhaField;
     private javax.swing.JLabel senhaLabel;
+    private javax.swing.JComboBox<StatusCadastroEnum> statusComboBox;
     // End of variables declaration//GEN-END:variables
 }

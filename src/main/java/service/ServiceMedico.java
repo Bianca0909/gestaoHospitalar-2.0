@@ -30,4 +30,13 @@ public class ServiceMedico {
         MedicoDAO medicoDAO = MedicoDAO.getInstance();
         medicoDAO.update(objeto);
     }
+
+    public static boolean excluir(int id) {
+        try {
+            MedicoDAO.getInstance().delete(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

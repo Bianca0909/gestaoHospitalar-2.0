@@ -264,15 +264,15 @@ public class TelaCadastroJornadaTrabalho extends javax.swing.JDialog {
 
         idField.setEditable(false);
         jPanelDados.add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 30, 30));
-        jPanelDados.add(dataInicialField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 60, 30));
+        jPanelDados.add(dataInicialField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 70, 30));
 
         jLabel3.setText("Data final");
         jPanelDados.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
-        jPanelDados.add(dataFinalField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 60, 30));
+        jPanelDados.add(dataFinalField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, 30));
 
         jLabel4.setText("Carga horária");
         jPanelDados.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
-        jPanelDados.add(cargaHorariaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 60, 30));
+        jPanelDados.add(cargaHorariaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 70, 30));
 
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

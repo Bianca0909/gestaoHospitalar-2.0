@@ -88,8 +88,30 @@ public class TelaBuscaFornecedor extends javax.swing.JDialog {
     public void setjButtonFiltar(JButton jButtonFiltar) {
         this.jButtonFiltar = jButtonFiltar;
     }
+
+    public JButton getjButtonEditar() {
+        return jButtonEditar;
+    }
+
+    public void setjButtonEditar(JButton jButtonEditar) {
+        this.jButtonEditar = jButtonEditar;
+    }
+
+    public JButton getjButtonExcluir() {
+        return jButtonExcluir;
+    }
+
+    public void setjButtonExcluir(JButton jButtonExcluir) {
+        this.jButtonExcluir = jButtonExcluir;
+    }
     
-    
+    public JButton getEditarButton() {
+        return jButtonEditar;
+    }
+
+    public JButton getExcluirButton() {
+        return jButtonExcluir;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,6 +135,8 @@ public class TelaBuscaFornecedor extends javax.swing.JDialog {
         jButtonCarregar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
         jButtonFiltar = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -188,6 +212,25 @@ public class TelaBuscaFornecedor extends javax.swing.JDialog {
 
         jButtonFiltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Find.png"))); // NOI18N
         jButtonFiltar.setText("Filtar");
+        jButtonFiltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFiltarActionPerformed(evt);
+            }
+        });
+
+        jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelFiltrosLayout = new javax.swing.GroupLayout(jPanelFiltros);
         jPanelFiltros.setLayout(jPanelFiltrosLayout);
@@ -210,7 +253,11 @@ public class TelaBuscaFornecedor extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTFFiltro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonFiltar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonFiltar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonExcluir)))
                 .addContainerGap())
         );
         jPanelFiltrosLayout.setVerticalGroup(
@@ -224,7 +271,9 @@ public class TelaBuscaFornecedor extends javax.swing.JDialog {
                 .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCBFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTFFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonFiltar))
+                    .addComponent(jButtonFiltar)
+                    .addComponent(jButtonEditar)
+                    .addComponent(jButtonExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCarregar)
@@ -256,6 +305,18 @@ public class TelaBuscaFornecedor extends javax.swing.JDialog {
     private void jButtonCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCarregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCarregarActionPerformed
+
+    private void jButtonFiltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonFiltarActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,6 +362,8 @@ public class TelaBuscaFornecedor extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCarregar;
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonFiltar;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JComboBox<String> jCBFiltro;

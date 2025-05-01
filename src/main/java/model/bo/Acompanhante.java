@@ -35,6 +35,7 @@ public class Acompanhante implements Serializable {
 
     @Column(name = "grau_parentesco")
     private String grauParentesco;
+    
     @Column(name = "status")
     private String status;
     

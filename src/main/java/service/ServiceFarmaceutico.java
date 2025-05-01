@@ -30,4 +30,13 @@ public class ServiceFarmaceutico {
         FarmaceuticoDAO farmaceuticoDAO = FarmaceuticoDAO.getInstance();
         farmaceuticoDAO.update(objeto);
     }
+
+    public static boolean excluir(int id) {
+        try {
+            FarmaceuticoDAO.getInstance().delete(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

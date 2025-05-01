@@ -1,13 +1,11 @@
 package controller;
 
-import static controller.ControllerCadastroAcompanhante.codigo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
-import model.bo.Acompanhante;
+import javax.swing.JFrame;
 import model.bo.Medico;
+import service.ServiceMedico;
 import utilities.Utilities;
-import view.TelaBuscaAcompanhante;
 import view.TelaBuscaMedico;
 import view.TelaCadastroMedico;
 
@@ -59,30 +57,38 @@ public class ControllerCadastroMedico implements ActionListener {
             medico.setSenha(this.telaCadastroMedico.getSenhaField().getText());
             medico.setLogin(this.telaCadastroMedico.getLoginField().getText());
             medico.setNomeSocial(this.telaCadastroMedico.getNomeSocialField().getText());
+            medico.setStatus(this.telaCadastroMedico.getStatusComboBox().getSelectedItem().toString());
 
             if (this.telaCadastroMedico.getIdField().getText().equals("")) {
-                service.ServiceMedico.adicionar(medico);
+                ServiceMedico.adicionar(medico);
             } else {
                 medico.setId(Integer.parseInt(this.telaCadastroMedico.getIdField().getText()));
-                service.ServiceMedico.atualizar(medico);
+                ServiceMedico.atualizar(medico);
             }
 
             Utilities.ativaDesativa(false, this.telaCadastroMedico.getjPanelBotoes());
             Utilities.limpaComponentes(false, this.telaCadastroMedico.getjPanelDados());
 
         } else if (evento.getSource() == this.telaCadastroMedico.getjButtonBuscar()) {
-            codigo = 0;
+            abrirBusca();
 
-            TelaBuscaMedico telaBuscaMedico = new TelaBuscaMedico(null, true);
-            ControllerBuscaMedico controllerBuscaMedico = new ControllerBuscaMedico(telaBuscaMedico);
-            telaBuscaMedico.setVisible(true);
+        } else if (evento.getSource() == this.telaCadastroMedico.getjButtonSair()) {
+            this.telaCadastroMedico.dispose();
+        }
+    }
 
-            if (codigo != 0) {
-                Medico medico = new Medico();
-                medico = service.ServiceMedico.ler(codigo);
+    private void abrirBusca() {
+        TelaBuscaMedico telaBuscaMedico = new TelaBuscaMedico(new JFrame(), true);
+        ControllerBuscaMedico controllerBuscaMedico = new ControllerBuscaMedico(telaBuscaMedico);
+        telaBuscaMedico.setVisible(true);
 
-                utilities.Utilities.ativaDesativa(true, this.telaCadastroMedico.getjPanelBotoes());
-                utilities.Utilities.limpaComponentes(true, this.telaCadastroMedico.getjPanelDados());
+        int codigo = controllerBuscaMedico.getCodigoRetorno();
+        if (codigo != 0) {
+            Medico medico = ServiceMedico.ler(codigo);
+
+            if (medico != null) {
+                Utilities.ativaDesativa(true, this.telaCadastroMedico.getjPanelBotoes());
+                Utilities.limpaComponentes(true, this.telaCadastroMedico.getjPanelDados());
 
                 this.telaCadastroMedico.getIdField().setText(medico.getId() + "");
                 this.telaCadastroMedico.getNomeField().setText(medico.getNome());
@@ -105,9 +111,6 @@ public class ControllerCadastroMedico implements ActionListener {
                 this.telaCadastroMedico.getIdField().setEnabled(false);
                 this.telaCadastroMedico.getNomeField().requestFocus();
             }
-        } else if (evento.getSource() == this.telaCadastroMedico.getjButtonSair()) {
-            this.telaCadastroMedico.dispose();
         }
     }
-
 }

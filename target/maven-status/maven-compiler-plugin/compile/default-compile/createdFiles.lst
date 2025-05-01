@@ -16,9 +16,7 @@ view\TelaBuscaLeito$3.class
 view\TelaCadastroFornecedor$10$1.class
 view\TelaCadastroUsuario$6.class
 view\TelaCadastroAla$2.class
-view\TelaBuscaMedico$3$1.class
 view\TelaCadastroEnfermeiro$6.class
-view\TelaBuscaFarmaceutico$3$1.class
 view\TelaCadastroMedico$7.class
 view\TelaBuscaFornecedor$2.class
 view\TelaCadastroMedicamento$5.class
@@ -46,7 +44,6 @@ view\ModeloCadastral.class
 view\TelaCadastroFarmaceutico.class
 view\ModeloBuscas.class
 view\TelaCadastroMedico$2.class
-view\TelaBuscaLaboratorio$5$1.class
 view\TelaCadastroQuarto.class
 view\TelaBuscaPaciente$1.class
 model\bo\Farmaceutico.class
@@ -63,7 +60,6 @@ view\Menu$12.class
 service\ServiceMedico.class
 view\TelaCadastroFarmaceutico$3.class
 view\TelaBuscaMedicamento.class
-view\TelaBuscaQuarto$4$1.class
 view\TelaBuscaQuarto$1.class
 view\TelaCadastroLeito$1.class
 view\TelaCadastroFarmaceutico$6.class
@@ -106,7 +102,6 @@ view\TelaBuscaUsuario$4.class
 view\TelaBuscaMedico$2.class
 view\TelaCadastroMedico$11.class
 view\TelaCadastroFornecedor$3.class
-view\TelaBuscaLeito$4$1.class
 controller\ControllerCadastroAla.class
 service\ServiceExame.class
 view\TelaCadastroEnfermeiro$3.class
@@ -118,7 +113,6 @@ view\TelaCadastroFornecedor$9.class
 view\TelaCadastroJornadaTrabalho$2.class
 view\TelaBuscaLaboratorio.class
 view\TelaCadastroQuarto$8$1.class
-view\TelaBuscaEnfermeiro$2$1.class
 view\TelaCadastroPaciente$7.class
 view\Menu$9.class
 view\TelaCadastroLeito$5.class
@@ -195,9 +189,7 @@ model\bo\Receita.class
 view\TelaBuscaUsuario$1.class
 view\Menu.class
 view\TelaBuscaAla.class
-view\TelaBuscaUsuario$5$1.class
 view\TelaCadastroFornecedor$10.class
-view\TelaBuscaAcompanhante$3$1.class
 view\TelaCadastroAcompanhante$9.class
 view\TelaCadastroFornecedor$6.class
 view\TelaBuscaEnfermeiro$2.class
@@ -263,7 +255,6 @@ view\TelaBuscaLaboratorio$1.class
 view\TelaCadastroAla$5.class
 view\TelaCadastroQuarto$7.class
 model\dao\InterfaceDAO.class
-view\TelaBuscaFornecedor$2$1.class
 view\TelaCadastroLaboratorio$2.class
 view\TelaCadastroLaboratorio$8$1.class
 view\TelaBuscaMedicamento$2$1.class
@@ -330,7 +321,6 @@ view\TelaCadastroAcompanhante$2.class
 view\TelaCadastroLaboratorio$3.class
 view\TelaBuscaLeito$1.class
 view\TelaCadastroMedicamento$1.class
-view\TelaBuscaPaciente$5$1.class
 view\TelaCadastroMedico$6.class
 view\TelaCadastroQuarto$6.class
 model\dao\LoteDAO.class
@@ -338,7 +328,6 @@ view\TelaCadastroFornecedor.class
 view\TelaCadastroAcompanhante$1.class
 view\TelaCadastroAla$4.class
 view\TelaCadastroAla.class
-view\TelaCadastroEnfermeiro$12$1.class
 service\ServiceLaboratorioMedicamento.class
 service\ServiceLote.class
 model\dao\ConsultaExameDAO.class

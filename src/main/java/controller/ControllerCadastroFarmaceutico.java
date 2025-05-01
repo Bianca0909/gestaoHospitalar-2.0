@@ -1,13 +1,12 @@
 package controller;
 
-import static controller.ControllerCadastroAcompanhante.codigo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 import model.bo.Farmaceutico;
+import service.ServiceFarmaceutico;
 import utilities.Utilities;
 import view.TelaBuscaFarmaceutico;
-import view.TelaBuscaMedico;
 import view.TelaCadastroFarmaceutico;
 
 public class ControllerCadastroFarmaceutico implements ActionListener {
@@ -59,12 +58,13 @@ public class ControllerCadastroFarmaceutico implements ActionListener {
             farmaceutico.setSenha(this.telaCadastroFarmaceutico.getSenhaField().getText());
             farmaceutico.setLogin(this.telaCadastroFarmaceutico.getLoginField().getText());
             farmaceutico.setNomeSocial(this.telaCadastroFarmaceutico.getNomeSocialField().getText());
+            farmaceutico.setStatus(this.telaCadastroFarmaceutico.getStatusComboBox().getSelectedItem().toString());
             
             if (this.telaCadastroFarmaceutico.getIdField().getText().equals("")) {
-                service.ServiceFarmaceutico.adicionar(farmaceutico);
+                ServiceFarmaceutico.adicionar(farmaceutico);
             } else {
                 farmaceutico.setId(Integer.parseInt(this.telaCadastroFarmaceutico.getIdField().getText()));
-                service.ServiceFarmaceutico.atualizar(farmaceutico);
+                ServiceFarmaceutico.atualizar(farmaceutico);
             }
             
             Utilities.ativaDesativa(false, this.telaCadastroFarmaceutico.getjPanelBotoes());
@@ -72,39 +72,39 @@ public class ControllerCadastroFarmaceutico implements ActionListener {
 
         } else if (evento.getSource() == this.telaCadastroFarmaceutico.getjButtonBuscar()) {
 
-            codigo = 0;
-
-            TelaBuscaFarmaceutico telaBuscaFarmaceutico = new TelaBuscaFarmaceutico(null, true);
-            ControllerBuscaFarmaceutico controllerBuscaMedico = new ControllerBuscaFarmaceutico(telaBuscaFarmaceutico);
+            TelaBuscaFarmaceutico telaBuscaFarmaceutico = new TelaBuscaFarmaceutico(new JFrame(), true);
+            ControllerBuscaFarmaceutico controllerBuscaFarmaceutico = new ControllerBuscaFarmaceutico(telaBuscaFarmaceutico);
             telaBuscaFarmaceutico.setVisible(true);
 
+            int codigo = controllerBuscaFarmaceutico.getCodigoRetorno();
             if (codigo != 0) {
-                Farmaceutico farmaceutico = new Farmaceutico();
-                farmaceutico = service.ServiceFarmaceutico.ler(codigo);
+                Farmaceutico farmaceutico = ServiceFarmaceutico.ler(codigo);
 
-                utilities.Utilities.ativaDesativa(true, this.telaCadastroFarmaceutico.getjPanelBotoes());
-                utilities.Utilities.limpaComponentes(true, this.telaCadastroFarmaceutico.getjPanelDados());
+                if (farmaceutico != null) {
+                    Utilities.ativaDesativa(true, this.telaCadastroFarmaceutico.getjPanelBotoes());
+                    Utilities.limpaComponentes(true, this.telaCadastroFarmaceutico.getjPanelDados());
 
-                this.telaCadastroFarmaceutico.getIdField().setText(farmaceutico.getId() + "");
-                this.telaCadastroFarmaceutico.getNomeField().setText(farmaceutico.getNome());
-                this.telaCadastroFarmaceutico.getNomeSocialField().setText(farmaceutico.getNomeSocial());
-                this.telaCadastroFarmaceutico.getFone1Field().setText(farmaceutico.getFone1());
-                this.telaCadastroFarmaceutico.getFone2Field().setText(farmaceutico.getFone2());
-                this.telaCadastroFarmaceutico.getEmailField().setText(farmaceutico.getEmail());
-                this.telaCadastroFarmaceutico.getCpfField().setText(farmaceutico.getCpfCnpj());
-                this.telaCadastroFarmaceutico.getRgField().setText(farmaceutico.getRgInscricaoEstadual());
-                this.telaCadastroFarmaceutico.getDataCadastroField().setText(farmaceutico.getDataCadastro());
-                this.telaCadastroFarmaceutico.getCepField().setText(farmaceutico.getCep());
-                this.telaCadastroFarmaceutico.getCidadeField().setText(farmaceutico.getCidade());
-                this.telaCadastroFarmaceutico.getBairroField().setText(farmaceutico.getBairro());
-                this.telaCadastroFarmaceutico.getLogradouroField().setText(farmaceutico.getLogradouro());
-                this.telaCadastroFarmaceutico.getComplementoField().setText(farmaceutico.getComplemento());
-                this.telaCadastroFarmaceutico.getCrfField().setText(farmaceutico.getCrf());
-                this.telaCadastroFarmaceutico.getLoginField().setText(farmaceutico.getLogin());
-                this.telaCadastroFarmaceutico.getSenhaField().setText(farmaceutico.getSenha());
+                    this.telaCadastroFarmaceutico.getIdField().setText(farmaceutico.getId() + "");
+                    this.telaCadastroFarmaceutico.getNomeField().setText(farmaceutico.getNome());
+                    this.telaCadastroFarmaceutico.getNomeSocialField().setText(farmaceutico.getNomeSocial());
+                    this.telaCadastroFarmaceutico.getFone1Field().setText(farmaceutico.getFone1());
+                    this.telaCadastroFarmaceutico.getFone2Field().setText(farmaceutico.getFone2());
+                    this.telaCadastroFarmaceutico.getEmailField().setText(farmaceutico.getEmail());
+                    this.telaCadastroFarmaceutico.getCpfField().setText(farmaceutico.getCpfCnpj());
+                    this.telaCadastroFarmaceutico.getRgField().setText(farmaceutico.getRgInscricaoEstadual());
+                    this.telaCadastroFarmaceutico.getDataCadastroField().setText(farmaceutico.getDataCadastro());
+                    this.telaCadastroFarmaceutico.getCepField().setText(farmaceutico.getCep());
+                    this.telaCadastroFarmaceutico.getCidadeField().setText(farmaceutico.getCidade());
+                    this.telaCadastroFarmaceutico.getBairroField().setText(farmaceutico.getBairro());
+                    this.telaCadastroFarmaceutico.getLogradouroField().setText(farmaceutico.getLogradouro());
+                    this.telaCadastroFarmaceutico.getComplementoField().setText(farmaceutico.getComplemento());
+                    this.telaCadastroFarmaceutico.getCrfField().setText(farmaceutico.getCrf());
+                    this.telaCadastroFarmaceutico.getLoginField().setText(farmaceutico.getLogin());
+                    this.telaCadastroFarmaceutico.getSenhaField().setText(farmaceutico.getSenha());
 
-                this.telaCadastroFarmaceutico.getIdField().setEnabled(false);
-                this.telaCadastroFarmaceutico.getNomeField().requestFocus();
+                    this.telaCadastroFarmaceutico.getIdField().setEnabled(false);
+                    this.telaCadastroFarmaceutico.getNomeField().requestFocus();
+                }
             }
         } else if (evento.getSource() == this.telaCadastroFarmaceutico.getjButtonSair()) {
             this.telaCadastroFarmaceutico.dispose();

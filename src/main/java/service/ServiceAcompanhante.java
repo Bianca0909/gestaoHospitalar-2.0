@@ -24,4 +24,17 @@ public class ServiceAcompanhante {
     public static void atualizar(Acompanhante objeto){
         AcompanhanteDAO.getInstance().update(objeto);
     } 
+
+    public static boolean excluir(int id) {
+        try {
+            Acompanhante acompanhante = AcompanhanteDAO.getInstance().retrieve(id);
+            if (acompanhante != null) {
+                AcompanhanteDAO.getInstance().delete(acompanhante);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

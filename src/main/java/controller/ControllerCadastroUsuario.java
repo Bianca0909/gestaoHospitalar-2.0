@@ -5,6 +5,7 @@ import model.bo.Usuario;
 import utilities.Utilities;
 import view.TelaBuscaUsuario;
 import view.TelaCadastroUsuario;
+import enums.StatusCadastroEnum;
 
 public class ControllerCadastroUsuario implements ActionListener {
 
@@ -42,9 +43,13 @@ public class ControllerCadastroUsuario implements ActionListener {
             Usuario usuario = new Usuario();
             usuario.setLogin(this.telaCadastroUsuario.getLoginField().getText());
             usuario.setSenha(this.telaCadastroUsuario.getSenhaField().getText());
-//            usuario.setStatus(this.telaCadastroUsuario.getStatusComboBox().getSelectedItem().toString());
+            
+            // Converte StatusCadastroEnum para String ao salvar
+            StatusCadastroEnum statusEnum = (StatusCadastroEnum) this.telaCadastroUsuario.getStatusComboBox().getSelectedItem();
+            usuario.setStatus(statusEnum.getStatus());
+
             if (this.telaCadastroUsuario.getIdField().getText().equals("")) {
-                service.ServiceUsuario.adicionar(usuario);
+                service.ServiceUsuario.inserir(usuario);
 
             } else {
                 usuario.setId(Integer.parseInt(this.telaCadastroUsuario.getIdField().getText()));
@@ -57,7 +62,7 @@ public class ControllerCadastroUsuario implements ActionListener {
         } else if (evento.getSource() == this.telaCadastroUsuario.getjButtonBuscar()) {
             codigo = 0;
             TelaBuscaUsuario telaBuscaUsuario = new TelaBuscaUsuario(null, true);
-            ControllerBuscaUsuario controllerBuscaUsuario = new ControllerBuscaUsuario(telaBuscaUsuario);
+            new ControllerBuscaUsuario(telaBuscaUsuario); // Controller se auto-registra nos eventos
             telaBuscaUsuario.setVisible(true);
 
             if (codigo != 0) {
@@ -70,6 +75,11 @@ public class ControllerCadastroUsuario implements ActionListener {
                 this.telaCadastroUsuario.getLoginField().setText(usuario.getLogin());
                 this.telaCadastroUsuario.getSenhaField().setText(usuario.getSenha());
                 
+                // Converte o status String para StatusCadastroEnum
+                StatusCadastroEnum statusEnum = usuario.getStatus().equals("A") ? 
+                    StatusCadastroEnum.ATIVO : StatusCadastroEnum.INATIVO;
+                this.telaCadastroUsuario.getStatusComboBox().setSelectedItem(statusEnum);
+                
                 this.telaCadastroUsuario.getIdField().setEnabled(false);
                 this.telaCadastroUsuario.getLoginField().requestFocus();
             }
@@ -79,4 +89,3 @@ public class ControllerCadastroUsuario implements ActionListener {
         }
     }
 }
-

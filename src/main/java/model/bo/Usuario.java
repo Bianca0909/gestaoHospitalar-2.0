@@ -1,6 +1,5 @@
 package model.bo;
 
-import enums.StatusCadastroEnum;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Column;
@@ -26,5 +25,5 @@ public class Usuario implements Serializable {
     @Column(name = "senha")
     private String senha;
     @Column(name = "status")
-    private StatusCadastroEnum status;
+    private String status;
 }

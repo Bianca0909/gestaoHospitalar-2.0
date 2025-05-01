@@ -43,5 +43,7 @@ public class Pessoa {
     private String logradouro;
     @Column(name = "complemento")
     private String complemento;
+    @Column(name = "status")
+    private String status;
 
 }

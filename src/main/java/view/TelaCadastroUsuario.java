@@ -229,14 +229,16 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         jPaneltitulo.setLayout(jPaneltituloLayout);
         jPaneltituloLayout.setHorizontalGroup(
             jPaneltituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPaneltituloLayout.createSequentialGroup()
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         jPaneltituloLayout.setVerticalGroup(
             jPaneltituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPaneltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 762, -1));
+        getContentPane().add(jPaneltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, -1));
 
         jPanelDados.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelDados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -272,7 +274,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         jLabel1.setText("Status");
         jPanelDados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
-        getContentPane().add(jPanelDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 760, 80));
+        getContentPane().add(jPanelDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 580, 80));
 
         jPanelBotoes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -329,7 +331,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         });
         jPanelBotoes.add(jButtonSair);
 
-        getContentPane().add(jPanelBotoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 762, -1));
+        getContentPane().add(jPanelBotoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 580, -1));
 
         pack();
         setLocationRelativeTo(null);
