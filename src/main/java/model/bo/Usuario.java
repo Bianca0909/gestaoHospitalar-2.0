@@ -1,5 +1,6 @@
 package model.bo;
 
+import enums.StatusCadastroEnum;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Column;
@@ -9,7 +10,6 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 
 @Entity(name = "usuario")
 @Data
@@ -26,5 +26,5 @@ public class Usuario implements Serializable {
     @Column(name = "senha")
     private String senha;
     @Column(name = "status")
-    private String status;
+    private StatusCadastroEnum status;
 }

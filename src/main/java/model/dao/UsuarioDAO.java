@@ -46,7 +46,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
     @Override
     public List<Usuario> retrieve() {
         List<Usuario> usuarios = new ArrayList<>();
-        usuarios = entityManager.createQuery("Select u From usuario u", Usuario.class).getResultList();
+        usuarios = entityManager.createQuery("SELECT u FROM usuario u", Usuario.class).getResultList();
         return usuarios;
     }
 

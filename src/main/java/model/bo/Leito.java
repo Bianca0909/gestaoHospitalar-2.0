@@ -22,8 +22,6 @@ public class Leito implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "numero")
-    private String numero;
     @Column(name = "descricao")
     private String descricao;
     @Column(name = "status")

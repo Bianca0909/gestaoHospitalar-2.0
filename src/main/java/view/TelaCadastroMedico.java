@@ -713,15 +713,15 @@ public class TelaCadastroMedico extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_fone2FieldActionPerformed
 
-    private void senhaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_senhaFieldActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFrame frame = new JFrame();
         TelaCadastroJornadaTrabalho telaCadastroJornadaTrabalho = new TelaCadastroJornadaTrabalho(frame, true);
         telaCadastroJornadaTrabalho.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void senhaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_senhaFieldActionPerformed
 
     /**
      * @param args the command line arguments

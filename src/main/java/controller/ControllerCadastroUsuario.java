@@ -42,7 +42,7 @@ public class ControllerCadastroUsuario implements ActionListener {
             Usuario usuario = new Usuario();
             usuario.setLogin(this.telaCadastroUsuario.getLoginField().getText());
             usuario.setSenha(this.telaCadastroUsuario.getSenhaField().getText());
-
+//            usuario.setStatus(this.telaCadastroUsuario.getStatusComboBox().getSelectedItem().toString());
             if (this.telaCadastroUsuario.getIdField().getText().equals("")) {
                 service.ServiceUsuario.adicionar(usuario);
 
@@ -69,7 +69,7 @@ public class ControllerCadastroUsuario implements ActionListener {
                 this.telaCadastroUsuario.getIdField().setText(usuario.getId() + "");
                 this.telaCadastroUsuario.getLoginField().setText(usuario.getLogin());
                 this.telaCadastroUsuario.getSenhaField().setText(usuario.getSenha());
-
+                
                 this.telaCadastroUsuario.getIdField().setEnabled(false);
                 this.telaCadastroUsuario.getLoginField().requestFocus();
             }

@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.bo.Acompanhante;
 import javax.persistence.EntityManager;
@@ -41,10 +42,12 @@ public class AcompanhanteDAO implements InterfaceDAO<Acompanhante> {
             entityManager.getTransaction().rollback();
         }
     }
-
+  
     @Override
     public List<Acompanhante> retrieve() {
-        return entityManager.createQuery("FROM " + Acompanhante.class.getName(), Acompanhante.class).getResultList();
+        List<Acompanhante> acompanhantes = new ArrayList<>();
+        acompanhantes = entityManager.createQuery("SELECT a FROM acompanhante a", Acompanhante.class).getResultList();
+        return acompanhantes;
     }
 
     @Override

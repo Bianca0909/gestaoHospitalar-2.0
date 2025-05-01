@@ -42,7 +42,7 @@ public class LaboratorioDAO implements InterfaceDAO<Laboratorio> {
 
     @Override
     public List<Laboratorio> retrieve() {
-        TypedQuery<Laboratorio> query = entityManager.createQuery("SELECT l FROM laboratorio l", Laboratorio.class);
+        TypedQuery<Laboratorio> query = entityManager.createQuery("SELECT l FROM hospital.laboratorio l", Laboratorio.class);
         return query.getResultList();
     }
 

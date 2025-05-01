@@ -3,6 +3,7 @@ package model.dao;
 import java.util.List;
 import model.bo.Ala;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 public class AlaDAO implements InterfaceDAO<Ala> {
 
@@ -41,9 +42,8 @@ public class AlaDAO implements InterfaceDAO<Ala> {
 
     @Override
     public List<Ala> retrieve() {
-        List<Ala> alas;
-        alas = entityManager.createQuery("SELECT a FROM ala a", Ala.class).getResultList();
-        return alas;
+        TypedQuery<Ala> query = entityManager.createQuery("SELECT a FROM ala a", Ala.class);
+        return query.getResultList();
     }
 
     @Override

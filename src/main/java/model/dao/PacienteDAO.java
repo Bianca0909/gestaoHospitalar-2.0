@@ -46,7 +46,7 @@ public class PacienteDAO implements InterfaceDAO<Paciente> {
     @Override
     public List<Paciente> retrieve() {
         List<Paciente> pacientes = new ArrayList<>();
-        pacientes = entityManager.createQuery("Select p From paciente p", Paciente.class).getResultList();
+        pacientes = entityManager.createQuery("SELECT p FROM paciente p", Paciente.class).getResultList();
         return pacientes;
     }
 
@@ -59,7 +59,7 @@ public class PacienteDAO implements InterfaceDAO<Paciente> {
     @Override
     public List<Paciente> retrieve(String parametro, String atributo) {
         List<Paciente> pacientes = new ArrayList<>();
-        pacientes = entityManager.createQuery("Select p From paciente p "
+        pacientes = entityManager.createQuery("SELECT p FROM paciente p "
                 + " Where " + atributo + " like ( % " + parametro + " % )", Paciente.class).getResultList();
         return pacientes;
     }
