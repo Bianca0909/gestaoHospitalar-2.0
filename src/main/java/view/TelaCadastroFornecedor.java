@@ -8,6 +8,7 @@ package view;
 import enums.StatusCadastroEnum;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import utilities.Utilities;
+import utilities.MaskFormatters;
 
 public class TelaCadastroFornecedor extends javax.swing.JDialog {
 
@@ -22,10 +24,19 @@ public class TelaCadastroFornecedor extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         loadComboBox();
+        setupMasks();
     }
 
     private void loadComboBox() {
         statusComboBox.setModel(new DefaultComboBoxModel<>(StatusCadastroEnum.values()));
+    }
+
+    private void setupMasks() {
+        MaskFormatters.cpfMask(cpfCnpjField);
+        MaskFormatters.dateMask(dataCadastroField);
+        MaskFormatters.phoneMask(fone1Field);
+        MaskFormatters.phoneMask(fone2Field);
+        MaskFormatters.cepMask(cepField);
     }
 
     public JLabel getBairroLabel() {
@@ -52,11 +63,11 @@ public class TelaCadastroFornecedor extends javax.swing.JDialog {
         this.bairroField = bairroField;
     }
 
-    public JTextField getCepField() {
+    public JFormattedTextField getCepField() {
         return cepField;
     }
 
-    public void setCepField(JTextField cepField) {
+    public void setCepField(JFormattedTextField cepField) {
         this.cepField = cepField;
     }
 
@@ -108,19 +119,19 @@ public class TelaCadastroFornecedor extends javax.swing.JDialog {
         this.contatoField = contatoField;
     }
 
-    public JTextField getCpfCnpjField() {
+    public JFormattedTextField getCpfCnpjField() {
         return cpfCnpjField;
     }
 
-    public void setCpfCnpjField(JTextField cpfCnpjField) {
+    public void setCpfCnpjField(JFormattedTextField cpfCnpjField) {
         this.cpfCnpjField = cpfCnpjField;
     }
 
-    public JTextField getDataCadastroField() {
+    public JFormattedTextField getDataCadastroField() {
         return dataCadastroField;
     }
 
-    public void setDataCadastroField(JTextField dataCadastroField) {
+    public void setDataCadastroField(JFormattedTextField dataCadastroField) {
         this.dataCadastroField = dataCadastroField;
     }
 
@@ -148,11 +159,11 @@ public class TelaCadastroFornecedor extends javax.swing.JDialog {
         this.emailLabel = emailLabel;
     }
 
-    public JTextField getFone1Field() {
+    public JFormattedTextField getFone1Field() {
         return fone1Field;
     }
 
-    public void setFone1Field(JTextField fone1Field) {
+    public void setFone1Field(JFormattedTextField fone1Field) {
         this.fone1Field = fone1Field;
     }
 
@@ -164,11 +175,11 @@ public class TelaCadastroFornecedor extends javax.swing.JDialog {
         this.fone1Label = fone1Label;
     }
 
-    public JTextField getFone2Field() {
+    public JFormattedTextField getFone2Field() {
         return fone2Field;
     }
 
-    public void setFone2Field(JTextField fone2Field) {
+    public void setFone2Field(JFormattedTextField fone2Field) {
         this.fone2Field = fone2Field;
     }
 
@@ -374,9 +385,9 @@ public class TelaCadastroFornecedor extends javax.swing.JDialog {
         dataCadastroLabel = new javax.swing.JLabel();
         idField = new javax.swing.JTextField();
         nomeField = new javax.swing.JTextField();
-        dataCadastroField = new javax.swing.JTextField();
+        dataCadastroField = new javax.swing.JFormattedTextField();
         cnpjLabel = new javax.swing.JLabel();
-        cpfCnpjField = new javax.swing.JTextField();
+        cpfCnpjField = new javax.swing.JFormattedTextField();
         rgInscricaoEstadualField = new javax.swing.JTextField();
         inscricaoEstadualLabel = new javax.swing.JLabel();
         nomeSocialLabel = new javax.swing.JLabel();
@@ -384,10 +395,10 @@ public class TelaCadastroFornecedor extends javax.swing.JDialog {
         emailField = new javax.swing.JTextField();
         emailLabel = new javax.swing.JLabel();
         fone1Label = new javax.swing.JLabel();
-        fone1Field = new javax.swing.JTextField();
+        fone1Field = new javax.swing.JFormattedTextField();
         fone2Label = new javax.swing.JLabel();
-        fone2Field = new javax.swing.JTextField();
-        cepField = new javax.swing.JTextField();
+        fone2Field = new javax.swing.JFormattedTextField();
+        cepField = new javax.swing.JFormattedTextField();
         cepLabel = new javax.swing.JLabel();
         CidadeLabel = new javax.swing.JLabel();
         cidadeField = new javax.swing.JTextField();
@@ -827,21 +838,21 @@ public class TelaCadastroFornecedor extends javax.swing.JDialog {
     private javax.swing.JLabel BairroLabel;
     private javax.swing.JLabel CidadeLabel;
     private javax.swing.JTextField bairroField;
-    private javax.swing.JTextField cepField;
+    private javax.swing.JFormattedTextField cepField;
     private javax.swing.JLabel cepLabel;
     private javax.swing.JTextField cidadeField;
-    private javax.swing.JLabel cnpjLabel;
     private javax.swing.JTextField complementoField;
     private javax.swing.JLabel complementoLabel;
     private javax.swing.JTextField contatoField;
-    private javax.swing.JTextField cpfCnpjField;
-    private javax.swing.JTextField dataCadastroField;
+    private javax.swing.JFormattedTextField cpfCnpjField;
+    private javax.swing.JLabel cnpjLabel;
+    private javax.swing.JFormattedTextField dataCadastroField;
     private javax.swing.JLabel dataCadastroLabel;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
-    private javax.swing.JTextField fone1Field;
+    private javax.swing.JFormattedTextField fone1Field;
     private javax.swing.JLabel fone1Label;
-    private javax.swing.JTextField fone2Field;
+    private javax.swing.JFormattedTextField fone2Field;
     private javax.swing.JLabel fone2Label;
     private javax.swing.JTextField idField;
     private javax.swing.JLabel idLabel;

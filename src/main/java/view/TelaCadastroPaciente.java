@@ -11,11 +11,13 @@ import enums.TipoSanguineoEnum;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import utilities.MaskFormatters;
 import utilities.Utilities;
 
 /**
@@ -31,6 +33,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         loadComboBox();
+        setupMasks();
     }
 
     public JComboBox<StatusCadastroEnum> getStatusComboBox() {
@@ -65,11 +68,11 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         this.bairroField = bairroField;
     }
 
-    public JTextField getCepField() {
+    public JFormattedTextField getCepField() {
         return cepField;
     }
 
-    public void setCepField(JTextField cepField) {
+    public void setCepField(JFormattedTextField cepField) {
         this.cepField = cepField;
     }
 
@@ -105,12 +108,12 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         this.complementoLabel = complementoLabel;
     }
 
-    public JTextField getCpfCnpjField() {
-        return cpfCnpjField;
+    public JFormattedTextField getCpfField() {
+        return cpfField;
     }
 
-    public void setCpfCnpjField(JTextField cpfCnpjField) {
-        this.cpfCnpjField = cpfCnpjField;
+    public void setCpfField(JFormattedTextField cpfField) {
+        this.cpfField = cpfField;
     }
 
     public JLabel getCpfCnpjLabel() {
@@ -122,11 +125,11 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     }
 
 
-    public JTextField getDataCadastroField() {
+    public JFormattedTextField getDataCadastroField() {
         return dataCadastroField;
     }
 
-    public void setDataCadastroField(JTextField dataCadastroField) {
+    public void setDataCadastroField(JFormattedTextField dataCadastroField) {
         this.dataCadastroField = dataCadastroField;
     }
 
@@ -154,11 +157,11 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         this.emailLabel = emailLabel;
     }
 
-    public JTextField getFone1Field() {
+    public JFormattedTextField getFone1Field() {
         return fone1Field;
     }
 
-    public void setFone1Field(JTextField fone1Field) {
+    public void setFone1Field(JFormattedTextField fone1Field) {
         this.fone1Field = fone1Field;
     }
 
@@ -170,11 +173,11 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         this.fone1Label = fone1Label;
     }
 
-    public JTextField getFone2Field() {
+    public JFormattedTextField getFone2Field() {
         return fone2Field;
     }
 
-    public void setFone2Field(JTextField fone2Field) {
+    public void setFone2Field(JFormattedTextField fone2Field) {
         this.fone2Field = fone2Field;
     }
 
@@ -386,7 +389,14 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         this.tipoSanguineoLabel = tipoSanguineoLabel;
     }
 
-    
+    private void setupMasks() {
+        MaskFormatters.cpfMask(cpfField);
+        MaskFormatters.dateMask(dataCadastroField);
+        MaskFormatters.phoneMask(fone1Field);
+        MaskFormatters.phoneMask(fone2Field);
+        MaskFormatters.cepMask(cepField);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -406,9 +416,8 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         dataCadastroLabel = new javax.swing.JLabel();
         idField = new javax.swing.JTextField();
         nomeField = new javax.swing.JTextField();
-        dataCadastroField = new javax.swing.JTextField();
+        dataCadastroField = new javax.swing.JFormattedTextField();
         cpfCnpjLabel = new javax.swing.JLabel();
-        cpfCnpjField = new javax.swing.JTextField();
         rgField = new javax.swing.JTextField();
         rgInscricaoEstadualLabel = new javax.swing.JLabel();
         nomeSocialLabel = new javax.swing.JLabel();
@@ -418,10 +427,7 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         emailField = new javax.swing.JTextField();
         emailLabel = new javax.swing.JLabel();
         fone1Label = new javax.swing.JLabel();
-        fone1Field = new javax.swing.JTextField();
         fone2Label = new javax.swing.JLabel();
-        fone2Field = new javax.swing.JTextField();
-        cepField = new javax.swing.JTextField();
         cepLabel = new javax.swing.JLabel();
         CidadeLabel = new javax.swing.JLabel();
         cidadeField = new javax.swing.JTextField();
@@ -441,6 +447,10 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         jButtonGravar = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
+        cpfField = new javax.swing.JFormattedTextField();
+        fone1Field = new javax.swing.JFormattedTextField();
+        fone2Field = new javax.swing.JFormattedTextField();
+        cepField = new javax.swing.JFormattedTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -507,13 +517,11 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         cpfCnpjLabel.setText("CPF");
         jPanelDados.add(cpfCnpjLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 122, 65, -1));
 
-        cpfCnpjField.setText("   .   .   -");
-        cpfCnpjField.addActionListener(new java.awt.event.ActionListener() {
+        rgField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cpfCnpjFieldActionPerformed(evt);
             }
         });
-        jPanelDados.add(cpfCnpjField, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 144, 139, 31));
         jPanelDados.add(rgField, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 209, 161, 32));
 
         rgInscricaoEstadualLabel.setText("RG");
@@ -536,26 +544,8 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         fone1Label.setText("Fone 1");
         jPanelDados.add(fone1Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 43, -1));
 
-        fone1Field.setText("(  )     -     ");
-        jPanelDados.add(fone1Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, 148, 30));
-
         fone2Label.setText("Fone 2");
         jPanelDados.add(fone2Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 43, -1));
-
-        fone2Field.setText("(  )     -     ");
-        fone2Field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fone2FieldActionPerformed(evt);
-            }
-        });
-        jPanelDados.add(fone2Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 148, 30));
-
-        cepField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cepFieldActionPerformed(evt);
-            }
-        });
-        jPanelDados.add(cepField, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 269, 121, 30));
 
         cepLabel.setText("CEP");
         jPanelDados.add(cepLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 247, 43, -1));
@@ -582,8 +572,10 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         jPanelDados.add(complementoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 303, 88, -1));
         jPanelDados.add(complementoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 325, 314, 30));
 
+        tipoSanguineoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(TipoSanguineoEnum.values()));
         jPanelDados.add(tipoSanguineoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 104, 30));
 
+        sexoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(SexoEnum.values()));
         sexoComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sexoComboBoxActionPerformed(evt);
@@ -595,6 +587,11 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
 
         jLabel1.setText("Status");
         jPanelDados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        jPanelDados.add(cpfField, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 144, 139, 32));
+        jPanelDados.add(fone1Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, 139, 32));
+        jPanelDados.add(fone2Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 210, 139, 32));
+        jPanelDados.add(cepField, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 113, 30));
 
         getContentPane().add(jPanelDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 49, 760, 420));
 
@@ -687,14 +684,6 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cidadeFieldActionPerformed
 
-    private void fone2FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fone2FieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fone2FieldActionPerformed
-
-    private void cepFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cepFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cepFieldActionPerformed
-
     private void cpfCnpjFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfCnpjFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cpfCnpjFieldActionPerformed
@@ -755,20 +744,20 @@ public class TelaCadastroPaciente extends javax.swing.JDialog {
     private javax.swing.JLabel BairroLabel;
     private javax.swing.JLabel CidadeLabel;
     private javax.swing.JTextField bairroField;
-    private javax.swing.JTextField cepField;
+    private javax.swing.JFormattedTextField cepField;
     private javax.swing.JLabel cepLabel;
     private javax.swing.JTextField cidadeField;
     private javax.swing.JTextField complementoField;
     private javax.swing.JLabel complementoLabel;
-    private javax.swing.JTextField cpfCnpjField;
+    private javax.swing.JFormattedTextField cpfField;
     private javax.swing.JLabel cpfCnpjLabel;
-    private javax.swing.JTextField dataCadastroField;
+    private javax.swing.JFormattedTextField dataCadastroField;
     private javax.swing.JLabel dataCadastroLabel;
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLabel;
-    private javax.swing.JTextField fone1Field;
+    private javax.swing.JFormattedTextField fone1Field;
     private javax.swing.JLabel fone1Label;
-    private javax.swing.JTextField fone2Field;
+    private javax.swing.JFormattedTextField fone2Field;
     private javax.swing.JLabel fone2Label;
     private javax.swing.JTextField idField;
     private javax.swing.JLabel idLabel;

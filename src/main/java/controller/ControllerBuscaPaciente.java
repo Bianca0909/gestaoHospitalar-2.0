@@ -99,7 +99,7 @@ public class ControllerBuscaPaciente implements ActionListener {
         telaCadastro.getIdField().setText(String.valueOf(paciente.getId()));
         telaCadastro.getNomeField().setText(paciente.getNome());
         telaCadastro.getNomeSocialField().setText(paciente.getNomeSocial());
-        telaCadastro.getCpfCnpjField().setText(paciente.getCpfCnpj());
+        telaCadastro.getCpfField().setText(paciente.getCpfCnpj());
         telaCadastro.getRgField().setText(paciente.getRgInscricaoEstadual());
         telaCadastro.getFone1Field().setText(paciente.getFone1());
         telaCadastro.getFone2Field().setText(paciente.getFone2());
@@ -124,7 +124,7 @@ public class ControllerBuscaPaciente implements ActionListener {
         telaCadastro.getIdField().setEnabled(false); // ID não pode ser editado
         telaCadastro.getNomeField().setEnabled(true);
         telaCadastro.getNomeSocialField().setEnabled(true);
-        telaCadastro.getCpfCnpjField().setEnabled(true);
+        telaCadastro.getCpfField().setEnabled(true);
         telaCadastro.getRgField().setEnabled(true);
         telaCadastro.getFone1Field().setEnabled(true);
         telaCadastro.getFone2Field().setEnabled(true);

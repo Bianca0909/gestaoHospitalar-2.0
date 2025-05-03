@@ -46,7 +46,7 @@ public class ControllerCadastroPaciente implements ActionListener {
             paciente.setNome(this.telaCadastroPaciente.getNomeField().getText());
             paciente.setDataCadastro(this.telaCadastroPaciente.getDataCadastroField().getText());
             paciente.setNomeSocial(this.telaCadastroPaciente.getNomeSocialField().getText());
-            paciente.setCpfCnpj(this.telaCadastroPaciente.getCpfCnpjField().getText());
+            paciente.setCpfCnpj(this.telaCadastroPaciente.getCpfField().getText());
             paciente.setRgInscricaoEstadual(this.telaCadastroPaciente.getRgField().getText());
             paciente.setSexo(((SexoEnum)this.telaCadastroPaciente.getSexoComboBox().getSelectedItem()).name());
             paciente.setTipoSanguineo(((TipoSanguineoEnum)this.telaCadastroPaciente.getTipoSanguineoComboBox().getSelectedItem()).name());
@@ -88,7 +88,7 @@ public class ControllerCadastroPaciente implements ActionListener {
                 this.telaCadastroPaciente.getFone1Field().setText(paciente.getFone1());
                 this.telaCadastroPaciente.getFone2Field().setText(paciente.getFone2());
                 this.telaCadastroPaciente.getEmailField().setText(paciente.getEmail());
-                this.telaCadastroPaciente.getCpfCnpjField().setText(paciente.getCpfCnpj());
+                this.telaCadastroPaciente.getCpfField().setText(paciente.getCpfCnpj());
                 this.telaCadastroPaciente.getDataCadastroField().setText(paciente.getDataCadastro());
                 this.telaCadastroPaciente.getCepField().setText(paciente.getCep());
                 this.telaCadastroPaciente.getCidadeField().setText(paciente.getCidade());
