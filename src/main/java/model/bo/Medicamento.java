@@ -34,5 +34,5 @@ public class Medicamento implements Serializable {
     private String codigoBarras;
     @ManyToOne
     @JoinColumn(name = "laboratorio_id")
-    private Laboratorio laboratorio;
+    private Laboratorio laboratorioId;
 }

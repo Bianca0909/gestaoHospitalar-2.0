@@ -5,6 +5,7 @@
 package view;
 
 import controller.ControllerCadastroLaboratorio;
+import controller.ControllerCadastroMedicamento;
 import enums.StatusCadastroEnum;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -509,9 +510,7 @@ public class TelaCadastroMedicamento extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbuttonAddLaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonAddLaboratorioActionPerformed
-       TelaCadastroLaboratorio telaCadastroLaboratorio = new TelaCadastroLaboratorio(null, true);
-       ControllerCadastroLaboratorio controllerCadastroLaboratorio = new ControllerCadastroLaboratorio(telaCadastroLaboratorio);
-       telaCadastroLaboratorio.setVisible(true);
+      
     }//GEN-LAST:event_jbuttonAddLaboratorioActionPerformed
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed

@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.bo.Laboratorio;
 import model.bo.Medicamento;
 import utilities.Utilities;
 import view.TelaBuscaMedicamento;
@@ -46,8 +47,8 @@ public class ControllerCadastroMedicamento implements ActionListener {
             medicamento.setQtdMinima(Integer.parseInt(this.telaCadastroMedicamento.getQuantidadeMinimaField().getText()));
             medicamento.setStatus(this.telaCadastroMedicamento.getStatusComboBox().getSelectedItem().toString());
             
-            Medicamento medicamentoSelecionado = (Medicamento) this.telaCadastroMedicamento.getLaboratorioComboBox().getSelectedItem();
-            medicamento.setLaboratorio(medicamentoSelecionado.getLaboratorio());
+            Laboratorio laboratorioSelecionado = (Laboratorio) this.telaCadastroMedicamento.getLaboratorioComboBox().getSelectedItem();
+            medicamento.setLaboratorioId(laboratorioSelecionado);
             
             if (this.telaCadastroMedicamento.getIdField().getText().equals("")) {
                 service.ServiceMedicamento.adicionar(medicamento);

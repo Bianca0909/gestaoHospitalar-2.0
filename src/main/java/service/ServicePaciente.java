@@ -30,4 +30,18 @@ public class ServicePaciente {
         PacienteDAO pacienteDAO = PacienteDAO.getInstance();
         pacienteDAO.update(objeto);
     }
+
+    public static boolean excluir(int id) {
+        try {
+            PacienteDAO pacienteDAO = PacienteDAO.getInstance();
+            Paciente paciente = pacienteDAO.retrieve(id);
+            if (paciente != null) {
+                pacienteDAO.delete(paciente);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
