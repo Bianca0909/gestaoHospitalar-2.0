@@ -74,6 +74,7 @@ C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\model\bo\Lote.java
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\view\ModeloBuscas.java
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\model\bo\Farmaceutico.java
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\model\dao\LeitoDAO.java
+C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\controller\ControllerCadastroLeito.java
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\view\TelaBuscaEnfermeiro.java
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\model\dao\MedicamentoDAO.java
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\service\ServiceUsuario.java

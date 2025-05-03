@@ -30,4 +30,18 @@ public class ServiceLeito {
         LeitoDAO leitoDAO = LeitoDAO.getInstance();
         leitoDAO.update(objeto);
     }
+
+    public static boolean excluir(int id) {
+        try {
+            LeitoDAO leitoDAO = LeitoDAO.getInstance();
+            Leito leito = leitoDAO.retrieve(id);
+            if (leito != null) {
+                leitoDAO.delete(leito);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

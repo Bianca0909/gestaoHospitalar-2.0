@@ -34,4 +34,18 @@ public class ServiceQuarto {
         QuartoDAO quartoDAO = QuartoDAO.getInstance();
         quartoDAO.update(objeto);
     }
+
+    public static boolean excluir(int id) {
+        try {
+            QuartoDAO quartoDAO = QuartoDAO.getInstance();
+            Quarto quarto = quartoDAO.retrieve(id);
+            if (quarto != null) {
+                quartoDAO.delete(quarto);
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

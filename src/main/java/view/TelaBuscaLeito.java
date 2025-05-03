@@ -1,4 +1,3 @@
-
 package view;
 
 import javax.swing.JButton;
@@ -8,7 +7,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
-
 
 public class TelaBuscaLeito extends javax.swing.JDialog {
 
@@ -108,7 +106,14 @@ public class TelaBuscaLeito extends javax.swing.JDialog {
     public void setjPanel5(JPanel jPanel5) {
         this.jPanel5 = jPanel5;
     }
-    
+
+    public JButton getEditarButton() {
+        return jButtonEditar2;
+    }
+
+    public JButton getExcluirButton() {
+        return jButtonExcluir;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
