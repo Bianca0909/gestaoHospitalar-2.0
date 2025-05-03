@@ -3,7 +3,6 @@ model\dao\MedicamentoDAO.class
 view\TelaCadastroAcompanhante.class
 model\bo\Laboratorio.class
 view\TelaBuscaAcompanhante$1.class
-view\TelaBuscaQuarto$3.class
 model\dao\LeitoDAO.class
 view\TelaCadastroPaciente$9.class
 model\bo\Acompanhante.class
@@ -60,7 +59,6 @@ view\Menu$12.class
 service\ServiceMedico.class
 view\TelaCadastroFarmaceutico$3.class
 view\TelaBuscaMedicamento.class
-view\TelaBuscaQuarto$1.class
 view\TelaCadastroLeito$1.class
 view\TelaCadastroFarmaceutico$6.class
 view\TelaBuscaPaciente$4.class
@@ -221,7 +219,6 @@ service\ServiceEnfermeiro.class
 view\TelaCadastroMedicamento$6.class
 model\dao\JornadaDAO.class
 view\Menu$3.class
-view\TelaBuscaQuarto$4.class
 model\bo\ReceitaMedicamento.class
 view\TelaCadastroPaciente$8.class
 view\TelaBuscaAcompanhante$2.class
@@ -237,7 +234,6 @@ view\Menu$11.class
 view\TelaCadastroFarmaceutico$10.class
 view\TelaBuscaFornecedor$1.class
 view\TelaCadastroQuarto$1.class
-view\TelaBuscaQuarto$2.class
 view\TelaCadastroLeito$2.class
 controller\ControllerCadastroQuarto.class
 controller\ControllerBuscaFarmaceutico.class

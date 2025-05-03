@@ -81,6 +81,7 @@ C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\service\ServiceUsuario
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\controller\ControllerCadastroFornecedor.java
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\model\bo\Atendimento.java
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\controller\ControllerBuscaMedicamento.java
+C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\utilities\MaskFormatters.java
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\view\TelaBuscaAcompanhante.java
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\view\TelaCadastroLeito.java
 C:\Desenvolvimento\git\gestaoHospitalar-2.0\src\main\java\view\TelaCadastroJornadaTrabalho.java
